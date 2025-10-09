@@ -1,0 +1,35 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0ea5e9"/>
+  
+  <!-- Brand wordmark -->
+  <text x="600" y="250" text-anchor="middle" font-family="Inter, sans-serif" font-size="64" font-weight="700" fill="white">
+    Saltaire Dog Walks
+  </text>
+  
+  <!-- Subheading -->
+  <text x="600" y="320" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" font-weight="400" fill="white" opacity="0.9">
+    Trusted local dog walking & pet sitting
+  </text>
+  
+  <!-- Location -->
+  <text x="600" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="white" opacity="0.8">
+    Saltaire • Shipley • Baildon
+  </text>
+  
+  <!-- Decorative paw prints -->
+  <g transform="translate(200, 450)" fill="white" opacity="0.3">
+    <circle cx="0" cy="0" r="8"/>
+    <circle cx="-12" cy="-8" r="4"/>
+    <circle cx="12" cy="-8" r="4"/>
+    <circle cx="-8" cy="-15" r="4"/>
+    <circle cx="8" cy="-15" r="4"/>
+  </g>
+  
+  <g transform="translate(1000, 150)" fill="white" opacity="0.2">
+    <circle cx="0" cy="0" r="8"/>
+    <circle cx="-12" cy="-8" r="4"/>
+    <circle cx="12" cy="-8" r="4"/>
+    <circle cx="-8" cy="-15" r="4"/>
+    <circle cx="8" cy="-15" r="4"/>
+  </g>
+</svg>

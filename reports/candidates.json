@@ -1,0 +1,19 @@
+{
+  "safeCandidates": [
+    "/home/giuseppe/saltaire-dogs/src/app/(site)/opengraph-image.tsx",
+    "/home/giuseppe/saltaire-dogs/src/app/(site)/robots.ts",
+    "/home/giuseppe/saltaire-dogs/src/app/(site)/sitemap.ts",
+    "/home/giuseppe/saltaire-dogs/src/components/analytics.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/cookie-banner.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/footer.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/header.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/mobile-nav.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/pricing.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/theme-provider.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/ui/dialog.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/ui/sheet.tsx",
+    "/home/giuseppe/saltaire-dogs/src/components/ui/tooltip.tsx",
+    "/home/giuseppe/saltaire-dogs/src/lib/validations.ts"
+  ],
+  "risky": []
+}

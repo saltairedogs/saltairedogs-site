@@ -1,0 +1,11 @@
+{
+  // Silence the editor’s CSS validator for Tailwind at-rules
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  // Parse Tailwind directives correctly in this file
+  "files.associations": {
+    "**/src/app/globals.css": "postcss"
+  }
+}

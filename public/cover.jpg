@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#90EE90;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#skyGradient)"/>
+  
+  <!-- Ground -->
+  <rect y="400" width="800" height="200" fill="url(#grassGradient)"/>
+  
+  <!-- Trees in background -->
+  <circle cx="100" cy="350" r="50" fill="#2D5016"/>
+  <rect x="90" y="350" width="20" height="80" fill="#8B4513"/>
+  
+  <circle cx="700" cy="320" r="60" fill="#2D5016"/>
+  <rect x="688" y="320" width="24" height="100" fill="#8B4513"/>
+  
+  <!-- Path -->
+  <ellipse cx="400" cy="500" rx="300" ry="80" fill="#D2B48C" opacity="0.8"/>
+  
+  <!-- Happy dogs silhouettes -->
+  <g transform="translate(250, 450)">
+    <ellipse cx="0" cy="20" rx="25" ry="15" fill="#8B4513"/>
+    <circle cx="-15" cy="5" r="12" fill="#8B4513"/>
+    <ellipse cx="-8" cy="0" rx="3" ry="8" fill="#8B4513"/>
+    <ellipse cx="-22" cy="0" rx="3" ry="8" fill="#8B4513"/>
+    <path d="M -20 -5 Q -15 -10 -10 -5" stroke="#8B4513" stroke-width="2" fill="none"/>
+  </g>
+  
+  <g transform="translate(400, 460)">
+    <ellipse cx="0" cy="15" rx="20" ry="12" fill="#654321"/>
+    <circle cx="-12" cy="2" r="10" fill="#654321"/>
+    <ellipse cx="-6" cy="-2" rx="2" ry="6" fill="#654321"/>
+    <ellipse cx="-18" cy="-2" rx="2" ry="6" fill="#654321"/>
+    <path d="M -16 -6 Q -12 -10 -8 -6" stroke="#654321" stroke-width="2" fill="none"/>
+  </g>
+  
+  <g transform="translate(550, 455)">
+    <ellipse cx="0" cy="18" rx="22" ry="13" fill="#A0522D"/>
+    <circle cx="-13" cy="3" r="11" fill="#A0522D"/>
+    <ellipse cx="-7" cy="-1" rx="2.5" ry="7" fill="#A0522D"/>
+    <ellipse cx="-19" cy="-1" rx="2.5" ry="7" fill="#A0522D"/>
+    <path d="M -17 -6 Q -13 -9 -9 -6" stroke="#A0522D" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Clouds -->
+  <circle cx="150" cy="100" r="25" fill="white" opacity="0.8"/>
+  <circle cx="170" cy="95" r="30" fill="white" opacity="0.8"/>
+  <circle cx="190" cy="100" r="25" fill="white" opacity="0.8"/>
+  
+  <circle cx="600" cy="80" r="20" fill="white" opacity="0.7"/>
+  <circle cx="615" cy="75" r="25" fill="white" opacity="0.7"/>
+  <circle cx="630" cy="80" r="20" fill="white" opacity="0.7"/>
+</svg>
