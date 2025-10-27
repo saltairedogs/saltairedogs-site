@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from './container'
-import { Phone, Mail, MessageCircle } from 'lucide-react'
+import { Phone, Mail, MessageCircle, Instagram } from 'lucide-react'
 
 const currentYear = new Date().getFullYear()
 
@@ -10,6 +10,8 @@ const WA_TEXT = encodeURIComponent(
   'Hi! I’m in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I’m looking for [walks/visits].'
 )
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
+
+const INSTAGRAM_URL = 'https://www.instagram.com/saltairedogs/'
 
 export function Footer() {
   const legalLinks = [
@@ -104,6 +106,19 @@ export function Footer() {
             >
               <Mail className="h-4 w-4" />
               Email
+            </a>
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-colors"
+              style={{ borderColor: '#E6E3DA', color: '#131415' }}
+              aria-label="Follow Saltaire Dogs + Pets on Instagram"
+            >
+              <Instagram className="h-4 w-4" />
+              <span className="hidden sm:inline">@saltairedogs</span>
+              <span className="sm:hidden">Instagram</span>
             </a>
           </div>
         </div>

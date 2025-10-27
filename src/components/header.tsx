@@ -7,7 +7,7 @@ import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Container } from './container'
 import { MobileNav } from './mobile-nav'
-import { Menu, MessageCircle } from 'lucide-react'
+import { Menu, MessageCircle, Instagram } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
@@ -21,6 +21,8 @@ const WA_TEXT = encodeURIComponent(
   "Hi! I'm in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I'm looking for [walks/visits]."
 )
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
+
+const INSTAGRAM_URL = 'https://www.instagram.com/saltairedogs/'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -80,8 +82,23 @@ export function Header() {
             })}
           </nav>
 
-          {/* CTA + Mobile Menu */}
+          {/* CTAs + Mobile Menu */}
           <div className="flex items-center gap-1.5">
+            {/* Instagram (desktop) */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-2 rounded-lg border px-3.5 py-2.5 text-[14px] font-semibold"
+              style={{ borderColor: '#E6E3DA', color: '#131415' }}
+              aria-label="Follow @saltairedogs on Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="hidden sm:inline">@saltairedogs</span>
+              <span className="sm:hidden">Instagram</span>
+            </a>
+
+            {/* WhatsApp (desktop) */}
             <a
               href={WA_LINK}
               target="_blank"
@@ -94,6 +111,7 @@ export function Header() {
               Quote on WhatsApp
             </a>
 
+            {/* Mobile Menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
@@ -105,11 +123,23 @@ export function Header() {
                 side="right"
                 className="w-[85vw] max-w-xs p-4 sm:p-5 rounded-xl shadow-lg bg-[#F7F7F6] ring-1 ring-[#E6E3DA]"
               >
-                {/* Updated mobile nav (no "Book Free Meet & Greet") */}
                 <MobileNav navigation={NAV} currentPath={pathname ?? '/'} onClose={() => setMobileOpen(false)} />
 
-                {/* Keep the WhatsApp CTA below if you like */}
-                <div className="mt-4">
+                {/* Social / CTA block */}
+                <div className="mt-4 grid grid-cols-1 gap-2">
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2.5 rounded-lg border px-4 py-2.5 text-[14px] font-semibold"
+                    style={{ borderColor: '#E6E3DA', color: '#131415' }}
+                    aria-label="Follow @saltairedogs on Instagram"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <Instagram className="h-5 w-5" />
+                    Instagram
+                  </a>
+
                   <a
                     href={WA_LINK}
                     target="_blank"
