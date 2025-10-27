@@ -2,27 +2,7 @@
 
 /**
  * Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags
- *
- * High-depth buyer's guide page with:
- * - Animated reading progress
- * - Ambient hero image
- * - Sticky table of contents (left)
- * - Pricing explainer + interactive price estimator
- * - Insurance essentials checklist (with quick-glossary)
- * - References & due-diligence verifier
- * - Red flags gallery (with rationales & fixes)
- * - Example outreach scripts + email templates
- * - Comparison worksheet cards (downloadables)
- * - Extended FAQ with FAQPage JSON-LD
- * - Print/share/copy actions
- *
- * TailwindCSS assumed. No external UI deps.
- *
- * Design goals:
- * - Calm, trustworthy aesthetic
- * - Clear, scannable sections
- * - Plain-language legal/insurance phrasing
- * - A11y-first: focus-visible, aria labels, summaries
+ * Premium redesign + stronger SEO/structure.
  */
 
 import React, {
@@ -34,6 +14,20 @@ import React, {
   Fragment,
 } from "react";
 import Link from "next/link";
+
+// ---------------------------------------------------------------------------
+// Brand palette
+// ---------------------------------------------------------------------------
+
+const BRAND = {
+  pebble: "#F7F7F6",
+  stone: "#EFEEE9",
+  hairline: "#E6E3DA",
+  ink: "#131415",
+  slate: "#7B828A",
+  brass: "#C89B3C",
+  brassDark: "#A47F2D",
+};
 
 // ---------------------------------------------------------------------------
 // Types & helpers
@@ -54,7 +48,7 @@ function toPounds(n: number) {
 }
 
 function toDateString() {
-  return new Date().toLocaleDateString(undefined, {
+  return new Date().toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -62,7 +56,7 @@ function toDateString() {
 }
 
 // ---------------------------------------------------------------------------
-// Icons (lucide-ish)
+// Minimal icons
 // ---------------------------------------------------------------------------
 
 const Icon = {
@@ -151,18 +145,21 @@ const Icon = {
 // ---------------------------------------------------------------------------
 
 export default function ChoosingDogWalkerClient() {
-  const toc: TocItem[] = useMemo(() => ([
-    { id: "overview", label: "Overview", level: 1 },
-    { id: "pricing", label: "Prices & What Affects Them", level: 1 },
-    { id: "estimator", label: "Price Estimator", level: 1 },
-    { id: "insurance", label: "Insurance & Compliance", level: 1 },
-    { id: "references", label: "References & Checks", level: 1 },
-    { id: "red-flags", label: "Red Flags (and fixes)", level: 1 },
-    { id: "questions", label: "Questions to Ask", level: 1 },
-    { id: "scripts", label: "Message & Call Scripts", level: 1 },
-    { id: "downloads", label: "Downloadable Checklists", level: 1 },
-    { id: "faq", label: "FAQs", level: 1 },
-  ]), []);
+  const toc: TocItem[] = useMemo(
+    () => [
+      { id: "overview", label: "Overview", level: 1 },
+      { id: "pricing", label: "Prices & What Affects Them", level: 1 },
+      { id: "estimator", label: "Price Estimator", level: 1 },
+      { id: "insurance", label: "Insurance & Compliance", level: 1 },
+      { id: "references", label: "References & Checks", level: 1 },
+      { id: "red-flags", label: "Red Flags (and fixes)", level: 1 },
+      { id: "questions", label: "Questions to Ask", level: 1 },
+      { id: "scripts", label: "Message & Call Scripts", level: 1 },
+      { id: "downloads", label: "Downloadable Checklists", level: 1 },
+      { id: "faq", label: "FAQs", level: 1 },
+    ],
+    []
+  );
 
   const [activeId, setActiveId] = useState<string>(toc[0].id);
   const [progress, setProgress] = useState(0);
@@ -212,11 +209,11 @@ export default function ChoosingDogWalkerClient() {
   const readingTime = useMemo(() => "14 min read", []);
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen" style={{ backgroundColor: BRAND.pebble, color: BRAND.ink }}>
       <ProgressBar progress={progress} />
       <Hero readingTime={readingTime} />
 
-      {/* Structured data (Article + FAQPage) */}
+      {/* Structured data (BlogPosting + FAQPage + Breadcrumbs) */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -227,6 +224,11 @@ export default function ChoosingDogWalkerClient() {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqJsonLd()) }}
       />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getBreadcrumbsJsonLd()) }}
+      />
 
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 pb-24">
         {/* Sidebar */}
@@ -234,8 +236,11 @@ export default function ChoosingDogWalkerClient() {
           <StickyToc toc={toc} activeId={activeId} />
 
           {/* Quick actions */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="text-sm font-semibold text-slate-900 mb-2">Quick actions</div>
+          <div
+            className="rounded-2xl p-4 shadow-sm"
+            style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}
+          >
+            <div className="text-sm font-semibold mb-2">Quick actions</div>
             <div className="flex flex-wrap gap-2">
               <Button subtle onClick={handleCopy} ariaLabel="Copy link">
                 <Icon.Link className="h-4 w-4" />
@@ -250,20 +255,33 @@ export default function ChoosingDogWalkerClient() {
                 <span>Share</span>
               </Button>
             </div>
-            <p className="mt-3 text-xs text-slate-500">Tip: printing uses a tidy single-column template.</p>
+            <p className="mt-3 text-xs" style={{ color: BRAND.slate }}>
+              Tip: printing uses a tidy single-column template.
+            </p>
           </div>
 
           {/* Contact snippet */}
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4">
-            <div className="text-sm font-semibold text-slate-900 mb-2">Chat with us</div>
-            <p className="text-sm text-slate-700">
+          <div
+            className="rounded-2xl p-4"
+            style={{ backgroundColor: BRAND.stone, border: `1px solid ${BRAND.hairline}` }}
+          >
+            <div className="text-sm font-semibold mb-2">Chat with us</div>
+            <p className="text-sm">
               Have unusual scheduling or a reactive dog? We’ll advise honestly—even if we’re not the best fit.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold"
+                style={{ backgroundColor: BRAND.brass, color: BRAND.ink }}
+              >
                 <Icon.Phone className="h-4 w-4" /> Contact
               </Link>
-              <Link href="/pricing" className="inline-flex items-center gap-2 rounded-md border border-emerald-200 bg-white px-3 py-1.5 text-sm font-semibold text-emerald-700 hover:bg-emerald-50">
+              <Link
+                href="/pricing"
+                className="inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold"
+                style={{ backgroundColor: "#fff", borderColor: BRAND.hairline, color: BRAND.ink }}
+              >
                 Pricing
               </Link>
             </div>
@@ -287,9 +305,9 @@ export default function ChoosingDogWalkerClient() {
             </Callout>
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <Badge tone="emerald">Transparent pricing</Badge>
-              <Badge tone="sky">Insurance explained</Badge>
-              <Badge tone="amber">Red flags to avoid</Badge>
+              <Badge tone="brass">Transparent pricing</Badge>
+              <Badge tone="slate">Insurance explained</Badge>
+              <Badge tone="stone">Red flags to avoid</Badge>
             </div>
           </Section>
 
@@ -297,7 +315,7 @@ export default function ChoosingDogWalkerClient() {
 
           {/* Prices & Drivers */}
           <Section id="pricing" title="Prices & What Actually Affects Them">
-            <p>
+            <p style={{ color: BRAND.slate }}>
               Prices reflect time, travel, group size, and training skill. Focus on value & consistency over the lowest sticker price.
             </p>
 
@@ -334,7 +352,7 @@ export default function ChoosingDogWalkerClient() {
 
           {/* Estimator */}
           <Section id="estimator" title="Simple Price Estimator (ballpark)">
-            <p>
+            <p style={{ color: BRAND.slate }}>
               Use this interactive calculator to sketch a weekly ballpark. It’s intentionally conservative; always confirm a final quote in writing.
             </p>
             <Estimator />
@@ -348,7 +366,7 @@ export default function ChoosingDogWalkerClient() {
 
           {/* Insurance */}
           <Section id="insurance" title="Insurance & Compliance (clear & simple)">
-            <p>
+            <p style={{ color: BRAND.slate }}>
               Good walkers make insurance and documentation boringly obvious. Ask for a single PDF or link with dates and policy numbers.
             </p>
 
@@ -384,7 +402,7 @@ export default function ChoosingDogWalkerClient() {
 
           {/* References & Checks */}
           <Section id="references" title="References & How to Verify Them">
-            <p>
+            <p style={{ color: BRAND.slate }}>
               A short, polite reference check tells you more than a glossy Instagram ever will. Use the mini-tool below to plan your call.
             </p>
 
@@ -400,7 +418,7 @@ export default function ChoosingDogWalkerClient() {
 
           {/* Red Flags */}
           <Section id="red-flags" title="Red Flags (and the fix if you still like them)">
-            <p>
+            <p style={{ color: BRAND.slate }}>
               Nobody’s perfect—but some issues are more serious than others. Here’s how to spot them and what a safe fix might look like.
             </p>
             <RedFlagsGallery />
@@ -433,7 +451,7 @@ export default function ChoosingDogWalkerClient() {
               <DownloadCard
                 title="Reference Call Sheet"
                 href="/downloads/reference-call-sheet.pdf"
-                desc="Space to log two references side-by-side with scoring."
+                desc="Log two references side-by-side with scoring."
               />
               <DownloadCard
                 title="Trial Period Planner"
@@ -478,61 +496,87 @@ export default function ChoosingDogWalkerClient() {
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="sticky top-0 z-40 h-1 w-full bg-emerald-100 print:hidden" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
-      <div className="h-full bg-emerald-600 transition-[width] duration-200" style={{ width: `${Math.round(progress * 100)}%` }} />
+    <div
+      className="sticky top-0 z-40 h-1 w-full print:hidden"
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(progress * 100)}
+      style={{ backgroundColor: BRAND.stone }}
+    >
+      <div
+        className="h-full transition-[width] duration-200"
+        style={{ width: `${Math.round(progress * 100)}%`, backgroundColor: BRAND.brass }}
+      />
     </div>
   );
 }
 
 function Hero({ readingTime }: { readingTime: string }) {
   return (
-    <header className="relative isolate overflow-hidden bg-gradient-to-b from-emerald-50 to-white print:hidden">
+    <header className="relative isolate overflow-hidden print:hidden" style={{ backgroundColor: BRAND.pebble }}>
       {/* Ambient image */}
       <div
-        className="absolute inset-5 -z-10 bg-cover bg-center opacity-45"
-        style={{ backgroundImage: "url('/saltaire-checklist-hero.jpg')" }}
+        className="absolute inset-0 -z-10 bg-cover bg-center opacity-60"
+        style={{ backgroundImage: "url('/cover.jpg')" }}
         aria-hidden="true"
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-emerald-700 text-sm font-medium ring-1 ring-emerald-200">
-              Buyer’s Guide
-            </span>
-            <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-amber-800 text-xs font-semibold">
-              New
-            </span>
-          </div>
-          <h1 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
+          <span
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1"
+            style={{ backgroundColor: BRAND.stone, color: BRAND.ink, borderColor: BRAND.hairline }}
+          >
+            Buyer’s Guide
+          </span>
+
+          <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
             Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags
           </h1>
-          <p className="mt-3 text-lg text-slate-700">
+          <p className="mt-3 text-lg" style={{ color: BRAND.slate }}>
             A practical, plain-English checklist to compare walkers fairly and choose with confidence.
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+          <div className="mt-5 flex flex-wrap items-center gap-4 text-sm" style={{ color: BRAND.slate }}>
             <div className="inline-flex items-center gap-2"><Icon.Clock className="h-4 w-4" /> {readingTime}</div>
-            <div className="inline-flex items-center gap-2"><Icon.Eye className="h-4 w-4" /> Updated Oct 2025</div>
+            <div className="inline-flex items-center gap-2"><Icon.Eye className="h-4 w-4" /> Updated {toDateString()}</div>
           </div>
         </div>
       </div>
-      <div className="h-10 w-full bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_70%)]" />
+      <div
+        className="h-10 w-full"
+        style={{
+          background:
+            "radial-gradient(ellipse at top, rgba(200,155,60,0.18), transparent 70%)",
+        }}
+      />
     </header>
   );
 }
 
 function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
   return (
-    <nav className="lg:sticky lg:top-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" aria-label="On this page">
-      <div className="text-sm font-semibold text-slate-900">On this page</div>
+    <nav
+      className="lg:sticky lg:top-20 rounded-2xl p-5 shadow-sm"
+      aria-label="On this page"
+      style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}
+    >
+      <div className="text-sm font-semibold">On this page</div>
       <ol className="mt-3 space-y-2">
         {toc.map((t) => (
           <li key={t.id}>
             <a
               href={`#${t.id}`}
               className={cx(
-                "block rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400",
-                activeId === t.id ? "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200" : "text-slate-700 hover:text-slate-900"
+                "block rounded-md px-2 py-1 text-sm focus:outline-none",
+                activeId === t.id
+                  ? "ring-1"
+                  : "hover:opacity-80"
               )}
+              style={
+                activeId === t.id
+                  ? { backgroundColor: BRAND.stone, color: BRAND.ink, borderColor: BRAND.hairline }
+                  : { color: BRAND.ink }
+              }
               aria-current={activeId === t.id ? "location" : undefined}
             >
               {t.label}
@@ -540,7 +584,10 @@ function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
           </li>
         ))}
       </ol>
-      <div className="mt-4 rounded-lg bg-slate-50 p-3 text-xs text-slate-600">
+      <div
+        className="mt-4 rounded-lg p-3 text-xs"
+        style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}`, color: BRAND.slate }}
+      >
         Tip: tap headings to jump — the progress bar shows where you are.
       </div>
     </nav>
@@ -550,8 +597,10 @@ function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
 function TopMetaBar() {
   const dateText = toDateString();
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-600">
-      <span>By <strong>Saltaire Dog Walks</strong></span>
+    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm" style={{ color: BRAND.slate }}>
+      <span>
+        By <strong style={{ color: BRAND.ink }}>Saltaire Dog Walks</strong>
+      </span>
       <span aria-hidden="true">•</span>
       <span>{dateText}</span>
       <span aria-hidden="true">•</span>
@@ -564,8 +613,8 @@ function Section({ id, title, children }: { id: string; title: string; children:
   const headingId = useId();
   return (
     <section id={id} className="scroll-mt-24">
-      <h2 id={headingId} className="text-2xl sm:text-3xl font-bold text-slate-900">{title}</h2>
-      <div className="prose prose-slate max-w-none prose-a:text-emerald-700 prose-strong:text-slate-900 mt-4">
+      <h2 id={headingId} className="text-2xl sm:text-3xl font-semibold">{title}</h2>
+      <div className="prose prose-slate max-w-none prose-strong:text-slate-900 prose-a:underline mt-4" style={{ color: BRAND.ink }}>
         {children}
       </div>
     </section>
@@ -573,74 +622,96 @@ function Section({ id, title, children }: { id: string; title: string; children:
 }
 
 function Divider() {
-  return <hr className="my-10 border-slate-200" />;
+  return <hr className="my-10" style={{ borderColor: BRAND.hairline }} />;
 }
 
-function ProTip({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function ProTip({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="not-prose mt-6 rounded-xl border border-emerald-200 bg-emerald-50/40 p-4 shadow-sm transition hover:shadow-md">
+    <div
+      className="not-prose mt-6 rounded-xl p-4 shadow-sm transition hover:shadow-md"
+      style={{ backgroundColor: BRAND.stone, border: `1px solid ${BRAND.hairline}` }}
+    >
       <div className="flex items-start gap-3">
-        <div className="text-emerald-600">
+        <div style={{ color: BRAND.brass }}>
           <Icon.Check className="h-5 w-5" />
         </div>
         <div>
-          <div className="text-sm font-semibold text-slate-900">{title}</div>
-          <div className="mt-1 text-sm text-slate-700">{children}</div>
+          <div className="text-sm font-semibold">{title}</div>
+          <div className="mt-1 text-sm" style={{ color: BRAND.ink }}>{children}</div>
         </div>
       </div>
     </div>
   );
 }
 
-
-function Callout({ type, title, children }: { type: "success" | "warning" | "info"; title: string; children: React.ReactNode }) {
-  const palette = {
-    success: { bg: "bg-emerald-50", ring: "ring-emerald-200", tint: "text-emerald-900", icon: <Icon.Check className="h-4 w-4 text-emerald-700" /> },
-    warning: { bg: "bg-amber-50", ring: "ring-amber-200", tint: "text-amber-900", icon: <Icon.Alert className="h-4 w-4 text-amber-700" /> },
-    info:    { bg: "bg-sky-50",    ring: "ring-sky-200",    tint: "text-sky-900",    icon: <Icon.Info  className="h-4 w-4 text-sky-700" /> },
-  }[type];
+function Callout({
+  type,
+  title,
+  children,
+}: {
+  type: "success" | "warning" | "info";
+  title: string;
+  children: React.ReactNode;
+}) {
+  const palette =
+    {
+      success: { bg: BRAND.stone, ring: BRAND.hairline, tint: BRAND.ink, icon: <Icon.Check className="h-4 w-4" style={{ color: BRAND.brass }} /> },
+      warning: { bg: "#FFF7E6", ring: "#FCE6B3", tint: "#7A4B00", icon: <Icon.Alert className="h-4 w-4" style={{ color: "#B67200" }} /> },
+      info: { bg: "#F1F4F6", ring: "#E3E8EB", tint: "#1D2B36", icon: <Icon.Info className="h-4 w-4" style={{ color: "#1D2B36" }} /> },
+    }[type];
   return (
-    <div className={cx("not-prose mt-6 rounded-xl p-4 ring-1", palette.bg, palette.ring)}>
+    <div className="not-prose mt-6 rounded-xl p-4 ring-1" style={{ backgroundColor: palette.bg, borderColor: palette.ring }}>
       <div className="flex items-start gap-3">
         <div className="mt-0.5">{palette.icon}</div>
         <div>
-          <div className={cx("text-sm font-semibold", palette.tint)}>{title}</div>
-          <div className="mt-1 text-sm text-slate-800">{children}</div>
+          <div className="text-sm font-semibold" style={{ color: palette.tint }}>{title}</div>
+          <div className="mt-1 text-sm" style={{ color: BRAND.ink }}>{children}</div>
         </div>
       </div>
     </div>
   );
 }
 
-function Badge({ children, tone = "emerald" }: { children: React.ReactNode; tone?: "emerald" | "amber" | "sky" }) {
-  const map: Record<string, string> = {
-    emerald: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-    amber: "bg-amber-100 text-amber-800 ring-amber-200",
-    sky: "bg-sky-100 text-sky-700 ring-sky-200",
+function Badge({ children, tone = "brass" }: { children: React.ReactNode; tone?: "brass" | "stone" | "slate" }) {
+  const map: Record<string, React.CSSProperties> = {
+    brass: { backgroundColor: `${BRAND.brass}22`, color: BRAND.ink, borderColor: `${BRAND.brass}55` },
+    stone: { backgroundColor: BRAND.stone, color: BRAND.ink, borderColor: BRAND.hairline },
+    slate: { backgroundColor: "#E9EEF2", color: "#1D2B36", borderColor: "#D6E0E7" },
   };
   return (
-    <span className={cx("inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1", map[tone])}>
+    <span
+      className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1"
+      style={map[tone]}
+    >
       {children}
     </span>
   );
 }
 
-function Button({ children, onClick, subtle, ariaLabel }: { children: React.ReactNode; onClick: () => void; subtle?: boolean; ariaLabel?: string }) {
+function Button({
+  children,
+  onClick,
+  subtle,
+  ariaLabel,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  subtle?: boolean;
+  ariaLabel?: string;
+}) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
       className={cx(
-        "inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400",
-        subtle ? "border-slate-300 bg-white text-slate-800 hover:bg-slate-50" : "border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700"
+        "inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium shadow-sm focus:outline-none"
       )}
+      style={
+        subtle
+          ? { backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}`, color: BRAND.ink }
+          : { backgroundColor: BRAND.brass, color: BRAND.ink, border: `1px solid ${BRAND.brass}` }
+      }
     >
       {children}
     </button>
@@ -652,7 +723,8 @@ function ActionButton({ onClick, icon, children }: { onClick: () => void; icon: 
     <button
       onClick={onClick}
       type="button"
-      className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+      className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium shadow-sm focus:outline-none"
+      style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}`, color: BRAND.ink }}
     >
       {icon}
       {children}
@@ -666,14 +738,14 @@ function ActionButton({ onClick, icon, children }: { onClick: () => void; icon: 
 
 function ExplainerCard({ title, bullets }: { title: string; bullets: string[] }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex items-center gap-2 text-slate-900 font-semibold">
-        <Icon.FileText className="h-4 w-4 text-emerald-600" /> {title}
+    <div className="rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
+      <div className="flex items-center gap-2 font-semibold">
+        <Icon.FileText className="h-4 w-4" style={{ color: BRAND.brass }} /> {title}
       </div>
-      <ul className="mt-3 space-y-2 text-sm text-slate-700">
+      <ul className="mt-3 space-y-2 text-sm" style={{ color: BRAND.ink }}>
         {bullets.map((b) => (
           <li key={b} className="flex items-start gap-2">
-            <Icon.Check className="mt-0.5 h-4 w-4 text-emerald-600" />
+            <Icon.Check className="mt-0.5 h-4 w-4" style={{ color: BRAND.brass }} />
             {b}
           </li>
         ))}
@@ -687,43 +759,44 @@ function PricingGrid() {
     {
       title: "Solo walk",
       range: "£14–£20 / 30–45 min",
-      bullets: [
-        "1-to-1 attention",
-        "Good for shy/reactive or seniors",
-        "Flexible pacing and routes",
-      ],
+      bullets: ["1-to-1 attention", "Good for shy/reactive or seniors", "Flexible pacing and routes"],
     },
     {
       title: "Small group (2–4 dogs)",
       range: "£10–£15 / 45–60 min",
-      bullets: [
-        "Social, cost-effective",
-        "Balanced energy groups",
-        "Predictable routes & timings",
-      ],
+      bullets: ["Social, cost-effective", "Balanced energy groups", "Predictable routes & timings"],
     },
     {
       title: "Puppy drop-in / comfort break",
       range: "£8–£12 / 15–20 min",
-      bullets: [
-        "Garden/indoor visit + toilet break",
-        "Early training foundations",
-        "Great bridge until full walks",
-      ],
+      bullets: ["Garden/indoor visit + toilet break", "Early training foundations", "Great bridge until full walks"],
     },
   ];
   return (
     <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       {tiers.map((t) => (
-        <div key={t.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+        <div
+          key={t.title}
+          className="rounded-2xl p-5 shadow-sm transition hover:shadow-md"
+          style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}
+        >
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-slate-900">{t.title}</h3>
-            <span className="rounded-full bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-200">Guide</span>
+            <h3 className="text-lg font-semibold">{t.title}</h3>
+            <span
+              className="rounded-full px-2 py-1 text-[11px] font-semibold ring-1"
+              style={{ backgroundColor: BRAND.stone, borderColor: BRAND.hairline, color: BRAND.ink }}
+            >
+              Guide
+            </span>
           </div>
-          <div className="mt-1 text-sm text-slate-700">{t.range}</div>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+          <div className="mt-1 text-sm" style={{ color: BRAND.slate }}>
+            {t.range}
+          </div>
+          <ul className="mt-3 space-y-2 text-sm">
             {t.bullets.map((b) => (
-              <li key={b} className="flex items-start gap-2"><Icon.Check className="mt-0.5 h-4 w-4 text-emerald-600" /> {b}</li>
+              <li key={b} className="flex items-start gap-2">
+                <Icon.Check className="mt-0.5 h-4 w-4" style={{ color: BRAND.brass }} /> {b}
+              </li>
             ))}
           </ul>
         </div>
@@ -745,30 +818,30 @@ function Estimator() {
   const total = useMemo(() => weekly * weeks, [weekly, weeks]);
 
   return (
-    <div className="not-prose mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="not-prose mt-4 rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-slate-900">Solo walks / week</label>
+          <label className="block text-sm font-medium">Solo walks / week</label>
           <input type="range" min={0} max={7} value={solo} onChange={(e) => setSolo(Number(e.target.value))} className="mt-1 w-full" />
-          <div className="mt-1 text-xs text-slate-600">{solo} × {toPounds(baseSolo)}</div>
+          <div className="mt-1 text-xs" style={{ color: BRAND.slate }}>{solo} × {toPounds(baseSolo)}</div>
 
-          <label className="mt-4 block text-sm font-medium text-slate-900">Group walks / week</label>
+          <label className="mt-4 block text-sm font-medium">Group walks / week</label>
           <input type="range" min={0} max={7} value={group} onChange={(e) => setGroup(Number(e.target.value))} className="mt-1 w-full" />
-          <div className="mt-1 text-xs text-slate-600">{group} × {toPounds(baseGroup)}</div>
+          <div className="mt-1 text-xs" style={{ color: BRAND.slate }}>{group} × {toPounds(baseGroup)}</div>
 
-          <label className="mt-4 block text-sm font-medium text-slate-900">Puppy drop-ins / week</label>
+          <label className="mt-4 block text-sm font-medium">Puppy drop-ins / week</label>
           <input type="range" min={0} max={10} value={dropins} onChange={(e) => setDropins(Number(e.target.value))} className="mt-1 w-full" />
-          <div className="mt-1 text-xs text-slate-600">{dropins} × {toPounds(baseDrop)}</div>
+          <div className="mt-1 text-xs" style={{ color: BRAND.slate }}>{dropins} × {toPounds(baseDrop)}</div>
 
-          <label className="mt-4 block text-sm font-medium text-slate-900">Compare over (weeks)</label>
+          <label className="mt-4 block text-sm font-medium">Compare over (weeks)</label>
           <input type="range" min={1} max={12} value={weeks} onChange={(e) => setWeeks(Number(e.target.value))} className="mt-1 w-full" />
-          <div className="mt-1 text-xs text-slate-600">{weeks} weeks</div>
+          <div className="mt-1 text-xs" style={{ color: BRAND.slate }}>{weeks} weeks</div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <h4 className="text-sm font-semibold text-slate-900">Estimated totals</h4>
-          <div className="mt-2 text-sm text-slate-700">Weekly: <strong>{toPounds(weekly)}</strong></div>
-          <div className="mt-1 text-sm text-slate-700">Period total: <strong>{toPounds(total)}</strong></div>
+        <div className="rounded-xl p-4" style={{ backgroundColor: BRAND.stone, border: `1px solid ${BRAND.hairline}` }}>
+          <h4 className="text-sm font-semibold">Estimated totals</h4>
+          <div className="mt-2 text-sm">Weekly: <strong>{toPounds(weekly)}</strong></div>
+          <div className="mt-1 text-sm">Period total: <strong>{toPounds(total)}</strong></div>
 
           <div className="mt-4 grid grid-cols-3 gap-3">
             <PresetButton label="Budget" setBaseSolo={setBaseSolo} setBaseGroup={setBaseGroup} setBaseDrop={setBaseDrop} values={{ solo: 15, group: 11, drop: 9 }} />
@@ -776,7 +849,9 @@ function Estimator() {
             <PresetButton label="Premium" setBaseSolo={setBaseSolo} setBaseGroup={setBaseGroup} setBaseDrop={setBaseDrop} values={{ solo: 18, group: 14, drop: 12 }} />
           </div>
 
-          <p className="mt-3 text-xs text-slate-600">These are guide rates for Saltaire-area walkers. Always confirm final quotes in writing.</p>
+          <p className="mt-3 text-xs" style={{ color: BRAND.slate }}>
+            These are guide rates for Saltaire-area walkers. Always confirm final quotes in writing.
+          </p>
         </div>
       </div>
     </div>
@@ -804,7 +879,8 @@ function PresetButton({
         setBaseGroup(values.group);
         setBaseDrop(values.drop);
       }}
-      className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+      className="rounded-lg px-3 py-2 text-sm font-medium focus:outline-none"
+      style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}`, color: BRAND.ink }}
     >
       {label}
     </button>
@@ -813,15 +889,15 @@ function PresetButton({
 
 function ChecklistCard({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex items-center gap-2 text-slate-900 font-semibold">
-        <Icon.Shield className="h-4 w-4 text-emerald-600" />
+    <div className="rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
+      <div className="flex items-center gap-2 font-semibold">
+        <Icon.Shield className="h-4 w-4" style={{ color: BRAND.brass }} />
         {title}
       </div>
-      <ul className="mt-3 space-y-2 text-sm text-slate-700">
+      <ul className="mt-3 space-y-2 text-sm">
         {items.map((it) => (
           <li key={it} className="flex items-start gap-2">
-            <Icon.Check className="mt-0.5 h-4 w-4 text-emerald-600" />
+            <Icon.Check className="mt-0.5 h-4 w-4" style={{ color: BRAND.brass }} />
             {it}
           </li>
         ))}
@@ -832,13 +908,13 @@ function ChecklistCard({ title, items }: { title: string; items: string[] }) {
 
 function GlossaryCard({ title, pairs }: { title: string; pairs: [term: string, def: string][] }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-      <div className="text-slate-900 font-semibold">{title}</div>
-      <dl className="mt-3 space-y-3">
+    <div className="rounded-2xl p-5" style={{ backgroundColor: BRAND.stone, border: `1px solid ${BRAND.hairline}` }}>
+      <div className="font-semibold">{title}</div>
+      <dl className="mt-3 space-y-3 text-sm">
         {pairs.map(([term, def]) => (
-          <div key={term} className="text-sm">
-            <dt className="font-semibold text-slate-900">{term}</dt>
-            <dd className="text-slate-700">{def}</dd>
+          <div key={term}>
+            <dt className="font-semibold">{term}</dt>
+            <dd style={{ color: BRAND.slate }}>{def}</dd>
           </div>
         ))}
       </dl>
@@ -848,11 +924,11 @@ function GlossaryCard({ title, pairs }: { title: string; pairs: [term: string, d
 
 function ReferencesTool() {
   return (
-    <div className="not-prose mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="not-prose mt-4 rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-sm font-semibold text-slate-900">Ask references (5 quick prompts)</h4>
-          <ol className="mt-2 list-decimal pl-5 text-sm text-slate-700 space-y-2">
+          <h4 className="text-sm font-semibold">Ask references (5 quick prompts)</h4>
+          <ol className="mt-2 list-decimal pl-5 text-sm space-y-2">
             <li>How long has your dog walked with them, and how many days per week?</li>
             <li>What does communication look like on normal days—and on tricky days?</li>
             <li>How does your dog behave when the walker arrives, and 10 minutes after returning?</li>
@@ -860,9 +936,9 @@ function ReferencesTool() {
             <li>Would you recommend them to a friend with a sensitive/reactive dog?</li>
           </ol>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <h4 className="text-sm font-semibold text-slate-900">Notes template</h4>
-          <ul className="mt-2 space-y-2 text-sm text-slate-700">
+        <div className="rounded-xl p-4" style={{ backgroundColor: BRAND.stone, border: `1px solid ${BRAND.hairline}` }}>
+          <h4 className="text-sm font-semibold">Notes template</h4>
+          <ul className="mt-2 space-y-2 text-sm">
             <li><strong>Context:</strong> dog’s age/breed/energy</li>
             <li><strong>Routines:</strong> pickup time, route type, lead style</li>
             <li><strong>Comms:</strong> tone, speed, photo updates</li>
@@ -906,12 +982,12 @@ function RedFlagsGallery() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {items.map((it) => (
-        <div key={it.title} className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-          <div className="flex items-center gap-2 text-slate-900 font-semibold">
-            <Icon.Alert className="h-4 w-4 text-amber-700" />
+        <div key={it.title} className="rounded-2xl p-5" style={{ backgroundColor: "#FFF7E6", border: "1px solid #FCE6B3" }}>
+          <div className="flex items-center gap-2 font-semibold">
+            <Icon.Alert className="h-4 w-4" style={{ color: "#B67200" }} />
             {it.title}
           </div>
-          <div className="mt-2 text-sm text-slate-800">
+          <div className="mt-2 text-sm">
             <div><strong>Why it matters:</strong> {it.why}</div>
             <div className="mt-1"><strong>Fix:</strong> {it.fix}</div>
           </div>
@@ -933,11 +1009,11 @@ function QuestionsList() {
     "What’s your cancellation policy and public holidays approach?",
   ];
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div className="rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
         {qs.map((q) => (
-          <li key={q} className="flex items-start gap-2 text-sm text-slate-800">
-            <Icon.Check className="mt-0.5 h-4 w-4 text-emerald-600" />
+          <li key={q} className="flex items-start gap-2">
+            <Icon.Check className="mt-0.5 h-4 w-4" style={{ color: BRAND.brass }} />
             {q}
           </li>
         ))}
@@ -948,26 +1024,26 @@ function QuestionsList() {
 
 function ScriptsBlock() {
   return (
-    <div className="not-prose mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="not-prose mt-4 rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
-          <h4 className="text-sm font-semibold text-slate-900">First message (copy/paste)</h4>
-          <pre className="mt-2 rounded-lg bg-slate-50 p-4 text-xs text-slate-800 whitespace-pre-wrap">
+          <h4 className="text-sm font-semibold">First message (copy/paste)</h4>
+          <pre className="mt-2 rounded-lg p-4 text-xs whitespace-pre-wrap" style={{ backgroundColor: BRAND.stone }}>
 Hello! We’re in Saltaire near Roberts Park and looking for a dog walker 3x weekly around lunchtime.
 Could you share your prices, group size, insurance details (PDF), and earliest trial availability?
 We have a friendly 3-year-old who’s good on-lead. Thanks!</pre>
         </div>
         <div>
-          <h4 className="text-sm font-semibold text-slate-900">Reference call opener</h4>
-          <pre className="mt-2 rounded-lg bg-slate-50 p-4 text-xs text-slate-800 whitespace-pre-wrap">
+          <h4 className="text-sm font-semibold">Reference call opener</h4>
+          <pre className="mt-2 rounded-lg p-4 text-xs whitespace-pre-wrap" style={{ backgroundColor: BRAND.stone }}>
 Hi, I’m checking references for [Walker]. Would you mind 3 quick questions? 
 1) How long have they walked your dog and how often? 
 2) What’s communication like on normal days vs tricky days? 
 3) Would you recommend them to a friend with a sensitive dog?</pre>
         </div>
         <div className="lg:col-span-2">
-          <h4 className="text-sm font-semibold text-slate-900">After-trial acceptance (polite & clear)</h4>
-          <pre className="mt-2 rounded-lg bg-slate-50 p-4 text-xs text-slate-800 whitespace-pre-wrap">
+          <h4 className="text-sm font-semibold">After-trial acceptance (polite & clear)</h4>
+          <pre className="mt-2 rounded-lg p-4 text-xs whitespace-pre-wrap" style={{ backgroundColor: BRAND.stone }}>
 Hi [Name], the trial went well and we’d love to book [days/times]. 
 Could you confirm weekly cost, group size cap, and share T&Cs & vet consent? 
 We’ll send keys next week with a backup contact. Thanks so much!</pre>
@@ -979,51 +1055,40 @@ We’ll send keys next week with a backup contact. Thanks so much!</pre>
 
 function DownloadCard({ title, href, desc }: { title: string; href: string; desc: string }) {
   return (
-    <a href={href} className="block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-400">
-      <div className="flex items-center gap-2 text-lg font-semibold text-slate-900">
-        <Icon.Download className="h-4 w-4 text-emerald-600" />
+    <a
+      href={href}
+      className="block rounded-2xl p-5 shadow-sm transition hover:shadow-md focus:outline-none"
+      style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}
+    >
+      <div className="flex items-center gap-2 text-lg font-semibold">
+        <Icon.Download className="h-4 w-4" style={{ color: BRAND.brass }} />
         {title}
       </div>
-      <p className="mt-1 text-sm text-slate-700">{desc}</p>
-      <div className="mt-3 text-sm font-medium text-emerald-700">Download PDF</div>
+      <p className="mt-1 text-sm" style={{ color: BRAND.slate }}>{desc}</p>
+      <div className="mt-3 text-sm font-medium" style={{ color: BRAND.ink }}>Download PDF</div>
     </a>
   );
 }
 
 function Faq() {
   const items = [
-    {
-      q: "What’s a fair price in Saltaire right now?",
-      a: "For small groups (2–4 dogs): roughly £10–£15 for 45–60 minutes. Solo walks: ~£14–£20 for 30–45 minutes. Confirm exact inclusions and travel.",
-    },
-    {
-      q: "How long should a trial be?",
-      a: "Two weeks covers easy and tricky days. Keep times consistent; ask for brief written updates and how your dog settles afterward.",
-    },
-    {
-      q: "What insurance document should I ask for?",
-      a: "A PDF with policy number, provider, expiry date, and cover notes (public liability; where relevant: care, custody & control; key cover; transport).",
-    },
-    {
-      q: "Can a cheaper rate still be safe?",
-      a: "Yes—if group sizes are small, comms are clear and the paperwork checks out. Cheap with poor documentation is a red flag.",
-    },
-    {
-      q: "Do walkers handle reactive dogs?",
-      a: "Some do with capped groups and specific routes/timings. Ask how they manage triggers and what criteria they require before accepting.",
-    },
+    { q: "What’s a fair price in Saltaire right now?", a: "Small groups: ~£10–£15 for 45–60 min; Solo: ~£14–£20 for 30–45 min. Confirm inclusions and travel." },
+    { q: "How long should a trial be?", a: "Two weeks at consistent times. Ask for short daily notes and how your dog settles after drop-off." },
+    { q: "What insurance document should I ask for?", a: "A PDF with policy number, provider, expiry date, and cover lines (public liability; where relevant: care, custody & control; key cover; transport)." },
+    { q: "Can a cheaper rate still be safe?", a: "Yes—if group sizes are small, comms are clear and the paperwork checks out. Cheap with poor documentation is a red flag." },
+    { q: "Do walkers handle reactive dogs?", a: "Some do with capped groups and specific routes/timings. Ask their criteria before accepting a reactive case." },
   ];
   return (
-    <div className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+    <div className="divide-y rounded-2xl" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}`, borderColor: BRAND.hairline }}>
       {items.map((it, i) => (
         <details key={i} className="group px-5 py-4">
           <summary className="flex cursor-pointer list-none items-start justify-between gap-6">
-            <h4 className="text-sm font-semibold text-slate-900">{it.q}</h4>
-            <div className="mt-0.5 shrink-0 rounded-full border border-slate-300 p-1 text-slate-500 group-open:rotate-180 transition" aria-hidden="true">
+            <h4 className="text-sm font-semibold">{it.q}</h4>
+            <div className="mt-0.5 shrink-0 rounded-full p-1 group-open:rotate-180 transition" style={{ border: `1px solid ${BRAND.hairline}`, color: BRAND.slate }} aria-hidden="true">
               <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2}><path d="M6 9l6 6 6-6" /></svg>
             </div>
           </summary>
-          <div className="pt-3 text-sm text-slate-700">{it.a}</div>
+          <div className="pt-3 text-sm" style={{ color: BRAND.slate }}>{it.a}</div>
         </details>
       ))}
     </div>
@@ -1032,19 +1097,33 @@ function Faq() {
 
 function BottomCta() {
   return (
-    <section className="mt-12 rounded-3xl border border-slate-200 bg-gradient-to-br from-emerald-600 to-emerald-700 p-8 text-white print:hidden">
+    <section
+      className="mt-12 rounded-3xl p-8 text-white print:hidden"
+      style={{
+        background: `linear-gradient(135deg, ${BRAND.brass} 0%, ${BRAND.brassDark} 100%)`,
+        border: `1px solid ${BRAND.brass}`,
+      }}
+    >
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h3 className="text-2xl font-bold">Want transparent pricing & calm routes?</h3>
-          <p className="mt-1 text-emerald-50 max-w-xl">
+          <h3 className="text-2xl font-semibold">Want transparent pricing & calm routes?</h3>
+          <p className="mt-1 opacity-90 max-w-xl">
             We’ll share insurance PDFs, references and trial options up front. If we’re not the best fit, we’ll suggest alternatives.
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur ring-1 ring-inset ring-white/30 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold backdrop-blur ring-1 ring-inset"
+            style={{ backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}
+          >
             <Icon.Mail className="h-4 w-4" /> Contact us
           </Link>
-          <Link href="/pricing" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-white">
+          <Link
+            href="/pricing"
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold"
+            style={{ backgroundColor: "#fff", color: BRAND.brassDark }}
+          >
             See pricing
           </Link>
         </div>
@@ -1055,11 +1134,11 @@ function BottomCta() {
 
 function AuthorCard({ author = "Saltaire Dog Walks", role = "Local team" }: { author?: string; role?: string }) {
   return (
-    <div className="mt-8 flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="h-12 w-12 rounded-full bg-emerald-200" aria-hidden="true" />
+    <div className="mt-8 flex items-center gap-4 rounded-2xl p-5 shadow-sm" style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}>
+      <div className="h-12 w-12 rounded-full" style={{ backgroundColor: BRAND.stone }} aria-hidden="true" />
       <div>
-        <div className="text-sm font-semibold text-slate-900">{author}</div>
-        <div className="text-xs text-slate-600">{role}</div>
+        <div className="text-sm font-semibold">{author}</div>
+        <div className="text-xs" style={{ color: BRAND.slate }}>{role}</div>
       </div>
     </div>
   );
@@ -1069,30 +1148,61 @@ function AuthorCard({ author = "Saltaire Dog Walks", role = "Local team" }: { au
 // SEO helpers
 // ---------------------------------------------------------------------------
 
+function absoluteUrl(path: string) {
+  if (typeof window !== "undefined") {
+    const u = new URL(path, window.location.origin);
+    return u.toString();
+  }
+  return `https://saltairedogs.uk${path}`;
+}
+
 function getArticleJsonLd() {
   const url =
     typeof window !== "undefined"
       ? window.location.href
-      : "https://example.com/blog/choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags";
+      : "https://saltairedogs.uk/blog/choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags";
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     headline:
       "Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags",
     description:
       "Practical buyer’s guide for Saltaire: pricing drivers, insurance essentials, reference checks, and red flags—plus scripts and checklists.",
-    image: ["https://example.com/images/blog/saltaire-checklist-hero.jpg"],
+    image: [absoluteUrl("/og-default.jpg")],
     datePublished: "2024-08-22",
-    dateModified: "2025-10-08",
+    dateModified: "2025-10-16",
     author: { "@type": "Organization", name: "Saltaire Dog Walks" },
     publisher: {
       "@type": "Organization",
       name: "Saltaire Dog Walks",
-      logo: { "@type": "ImageObject", url: "https://example.com/images/logo.png" },
+      logo: { "@type": "ImageObject", url: absoluteUrl("/logo.svg") },
     },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["article h2", "#overview"],
+    },
+    wordCount: 1800,
+    timeRequired: "PT14M",
+    articleSection: ["Dog Walking", "Saltaire Advice"],
     keywords:
       "Saltaire dog walker, prices, insurance, references, red flags, due diligence, buyer guide",
+  } as const;
+}
+
+function getBreadcrumbsJsonLd() {
+  const url =
+    typeof window !== "undefined"
+      ? window.location.href
+      : "https://saltairedogs.uk/blog/choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags";
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://saltairedogs.uk/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://saltairedogs.uk/blog" },
+      { "@type": "ListItem", position: 3, name: "Choosing a Saltaire Dog Walker", item: url },
+    ],
   } as const;
 }
 

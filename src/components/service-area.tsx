@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { MapPin, Clock, CheckCircle } from 'lucide-react'
 import { Container } from './container'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from './badge'
 
 const serviceAreas = [
@@ -24,12 +23,15 @@ const serviceAreas = [
 
 export function ServiceArea() {
   return (
-    <section className="py-12 lg:py-20">
+    <section className="py-12 lg:py-20" style={{ backgroundColor: '#F7F7F6' }}>
       <Container>
+        {/* Heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
-          <h2 className="mb-4 text-fluid-3xl font-bold tracking-tight">Where we walk</h2>
-          <p className="text-fluid-lg text-muted-foreground">
-            We cover <strong>Saltaire &amp; Shipley</strong>. Baildon is by enquiry—if it’s a good fit for both of us, we’ll make it work.
+          <h2 className="mb-3 text-3xl md:text-4xl font-semibold tracking-tight" style={{ color: '#131415' }}>
+            Where we walk
+          </h2>
+          <p className="text-base md:text-lg" style={{ color: '#7B828A' }}>
+            We cover <strong className="font-semibold text-[#131415]">Saltaire &amp; Shipley</strong>. Baildon is by enquiry—if it’s a good fit for both of us, we’ll make it work.
           </p>
         </div>
 
@@ -37,57 +39,79 @@ export function ServiceArea() {
           {/* Areas list */}
           <div className="space-y-6">
             {serviceAreas.map((area, index) => (
-              <motion.div
+              <motion.article
                 key={area.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
                 viewport={{ once: true }}
+                className="rounded-lg border p-5 md:p-6"
+                style={{ borderColor: '#E6E3DA', backgroundColor: '#EFEEE9' }}
               >
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2">
-                        <MapPin className="h-5 w-5 text-primary" />
-                        {area.name}
-                      </CardTitle>
-                      <Badge variant="success">Active</Badge>
-                    </div>
-                    <CardDescription>{area.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4">
-                      <div className="mb-2 flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm font-medium">Typical pickup times</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{area.pickupTimes}</p>
-                    </div>
-                    <div>
-                      <p className="mb-2 text-sm font-medium">Popular routes include:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {area.landmarks.map((landmark) => (
-                          <Badge key={landmark} variant="outline" className="text-xs">
-                            {landmark}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <header className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border"
+                      style={{ backgroundColor: '#F7F7F6', borderColor: '#E6E3DA' }}
+                      aria-hidden="true"
+                    >
+                      <MapPin className="h-4 w-4" color="#131415" />
+                    </span>
+                    <h3 className="text-lg font-semibold" style={{ color: '#131415' }}>
+                      {area.name}
+                    </h3>
+                  </div>
+
+                  <Badge className="rounded-full px-2.5 py-1 text-xs bg-[#C89B3C]/12 text-[#131415] border border-[#C89B3C]/30">
+                    Active
+                  </Badge>
+                </header>
+
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: '#7B828A' }}>
+                  {area.description}
+                </p>
+
+                <div className="mt-5">
+                  <div className="mb-1.5 flex items-center gap-2">
+                    <Clock className="h-4 w-4" color="#7B828A" />
+                    <span className="text-sm font-medium" style={{ color: '#131415' }}>
+                      Typical pickup times
+                    </span>
+                  </div>
+                  <p className="text-sm" style={{ color: '#7B828A' }}>
+                    {area.pickupTimes}
+                  </p>
+                </div>
+
+                <div className="mt-5">
+                  <p className="mb-2 text-sm font-medium" style={{ color: '#131415' }}>
+                    Popular routes include:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {area.landmarks.map((landmark) => (
+                      <Badge
+                        key={landmark}
+                        variant="outline"
+                        className="rounded-full text-xs border-[#E6E3DA] text-[#131415] bg-white"
+                      >
+                        {landmark}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
             ))}
           </div>
 
-          {/* Static coverage map image */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+          {/* Coverage map */}
+          <motion.figure
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="overflow-hidden rounded-2xl border bg-white">
+            <div className="overflow-hidden rounded-lg border" style={{ borderColor: '#E6E3DA', backgroundColor: '#EFEEE9' }}>
               <Image
                 src="/maps-coverage-saltaire.png"
                 alt="Coverage map showing Saltaire and Shipley walking area."
@@ -98,27 +122,37 @@ export function ServiceArea() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground">
+            <figcaption className="mt-3 text-center text-xs" style={{ color: '#7B828A' }}>
               Active areas: Saltaire &amp; Shipley • Baildon enquiries welcome if it’s the right fit.
-            </p>
-          </motion.div>
+            </figcaption>
+          </motion.figure>
         </div>
 
-        <div className="mt-12 rounded-2xl bg-muted/30 p-6 text-center lg:p-8">
-          <h3 className="mb-4 text-xl font-semibold">Coverage &amp; availability</h3>
+        {/* Coverage & availability banner */}
+        <div
+          className="mt-12 rounded-lg p-6 lg:p-8 border"
+          style={{ backgroundColor: '#EFEEE9', borderColor: '#E6E3DA' }}
+        >
+          <h3
+            className="mb-4 text-sm font-semibold uppercase tracking-wide text-center"
+            style={{ color: '#131415' }}
+          >
+            Coverage &amp; availability
+          </h3>
+
           <div className="mx-auto grid max-w-2xl gap-4 md:grid-cols-3">
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle className="h-5 w-5 text-accent" />
-              <span className="text-sm">Saltaire &amp; Shipley</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle className="h-5 w-5 text-accent" />
-              <span className="text-sm">Limited daily slots</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <CheckCircle className="h-5 w-5 text-accent" />
-              <span className="text-sm">Baildon by enquiry</span>
-            </div>
+            {[
+              'Saltaire & Shipley',
+              'Limited daily slots',
+              'Baildon by enquiry',
+            ].map((text) => (
+              <div key={text} className="flex items-center justify-center gap-2">
+                <CheckCircle className="h-5 w-5" color="#131415" />
+                <span className="text-sm" style={{ color: '#131415' }}>
+                  {text}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </Container>

@@ -14,7 +14,7 @@ const testimonials = [
     name: 'Mo Rahman',
     location: 'Shipley',
     rating: 5,
-    text: 'Our collie is nervous around other dogs—the solo walks have been perfect. He\'s so much calmer now.'
+    text: "Our collie is nervous around other dogs—the solo walks have been perfect. He's so much calmer now."
   },
   {
     name: 'James Thompson',
@@ -32,9 +32,44 @@ const testimonials = [
     name: 'David Wilson',
     location: 'Saltaire',
     rating: 5,
-    text: 'Professional service and genuinely cares about the dogs. You can tell it\'s not just a job to them.'
+    text: "Professional service and genuinely cares about the dogs. You can tell it's not just a job to them."
   }
 ]
+
+function Stars({ rating }: { rating: number }) {
+  return (
+    <div className="mb-4 flex items-center gap-1 text-[#131415]/70" aria-label={`${rating} out of 5 stars`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className={`h-4 w-4 ${i < rating ? 'opacity-80' : 'opacity-25'}`}
+          color="#131415"
+        />
+      ))}
+    </div>
+  )
+}
+
+function TCard({
+  t,
+  className = ''
+}: {
+  t: (typeof testimonials)[number]
+  className?: string
+}) {
+  return (
+    <Card className={`rounded-lg ring-1 ring-[#E6E3DA] border-0 bg-white shadow-none ${className}`}>
+      <CardContent className="pt-8">
+        <Stars rating={t.rating} />
+        <blockquote className="mb-6 text-[15px] leading-relaxed text-[#131415]/85">“{t.text}”</blockquote>
+        <div>
+          <cite className="not-italic font-semibold text-[#131415]">{t.name}</cite>
+          <p className="mt-1 text-xs text-[#7B828A]">{t.location}</p>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
 
 export function Testimonials() {
   return (
@@ -42,32 +77,25 @@ export function Testimonials() {
       eyebrow="What our customers say"
       title="Trusted by dog lovers across Saltaire"
       description="Don't just take our word for it—hear from happy customers in your neighbourhood."
-      className="section-park"
+      className="bg-[#F7F7F6] py-12 lg:py-20"
     >
-  <Marquee durationMs={40000} mobileDurationMs={5000} className="mt-6">
+      {/* Motion version */}
+      <Marquee
+        durationMs={45000}
+        mobileDurationMs={15000}
+        className="mt-6 motion-reduce:hidden"
+      >
         {testimonials.map((t, index) => (
-          <Card key={`t-a-${index}`} className="w-[360px] shrink-0 mr-6">
-            <CardContent className="pt-8">
-              <div className="mb-4 flex items-center space-x-1">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <blockquote className="mb-6 text-sm leading-relaxed" style={{ color: 'var(--text)' }}>
-                “{t.text}”
-              </blockquote>
-              <div>
-                <cite className="not-italic font-semibold" style={{ color: 'var(--text)' }}>
-                  {t.name}
-                </cite>
-                <p className="mt-1 text-xs" style={{ color: 'var(--text-muted)' }}>
-                  {t.location}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <TCard key={`t-a-${index}`} t={t} className="w-[360px] shrink-0 mr-6" />
         ))}
       </Marquee>
+
+      {/* Static fallback for reduced motion */}
+      <div className="mt-6 hidden grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 motion-reduce:grid">
+        {testimonials.slice(0, 3).map((t, i) => (
+          <TCard key={`t-s-${i}`} t={t} />
+        ))}
+      </div>
     </Section>
   )
 }

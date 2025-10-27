@@ -1,212 +1,198 @@
+// src/app/(site)/blog/[slug]/page.tsx
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Clock, Calendar, User, MapPin, Eye, Heart, ThumbsUp, ArrowLeft, Share2 } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Calendar, Clock, MapPin, ArrowLeft } from 'lucide-react'
+
+import ReadingProgress from '../../../../components/blog/reading-progress'
 import { Button } from '../../../../components/ui/button'
 import { Badge } from '../../../../components/ui/badge'
 import { Card, CardContent } from '../../../../components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '../../../../components/ui/avatar'
 import { SAMPLE_BLOG_POSTS, getRelatedPosts } from '../../../../lib/blog-data'
-import ReadingProgress from '../../../../components/blog/reading-progress'
-import Image from 'next/image'
-import Link from 'next/link'
 
-interface BlogPostPageProps {
-  params: {
-    slug: string
-  }
-}
+interface BlogPostPageProps { params: { slug: string } }
 
-// Generate metadata for the blog post
+const SITE_URL = process.env.SITE_URL ?? 'https://saltairedogs.uk'
+
+/* ----------------------------- Metadata ----------------------------- */
+
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const post = SAMPLE_BLOG_POSTS.find((p: any) => p.slug === params.slug)
-  
-  if (!post) {
-    return {
-      title: 'Post Not Found | Saltaire Dog Walks',
-    }
-  }
+  if (!post) return { title: 'Post not found — Saltaire Dogs + Pets' }
 
   return {
-    title: `${post.title} | Saltaire Dog Walks Blog`,
+    title: `${post.title} — Notes from our walks`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: post.seo?.ogImage ? [post.seo.ogImage] : [post.coverImage.src],
+      images: [post.seo?.ogImage || post.coverImage.src],
       type: 'article',
       publishedTime: post.datePublished,
-  authors: ['Saltaire Dog Walks'],
+      authors: ['Saltaire Dogs + Pets'],
       tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: post.seo?.ogImage ? [post.seo.ogImage] : [post.coverImage.src],
+      images: [post.seo?.ogImage || post.coverImage.src],
     },
     keywords: post.tags.join(', '),
   }
 }
 
-// Generate static params for all blog posts
+/* ------------------------- Static params (SSG) ------------------------- */
+
 export async function generateStaticParams() {
-  return SAMPLE_BLOG_POSTS.map((post: any) => ({
-    slug: post.slug,
-  }))
+  return SAMPLE_BLOG_POSTS.map((post: any) => ({ slug: post.slug }))
 }
 
-// Article header component
-function ArticleHeader({ post }: { post: typeof SAMPLE_BLOG_POSTS[0] }) {
+/* ------------------------------ UI pieces ------------------------------ */
+
+function HeaderBanner({ post }: { post: typeof SAMPLE_BLOG_POSTS[0] }) {
   return (
-    <header className="relative">
-      {/* Cover image */}
-      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-        <Image
-          src={post.coverImage.src}
-          alt={post.coverImage.alt}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        
-        {/* Back button */}
-        <div className="absolute top-6 left-6">
-          <Button asChild variant="secondary" className="bg-white/90 backdrop-blur-sm">
-            <Link href="/blog">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Blog
-            </Link>
-          </Button>
+    <div className="relative overflow-hidden border-b" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>
+      <div className="relative h-56 md:h-72 lg:h-80">
+        <Image src={post.coverImage.src} alt={post.coverImage.alt} fill priority className="object-cover" />
+        <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_40%,rgba(0,0,0,0.25),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(19,20,21,0.45))]" />
+      </div>
+
+      <div className="absolute left-4 top-4 flex items-center gap-2">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-sm font-medium text-[#131415] ring-1 ring-black/5 backdrop-blur hover:bg-white"
+          aria-label="Back to blog"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to blog
+        </Link>
+        <span className="hidden md:inline-flex items-center gap-1 rounded-full bg-white/75 px-2.5 py-1 text-xs font-semibold text-[#131415] ring-1 ring-black/5">
+          {post.category}
+        </span>
+        {post.location && (
+          <span className="hidden md:inline-flex items-center gap-1 rounded-full bg-white/75 px-2.5 py-1 text-xs font-medium text-[#131415] ring-1 ring-black/5">
+            <MapPin className="h-3.5 w-3.5" /> {post.location}
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function TitleBlock({ post }: { post: typeof SAMPLE_BLOG_POSTS[0] }) {
+  const publishedDate = new Date(post.datePublished).toLocaleDateString('en-GB', {
+    year: 'numeric', month: 'long', day: 'numeric',
+  })
+  const url = `${SITE_URL}/blog/${post.slug}`
+  const waShare = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + url)}`
+  const mailShare = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(url)}`
+
+  return (
+    <header
+      className="mx-auto -mt-10 rounded-2xl border bg-white/95 p-5 shadow-sm ring-1 ring-black/5 backdrop-blur md:p-7"
+      style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
+    >
+      <div className="mb-2 flex flex-wrap gap-2 md:hidden">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-semibold text-[#131415]">
+          {post.category}
+        </span>
+        {post.location && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-medium text-[#131415]">
+            <MapPin className="h-3.5 w-3.5" /> {post.location}
+          </span>
+        )}
+      </div>
+
+      <h1 className="text-balance text-2xl font-extrabold leading-tight text-[#131415] sm:text-3xl">
+        {post.title}
+      </h1>
+
+      {post.excerpt && (
+        <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-[#7B828A]">
+          {post.excerpt}
+        </p>
+      )}
+
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-[#7B828A]">
+          <span className="inline-flex items-center gap-2">
+            <Avatar className="h-6 w-6">
+              <AvatarImage src={post.author?.avatar || '/logo.svg'} />
+              <AvatarFallback>SD</AvatarFallback>
+            </Avatar>
+            <span className="font-medium text-[#131415]">Saltaire Dogs + Pets</span>
+          </span>
+          <span aria-hidden>•</span>
+          <time dateTime={post.datePublished}>{publishedDate}</time>
+          {typeof post.readingTime === 'number' && (
+            <>
+              <span aria-hidden>•</span>
+              <span className="inline-flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5" /> {post.readingTime} min read
+              </span>
+            </>
+          )}
         </div>
 
-        {/* Article meta overlay */}
-        <div className="absolute bottom-6 left-6 right-6 text-white">
-          <div className="flex flex-wrap gap-2 mb-4">
-            <Badge className="bg-brand text-white">
-              {post.category}
-            </Badge>
-            {post.location && (
-              <Badge variant="secondary" className="bg-white/20 text-white">
-                <MapPin className="h-3 w-3 mr-1" />
-                {post.location}
-              </Badge>
-            )}
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-            {post.title}
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl">
-            {post.excerpt}
-          </p>
+        {/* no client handlers; plain share links */}
+        <div className="flex gap-2">
+          <a
+            href={mailShare}
+            className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]"
+            style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
+          >
+            Email
+          </a>
+          <a
+            href={waShare}
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]"
+            style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
+          >
+            Share
+          </a>
         </div>
       </div>
     </header>
   )
 }
 
-// Article meta component
-function ArticleMeta({ post }: { post: typeof SAMPLE_BLOG_POSTS[0] }) {
-  const publishedDate = new Date(post.datePublished).toLocaleDateString('en-GB', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-
-  return (
-    <div className="border-b border-stone-200 pb-6 mb-8">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        {/* Author and date */}
-        <div className="flex items-center gap-4">
-          <Avatar className="h-12 w-12">
-            <AvatarImage src={post.author.avatar || '/logo.svg'} />
-            <AvatarFallback>S</AvatarFallback>
-          </Avatar>
-          <div>
-            <div className="font-semibold text-text">Saltaire Dog Walks</div>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1">
-                <Calendar className="h-3 w-3" />
-                {publishedDate}
-              </span>
-              <span className="flex items-center gap-1">
-                <Clock className="h-3 w-3" />
-                {post.readingTime} min read
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Stats and actions */}
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Eye className="h-3 w-3" />
-              {post.stats.views}
-            </span>
-            <span className="flex items-center gap-1">
-              <Heart className="h-3 w-3" />
-              {post.stats.likes}
-            </span>
-            <span className="flex items-center gap-1">
-              <ThumbsUp className="h-3 w-3" />
-              {post.stats.helpfulVotes}
-            </span>
-          </div>
-          <Button variant="outline" size="sm" className="gap-2">
-            <Share2 className="h-3 w-3" />
-            Share
-          </Button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Article content component
 function ArticleContent({ post }: { post: typeof SAMPLE_BLOG_POSTS[0] }) {
   return (
-    <article className="prose prose-lg max-w-none prose-headings:text-text prose-p:text-muted-foreground prose-a:text-brand prose-strong:text-text prose-blockquote:border-l-brand prose-blockquote:text-muted-foreground">
+    <article className="prose prose-lg max-w-none prose-headings:text-text prose-a:text-[#C89B3C] prose-strong:text-text prose-blockquote:border-l-[#C89B3C] prose-blockquote:text-muted-foreground">
       <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br />') }} />
     </article>
   )
 }
 
-// Related posts component
 function RelatedPosts({ currentPost }: { currentPost: typeof SAMPLE_BLOG_POSTS[0] }) {
-  const relatedPosts = getRelatedPosts(currentPost, 3)
-  
-  if (relatedPosts.length === 0) return null
+  const related = getRelatedPosts(currentPost, 3)
+  if (!related.length) return null
 
   return (
-    <section className="mt-16 pt-8 border-t border-stone-200">
-      <h2 className="text-2xl font-bold text-text mb-6">Related Articles</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {relatedPosts.map((post: any) => (
-          <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div className="relative h-40 overflow-hidden">
-              <Image
-                src={post.coverImage.src}
-                alt={post.coverImage.alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+    <section className="mt-16 border-t border-stone-200 pt-8">
+      <h2 className="mb-6 text-2xl font-bold text-text">More like this</h2>
+      <div className="grid gap-6 md:grid-cols-3">
+        {related.map((post: any) => (
+          <Card key={post.slug} className="overflow-hidden transition hover:shadow-lg">
+            <div className="relative h-40">
+              <Image src={post.coverImage.src} alt={post.coverImage.alt} fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+              <Badge className="absolute left-3 top-3 bg-[#C89B3C] text-[#131415]">{post.category}</Badge>
             </div>
             <CardContent className="p-4">
-              <Badge variant="outline" className="mb-2 text-xs">
-                {post.category}
-              </Badge>
-              <h3 className="font-semibold text-text group-hover:text-brand transition-colors line-clamp-2 mb-2">
-                <Link href={`/blog/${post.slug}`}>
+              <h3 className="mb-2 line-clamp-2 font-semibold text-text">
+                <Link href={`/blog/${post.slug}`} className="link-underline">
                   {post.title}
                 </Link>
               </h3>
-              <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                {post.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{post.readingTime} min read</span>
-                <span>{post.stats.views} views</span>
+              <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{post.excerpt}</p>
+              <div className="text-xs text-muted-foreground">
+                {typeof post.readingTime === 'number' ? `${post.readingTime} min read` : null}
               </div>
             </CardContent>
           </Card>
@@ -216,65 +202,70 @@ function RelatedPosts({ currentPost }: { currentPost: typeof SAMPLE_BLOG_POSTS[0
   )
 }
 
-// Newsletter CTA component
 function NewsletterCTA() {
   return (
-    <Card className="mt-12 p-8 bg-gradient-to-r from-brand/5 to-brand/10 border-brand/20">
-      <div className="text-center max-w-2xl mx-auto">
-        <h3 className="text-xl font-bold text-text mb-2">
-          Get More Dog Care Tips
-        </h3>
-        <p className="text-muted-foreground mb-6">
-          Join our newsletter for weekly dog walking advice, local route updates, and exclusive tips from our experienced team.
+    <Card className="mt-12 border-[#C89B3C]/20 bg-gradient-to-br from-[#C89B3C]/5 to-[#C89B3C]/10 p-8">
+      <div className="mx-auto max-w-2xl text-center">
+        <h3 className="mb-2 text-xl font-bold text-text">Tiny emails, useful tips</h3>
+        <p className="mb-6 text-muted-foreground">
+          Occasional notes on local routes, safety, and calm handling. Unsubscribe anytime.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <form action="/api/newsletter" method="post" className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
           <input
             type="email"
+            name="email"
+            required
             placeholder="Your email address"
-            className="flex-1 px-4 py-2 border border-border rounded-lg text-sm"
+            className="flex-1 rounded-lg border border-border px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
           />
-          <Button className="sm:w-auto">
-            Subscribe
-          </Button>
-        </div>
+          <Button type="submit" className="sm:w-auto">Subscribe</Button>
+        </form>
       </div>
     </Card>
   )
 }
 
+/* --------------------------------- Page --------------------------------- */
+
 export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = SAMPLE_BLOG_POSTS.find((p: any) => p.slug === params.slug)
-  
-  if (!post) {
-    notFound()
-  }
+  if (!post) notFound()
 
   return (
     <>
       <ReadingProgress />
       <article className="min-h-screen bg-bg">
-        <ArticleHeader post={post} />
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <ArticleMeta post={post} />
+        <HeaderBanner post={post} />
+        <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+          <TitleBlock post={post} />
+          <div className="mt-8" />
           <ArticleContent post={post} />
-          
-          {/* Tags */}
-          <div className="mt-8 pt-6 border-t border-stone-200">
-            <h4 className="font-semibold text-text mb-3">Tags</h4>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag: string) => (
-                <Badge key={tag} variant="outline" className="text-sm">
-                  {tag}
-                </Badge>
-              ))}
+
+          {post.tags?.length ? (
+            <div className="mt-10 border-t border-stone-200 pt-6">
+              <h4 className="mb-3 font-semibold text-text">Tags</h4>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: string) => (
+                  <Badge key={tag} variant="outline" className="text-sm">{tag}</Badge>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <RelatedPosts currentPost={post} />
           <NewsletterCTA />
         </div>
       </article>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .link-underline{background:linear-gradient(currentColor,currentColor) bottom / 0 1px no-repeat;transition:background-size .25s ease}
+            .link-underline:hover{background-size:100% 1px}
+          `,
+        }}
+      />
     </>
   )
 }

@@ -3,8 +3,6 @@ import { Footer as SiteFooter } from '@/components/footer'
 import { Hero } from '@/components/hero'
 import { TrustBar } from '@/components/trust-bar'
 import { Features } from '@/components/features'
-import { PricingPreview } from '@/components/pricing-preview'
-import { Testimonials } from '@/components/testimonials'
 import { Gallery } from '@/components/gallery'
 import { FAQ } from '@/components/faq'
 import { ServiceArea } from '@/components/service-area'
@@ -13,6 +11,30 @@ import { CTABanner } from '@/components/cta-banner'
 export default function HomePage() {
   return (
     <>
+      {/* JSON-LD for LocalBusiness and Breadcrumbs */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Saltaire Dogs + Pets',
+            url: process.env.SITE_URL ?? 'https://saltairedogs.uk',
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: (process.env.SITE_URL ?? 'https://saltairedogs.uk') + '/' },
+            ],
+          }),
+        }}
+      />
       {/* Accessible skip link */}
       <a href="#main" className="skip-link">Skip to content</a>
 
@@ -24,12 +46,9 @@ export default function HomePage() {
         <Hero />
         <TrustBar />
         <Features />
-        <PricingPreview />
-        <Testimonials />
-        <Gallery />
-        <FAQ />
+        {/* Pricing removed (quote-first funnel) */}
+        {/* Testimonials removed (no reviews yet) */}
         <ServiceArea />
-        <CTABanner />
       </main>
 
       {/* Global footer */}

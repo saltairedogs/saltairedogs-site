@@ -23,13 +23,23 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       {/* Accessible skip link */}
       <a href="#main" className="skip-link">Skip to content</a>
 
-      {/* Global header/navigation */}
+      {/* Header */}
       <SiteHeader />
 
-      {/* Page content */}
-      <main id="main">{children}</main>
+      {/* Decorative background glows specific to site pages */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+        {/* Left brass kiss */}
+        <div className="absolute -top-24 -left-24 h-[65vmin] w-[65vmin] rounded-full opacity-[0.12] blur-3xl"
+             style={{ background: "radial-gradient(50% 50% at 50% 50%, #C89B3C 0%, transparent 70%)" }} />
+        {/* Right soft ink shadow */}
+        <div className="absolute -bottom-28 -right-24 h-[55vmin] w-[55vmin] rounded-full opacity-[0.06] blur-[72px]"
+             style={{ background: "radial-gradient(50% 50% at 50% 50%, #131415 0%, transparent 70%)" }} />
+      </div>
 
-      {/* Global footer */}
+      {/* Page content */}
+      <main id="main" className="relative">{children}</main>
+
+      {/* Footer */}
       <SiteFooter />
     </>
   );

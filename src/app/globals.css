@@ -1,111 +1,61 @@
 /* =========================
    Global styles (Tailwind)
-   =========================
-   Note for VS Code: If you see `css(unknownAtRules)` on @tailwind lines,
-   it's an editor warning only. Set:
-   "css.lint.unknownAtRules": "ignore"
-   or set the file language to "PostCSS".
-*/
+   ========================= */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =========================
-   Design tokens & theming
+   Base + tokens
    ========================= */
 @layer base {
   :root {
-    /* Brand semantic tokens (HEX for custom usage) */
-    --bg: #F6FAFD;            /* Canal Mist */
-    --bg-tint: #EFF6FA;
-    --surface: #FFFFFF;
-    --hairline: #DDE7F0;
-    --text: #0B1220;
-    --text-muted: #5B6472;
-    --brand: #2DD4BF;         /* Teal */
-    --brand-sky: #7DD3FC;     /* Accent Sky */
-    --warning: #F59E0B;
-    --success: #10B981;
-    --error: #EF4444;
-
-    /* Section tints */
-    --bg-stone: #F8F7F4;      /* Saltaire Stone */
-    --hairline-stone: #E6E1D7;
-    --bg-park: #F5FBF8;       /* Roberts Park Haze */
-    --hairline-park: #DDEFE6;
-    --bg-lavender: #F7F4FF;   /* Dusk Lavender */
-    --hairline-lavender: #E6E1FF;
-
-    /* shadcn/ui & Tailwind HSL tokens (triplets only) */
-    --background: 210 100% 98%;      /* hsl of --bg */
-    --foreground: 210 67% 10%;       /* --text */
-    --card: 0 0% 100%;               /* --surface */
-    --card-foreground: 210 67% 10%;
+    /* HSL tokens so shadcn semantic classes work */
+    --background: 42 21% 96%;          /* #F7F7F6 */
+    --foreground: 210 5% 8%;           /* #131415 */
+    --card: 0 0% 100%;
+    --card-foreground: 210 5% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 67% 10%;
-    --primary: 168 72% 52%;          /* close to #2DD4BF */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 60% 96%;        /* --bg-tint-ish */
-    --secondary-foreground: 210 67% 10%;
-    --muted: 210 60% 96%;
-    --muted-foreground: 212 11% 38%; /* --text-muted */
-    --accent: 168 72% 52%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;        /* --error */
+    --popover-foreground: 210 5% 8%;
+    --primary: 41 52% 58%;             /* #C89B3C */
+    --primary-foreground: 210 5% 8%;
+    --secondary: 42 21% 94%;           /* light pebble */
+    --secondary-foreground: 210 5% 8%;
+    --muted: 42 25% 93%;               /* #EFEEE9 */
+    --muted-foreground: 210 6% 51%;    /* #7B828A */
+    --accent: 42 25% 93%;
+    --accent-foreground: 210 5% 8%;
+    --destructive: 2 40% 38%;
     --destructive-foreground: 0 0% 100%;
-    --border: 212 30% 89%;           /* --hairline */
-    --input: 212 30% 89%;
-    --ring: 168 72% 52%;
-    --radius: 1rem;
+    --border: 45 20% 85%;              /* #E6E3DA */
+    --input: 45 20% 85%;
+    --ring: 45 20% 85%;
+    --radius: 10px;
   }
 
-  .dark {
-    /* Dark mode semantic tokens (HEX) */
-    --bg: #0B1220;
-    --bg-tint: #0E1524;
-    --surface: #111827;
-    --hairline: #1F2937;
-    --text: #F3F4F6;
-    --text-muted: #A7B0BE;
+  html { scroll-behavior: smooth; }
 
-    /* Section tints (dark) */
-    --bg-stone: #1A1917;
-    --hairline-stone: #2D2926;
-    --bg-park: #0F1511;
-    --hairline-park: #1C241E;
-    --bg-lavender: #15121A;
-    --hairline-lavender: #242029;
-
-    /* HSL tokens for shadcn/ui (dark) */
-    --background: 210 67% 10%;
-    --foreground: 216 12% 95%;
-    --card: 220 15% 10%;
-    --card-foreground: 216 12% 95%;
-    --popover: 220 15% 10%;
-    --popover-foreground: 216 12% 95%;
-    --primary: 168 72% 52%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 13% 13%;
-    --secondary-foreground: 216 12% 95%;
-    --muted: 220 13% 13%;
-    --muted-foreground: 212 10% 68%;
-    --accent: 168 72% 52%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 216 12% 95%;
-    --border: 215 16% 17%;
-    --input: 215 16% 17%;
-    --ring: 168 72% 52%;
+  /* Site background (warm gradient + subtle glow + ultra-light noise) */
+  .site-bg {
+    background:
+      radial-gradient(80vw 40vw at 8% -10%, rgba(200,155,60,0.08), transparent 55%),
+      linear-gradient(180deg, #F7F7F6 0%, #F3F2EE 100%);
+    color: hsl(var(--foreground));
   }
-
-  /* Base element styling */
-  html {
-    scroll-behavior: smooth;
+  .site-bg::before{
+    /* noise */
+    content:"";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'>\
+        <filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter>\
+        <rect width='100%' height='100%' filter='url(%23n)' opacity='0.025'/>\
+      </svg>");
+    mix-blend-mode: multiply;
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: hsl(var(--background));
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
       Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
@@ -113,33 +63,32 @@
   }
 
   /* Make shadcn tokens actually drive Tailwind’s semantic classes */
-  .bg-background { background-color: hsl(var(--background)) }
-  .text-foreground { color: hsl(var(--foreground)) }
-  .border-border { border-color: hsl(var(--border)) }
+  .bg-background { background-color: hsl(var(--background)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+  .border-border { border-color: hsl(var(--border)); }
 
-  * { border-color: var(--hairline) }
+  * { border-color: hsl(var(--border)); }
 
   /* Headings & copy */
   h1, h2, h3, h4, h5, h6 {
-    color: var(--text);
-    font-weight: 700;
+    color: hsl(var(--foreground));
+    font-weight: 800;
     line-height: 1.12;
     letter-spacing: -0.025em;
     text-wrap: balance;
   }
-
-  p { color: var(--text); line-height: 1.65 }
+  p { color: hsl(var(--foreground)); line-height: 1.65; }
 
   /* Accessible focus */
   :focus-visible {
-    outline: 2px solid var(--brand);
+    outline: 2px solid #C89B3C;
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
   button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-    outline: 2px solid var(--brand);
+    outline: 2px solid #C89B3C;
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 10%, transparent);
+    box-shadow: 0 0 0 4px rgba(200,155,60,0.18);
   }
 
   /* Skip link */
@@ -147,98 +96,46 @@
     position: absolute;
     top: -40px;
     left: 6px;
-    background: var(--brand);
-    color: #fff;
+    background: #C89B3C;
+    color: #131415;
     padding: 8px 16px;
-    border-radius: 6px;
+    border-radius: 8px;
     z-index: 1000;
-    font-weight: 600;
+    font-weight: 700;
   }
-  .skip-link:focus { top: 6px }
+  .skip-link:focus { top: 6px; }
 }
 
 /* =========================
    Components & utilities
    ========================= */
 @layer components {
-  /* Consistent centered container (matches your Container component) */
-  .container {
-    margin-inline: auto;
-    max-width: 72rem; /* 1152px ~ max-w-6xl */
-    padding-inline: 1rem;
-  }
-  @media (min-width: 640px) { .container { padding-inline: 1.5rem } }
-  @media (min-width: 1024px) { .container { padding-inline: 2rem } }
+  /* Fallback container (your Container component still used) */
+  .container { margin-inline: auto; max-width: 72rem; padding-inline: 1rem; }
+  @media (min-width:640px){ .container{ padding-inline:1.5rem } }
+  @media (min-width:1024px){ .container{ padding-inline:2rem } }
 
-  .prose-custom { max-width: 75ch; line-height: 1.7 }
+  .prose-custom { max-width: 75ch; line-height: 1.7; }
   .prose-custom h1, .prose-custom h2, .prose-custom h3 {
-    color: var(--text);
-    font-weight: 650;
+    color: hsl(var(--foreground));
+    font-weight: 700;
     line-height: 1.25;
     margin: 2rem 0 1rem;
   }
-  .prose-custom p { margin-bottom: 1.25rem }
-  .prose-custom a { color: var(--brand); font-weight: 500 }
-  .prose-custom a:hover { text-decoration: underline }
+  .prose-custom p { margin-bottom: 1.1rem; }
+  .prose-custom a { color: #C89B3C; font-weight: 600; }
+  .prose-custom a:hover { text-decoration: underline; }
 
-  .gradient-text {
-    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-sky) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-
-  .glass {
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
+  /* Soft card surface */
   .surface {
-    background-color: var(--surface);
-    border: 1px solid var(--hairline);
+    background-color: #FFFFFF;
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 12px 38px -22px rgba(0,0,0,0.25);
   }
 
-  .section-tint    { background-color: var(--bg-tint) }
-  .section-stone   { background-color: var(--bg-stone) }
-  .section-park    { background-color: var(--bg-park) }
-  .section-lavender{ background-color: var(--bg-lavender) }
-
-  .hero-gradient {
-    position: relative;
-    background: linear-gradient(135deg, #E6F1FA 0%, #F7FBFF 50%, #DFF5FF 100%);
-  }
-  .hero-gradient::after {
-    content: "";
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 25% 25%, rgba(0,0,0,0.02) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, rgba(0,0,0,0.02) 1px, transparent 1px);
-    background-size: 20px 20px, 20px 20px;
-    background-position: 0 0, 10px 10px;
-    opacity: .6; pointer-events: none;
-  }
-
-  .trust-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    background-color: var(--bg-tint);
-    border: 1px solid var(--hairline);
-    border-radius: 2rem;
-    padding: .5rem .75rem;
-    font-size: .875rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .trust-dot {
-    width: 6px; height: 6px;
-    background-color: var(--success);
-    border-radius: 999px;
-    display: inline-block;
-  }
+  /* Tiny hover lift utility */
+  .lift { transition: transform .2s ease, box-shadow .2s ease; }
+  .lift:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -24px rgba(0,0,0,0.28); }
 }
 
 /* =========================

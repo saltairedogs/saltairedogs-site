@@ -1,9 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from './container'
-import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react'
+import { Phone, Mail, MessageCircle } from 'lucide-react'
 
 const currentYear = new Date().getFullYear()
+
+const WA_NUMBER = '447305367941'
+const WA_TEXT = encodeURIComponent(
+  'Hi! I’m in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I’m looking for [walks/visits].'
+)
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 export function Footer() {
   const legalLinks = [
@@ -12,214 +18,148 @@ export function Footer() {
     { name: 'Cookie Policy', href: '/legal/cookies' },
   ]
 
+  const navPrimary = [
+    { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
+  ]
+
   return (
-    <footer 
-      className="border-t" 
-      style={{ 
-        backgroundColor: 'var(--surface)',
-        borderColor: 'var(--hairline)'
-      }}
+    <footer
+      className="border-t"
+      style={{ backgroundColor: '#F7F7F6', borderColor: '#E6E3DA' }}
       aria-labelledby="footer-heading"
     >
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
+      <h2 id="footer-heading" className="sr-only">Footer</h2>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Saltaire Dogs + Pets',
+            image: 'https://saltairedogs.uk/saltaire-dogs-logo.png',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Saltaire',
+              postalCode: 'BD18',
+              addressRegion: 'West Yorkshire',
+              addressCountry: 'GB',
+            },
+            telephone: '+44 7305 367941',
+            openingHours: ['Mo-Sa 08:00-18:00'],
+            url: 'https://saltairedogs.uk',
+          }),
+        }}
+      />
+
       <Container>
-        <div className="grid grid-cols-1 gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md">
-              <Image
-                src="/logo.svg"
-                alt="Saltaire Dog Walks"
-                width={200}
-                height={60}
-                className="h-8 w-auto"
-              />
-            </Link>
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-              Trusted dog walking &amp; pet sitting in Saltaire, Shipley &amp;
-              Baildon. Solo walks, live GPS updates, and a friendly, positive service.
-            </p>
-            <div className="flex space-x-4">
-              {/* Social icons can be added here */}
-            </div>
+        {/* Compact CTA Row */}
+        <div className="flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
+          <Link
+            href="/"
+            className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40 rounded-md"
+            aria-label="Saltaire Dogs + Pets home"
+          >
+            <Image
+              src="/saltaire-dogs-logo-official.png"          // ← NEW LOGO
+              alt="Saltaire Dogs + Pets logo"
+              width={200} height={200}
+              className="h-8 w-auto"
+              priority
+            />
+          </Link>
+
+          <div className="text-center text-sm text-[#7B828A] sm:text-left">
+            Friendly, local care — DBS checked • Insured • Photo updates
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold mb-4" style={{ color: 'var(--text)' }}>Services</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link
-                  href="/services"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Dog Walking
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Puppy Visits
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Pet Sitting
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Pricing
-                </Link>
-              </li>
-            </ul>
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-[#131415]"
+              style={{ backgroundColor: '#C89B3C' }}
+              aria-label="Get a 60-second quote on WhatsApp"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp quote
+            </a>
+            <a
+              href="tel:+447305367941"
+              className="inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-colors"
+              style={{ borderColor: '#E6E3DA', color: '#131415' }}
+              aria-label="Call Saltaire Dogs + Pets"
+            >
+              <Phone className="h-4 w-4" />
+              Call
+            </a>
+            <a
+              href="mailto:saltairedogs@proton.me"
+              className="inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-colors"
+              style={{ borderColor: '#E6E3DA', color: '#131415' }}
+              aria-label="Email Saltaire Dogs + Pets"
+            >
+              <Mail className="h-4 w-4" />
+              Email
+            </a>
           </div>
+        </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="font-semibold mb-4" style={{ color: 'var(--text)' }}>Company</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link
-                  href="/about"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/areas"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Service Areas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="transition-colors hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="font-semibold text-foreground">Legal</h3>
-            <ul className="mt-4 space-y-2 text-sm">
-              {legalLinks.map((item) => (
+        {/* Minimal nav & legal */}
+        <div className="grid grid-cols-1 gap-8 py-8 md:grid-cols-3">
+          <nav aria-label="Navigate" className="mx-auto md:mx-0">
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:justify-start">
+              {navPrimary.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    className="rounded-md transition-colors hover:text-[#131415] focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
+                    style={{ color: '#7B828A' }}
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 text-sm text-muted-foreground">
-              <p className="leading-relaxed">
-                We provide a friendly and positive service with thoughtful, calm handling. Get in touch if you’d like to know more about how we work.
-              </p>
-            </div>
-          </div>
+          </nav>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-foreground">Get in Touch</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">
-                  Saltaire Dog Walks<br />
-                  Victoria Road, Saltaire<br />
-                  West Yorkshire BD18
-                </span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-muted-foreground" />
-                <a
-                  href="tel:+447305367941"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  07305 367941
-                </a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-muted-foreground" />
-                <a
-                  href="mailto:saltairedogs@proton.me"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  saltairedogs@proton.me
-                </a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">
-                  Office hours: Mon–Sat 8am–6pm
-                </span>
-              </li>
+          <div className="hidden md:block" />
+
+          <nav aria-label="Legal" className="mx-auto md:mx-0">
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:justify-end">
+              {legalLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="rounded-md transition-colors hover:text-[#131415] focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
+                    style={{ color: '#7B828A' }}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
-        <div className="border-t py-6">
-          <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
-            <p className="text-center md:text-left">
-              &copy; {currentYear} Saltaire Dog Walks. All rights reserved.
+        {/* Bottom bar */}
+        <div className="border-t py-6" style={{ borderColor: '#E6E3DA' }}>
+          <div className="flex flex-col items-center justify-between gap-4 text-sm md:flex-row">
+            <p className="text-center md:text-left" style={{ color: '#7B828A' }}>
+              &copy; {currentYear} Saltaire Dogs + Pets. All rights reserved.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              {legalLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-            <p className="text-xs md:text-right">
-              Site lovingly crafted by{' '}
-              <a
-                href="https://saltaireweb.co.uk"
-                rel="noopener noreferrer nofollow"
-                className="transition-colors hover:text-foreground"
-              >
-                Saltaire Web &amp; SEO
-              </a>
-            </p>
+            <a
+              href="https://alveriano.com"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="rounded-md transition-colors hover:text-[#131415] focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40 text-center md:text-right"
+              style={{ color: '#7B828A' }}
+            >
+              This site was created by and is managed by alveriano.com
+            </a>
           </div>
         </div>
       </Container>

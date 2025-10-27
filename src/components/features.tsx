@@ -1,68 +1,73 @@
 import { Section } from './section'
-import { User, Camera, Clock } from 'lucide-react'
+import { HeartHandshake, Camera, MapPin, Clock } from 'lucide-react'
 
 const features = [
   {
-    icon: User,
-    title: 'Solo, one-dog walks',
-    description: 'Calm, focused outings tailored to your dog’s pace, route and routine. Second dog (same household) by request only.'
+    icon: HeartHandshake,
+    title: 'Short, steady walks',
+    description:
+      'Calm, unrushed outings matched to your pet’s pace. Gentle routes, plenty of sniffing, home safe and settled.',
   },
   {
     icon: Camera,
-    title: 'Live updates',
-    description: 'GPS tracking and photo updates after every walk so you always know how your dog did.'
+    title: 'Clear photo notes',
+    description:
+      'A quick photo and a couple of lines after each visit, so you always know how it went.',
+  },
+  {
+    icon: MapPin,
+    title: 'Local routes we know',
+    description:
+      'Saltaire paths, towpaths and quiet loops we’ve used for years. We avoid pinch points and busy spots.',
   },
   {
     icon: Clock,
-    title: 'Limited slots, flexible plan',
-    description: 'We keep our schedule intentionally small. Tell us your routine—if it fits, we’ll make it work.'
-  }
+    title: 'Simple, reliable routine',
+    description:
+      'Light scheduling that fits your day. Tell us your window and we’ll keep it consistent.',
+  },
 ]
 
 export function Features() {
   return (
     <Section
-      eyebrow="Why choose us"
-      title="Trusted care for your furry family"
-      description="We treat every dog like our own, providing personalised care and attention."
-      className="section-tint"
+      eyebrow="A calm, local service"
+      title="What it feels like to work with us"
+      description="Nothing fancy. Just steady care, clear updates and the same friendly face at your door."
+      className="bg-[#F7F7F6] py-12 lg:py-20"
     >
-      {/* Decorative soft spotlights */}
-      <div className="pointer-events-none relative">
-        <div className="absolute -top-10 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.18),transparent_60%)] blur-2xl" />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, i) => (
-            <div key={feature.title} className="group relative">
-              {/* Gradient frame */}
-              <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-emerald-400/25 via-emerald-300/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-
-              {/* Card body */}
-              <div
-                className="relative rounded-3xl border shadow-[0_8px_30px_rgba(0,0,0,0.06)] border-[color:var(--hairline)] bg-[color:var(--surface)] p-7 sm:p-8 transition-transform duration-300 group-hover:-translate-y-1.5"
+      <div className="mx-auto max-w-6xl">
+        <ul role="list" className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {features.map((f) => {
+            const Icon = f.icon
+            return (
+              <li
+                key={f.title}
+                className="group rounded-lg ring-1 ring-[#E6E3DA] bg-white p-6 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.15)]"
               >
-                {/* Icon with glow */}
-                <div className="mb-5 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="pointer-events-none absolute -inset-2 rounded-2xl bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.22),transparent_60%)] blur-md" />
-                    <div className="relative grid h-14 w-14 place-items-center rounded-2xl bg-emerald-50/80 ring-1 ring-emerald-200/60 shadow-[inset_0_-2px_8px_rgba(16,185,129,0.08)]">
-                      <feature.icon className="h-6 w-6" style={{ color: 'var(--brand)' }} />
-                    </div>
+                <div className="flex items-start gap-4">
+                  {/* Icon chip */}
+                  <span
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 shrink-0"
+                    style={{ backgroundColor: '#EFEEE9', borderColor: '#E6E3DA' }}
+                    aria-hidden="true"
+                  >
+                    <Icon className="h-5 w-5" color="#131415" />
+                  </span>
+
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] font-semibold text-[#131415]">
+                      {f.title}
+                    </h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#7B828A]">
+                      {f.description}
+                    </p>
                   </div>
                 </div>
-
-                <h3 className="mb-2 text-center text-lg font-semibold tracking-tight" style={{ color: 'var(--text)' }}>
-                  {feature.title}
-                </h3>
-                <p className="text-center text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                  {feature.description}
-                </p>
-
-                {/* Subtle top divider on hover */}
-                <div className="pointer-events-none absolute left-6 right-6 top-0 h-px translate-y-[-1px] bg-gradient-to-r from-transparent via-emerald-300/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </div>
-            </div>
-          ))}
-        </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </Section>
   )
