@@ -11,26 +11,26 @@ import ChoosingDogWalkerClient from "./ChoosingDogWalkerClient";
 
 export const metadata: Metadata = {
   title:
-    "Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags | Saltaire Dog Walks Blog",
+    "Choosing a Saltaire Dog Walker: Insurance, References & Red Flags | Saltaire Dog Walks Blog",
   description:
     "Make an informed choice—what to ask, what to check, and how to compare local dog walkers fairly.",
   alternates: { canonical: "/blog/choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags" },
   openGraph: {
     type: "article",
     title:
-      "Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags",
+      "Choosing a Saltaire Dog Walker: Insurance, References & Red Flags",
     description:
       "Make an informed choice—what to ask, what to check, and how to compare local dog walkers fairly.",
     images: [{ url: "/og-default.jpg", alt: "Saltaire Dog Walks" }],
     publishedTime: "2024-08-22T09:00:00+00:00",
     modifiedTime: "2025-10-16T09:00:00+00:00",
     authors: ["Saltaire Dog Walks"],
-    tags: ["Saltaire", "Dog Walking", "Pricing", "Insurance", "References"],
+    tags: ["Saltaire", "Dog Walking", "Insurance", "References"],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags",
+      "Choosing a Saltaire Dog Walker: Insurance, References & Red Flags",
     description:
       "Make an informed choice—what to ask, what to check, and how to compare local dog walkers fairly.",
     images: ["/og-default.jpg"],
@@ -40,14 +40,14 @@ export const metadata: Metadata = {
 export default function Page() {
   const post = SAMPLE_BLOG_POSTS.find(p => p.slug === 'choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags') || {
     slug: 'choosing-a-saltaire-dog-walker-prices-insurance-references-red-flags',
-    title: 'Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags',
+    title: 'Choosing a Saltaire Dog Walker: Insurance, References & Red Flags',
     excerpt: 'What to ask, what to check, and how to compare local dog walkers fairly.',
     coverImage: { src: '/og-default.jpg', alt: 'Saltaire Dog Walks' },
     author: { name: 'Saltaire Dog Walks' },
     datePublished: '2024-08-22T09:00:00+00:00',
     readingTime: 12,
     category: 'Guides',
-    tags: ['pricing', 'insurance', 'references', 'red flags'],
+    tags: ['insurance', 'references', 'red flags'],
     stats: { views: 0, likes: 0, helpfulVotes: 0 },
   } as any
 

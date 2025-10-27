@@ -177,7 +177,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="sticky top-0 z-40 h-1 w-full bg-emerald-100">
+    <div className="h-1 w-full bg-emerald-100">
       <div
         className="h-full bg-emerald-600 transition-[width] duration-150"
         style={{ width: `${Math.round(progress * 100)}%` }}
@@ -231,7 +231,7 @@ function ArticleHero({ readingTime }: { readingTime: string }) {
 
 function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
   return (
-    <nav className="lg:sticky lg:top-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <nav className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="text-sm font-semibold text-slate-900">On this page</div>
       <ol className="mt-3 space-y-2">
         {toc.map((t) => (
@@ -583,7 +583,7 @@ export default function PuppyFirstWalkClient() {
                   Reset list
                 </button>
                 <Link
-                  href="/pricing"
+                  href="/contact"
                   className="rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700"
                 >
                   Book a supported ‘first walk’
@@ -863,10 +863,10 @@ function BottomCta() {
             Contact us
           </Link>
           <Link
-            href="/pricing"
+            href="/services"
             className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50"
           >
-            See pricing
+            See services
           </Link>
         </div>
       </div>

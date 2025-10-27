@@ -9,14 +9,16 @@ import { Badge } from './badge'
 const serviceAreas = [
   {
     name: 'Saltaire',
-    description: 'Roberts Park loop, canal towpath, village green walks',
-    pickupTimes: 'Morning, midday and late-afternoon slots (limited)',
+    description:
+      'Dog walks, cat/small-pet drop-ins, feeding and quick comfort breaks. Roberts Park, canal towpath and village greens nearby.',
+    pickupTimes: 'Morning, midday and late-afternoon visits (limited)',
     landmarks: ['Roberts Park', 'Salts Mill', 'Victoria Road', 'Canal'],
   },
   {
     name: 'Shipley',
-    description: 'Glen Tramway, Northcliffe Woods, town centre routes',
-    pickupTimes: 'Morning, midday and late-afternoon slots (limited)',
+    description:
+      'Walks and home visits around Glen Tramway, Northcliffe and the town centre. Feeding, litter changes and meds by request.',
+    pickupTimes: 'Morning, midday and late-afternoon visits (limited)',
     landmarks: ['Glen Tramway', 'Northcliffe Woods', 'Market Square', 'Canal'],
   },
 ]
@@ -28,10 +30,11 @@ export function ServiceArea() {
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
           <h2 className="mb-3 text-3xl md:text-4xl font-semibold tracking-tight" style={{ color: '#131415' }}>
-            Where we walk
+            Where we cover
           </h2>
           <p className="text-base md:text-lg" style={{ color: '#7B828A' }}>
-            We cover <strong className="font-semibold text-[#131415]">Saltaire &amp; Shipley</strong>. Baildon is by enquiry—if it’s a good fit for both of us, we’ll make it work.
+            We cover <strong className="font-semibold text-[#131415]">Saltaire &amp; Shipley</strong> for walks, pet sitting, drop-ins and feeding.
+            Baildon is by enquiry—if it’s a good fit for both of us, we’ll make it work.
           </p>
         </div>
 
@@ -75,7 +78,7 @@ export function ServiceArea() {
                   <div className="mb-1.5 flex items-center gap-2">
                     <Clock className="h-4 w-4" color="#7B828A" />
                     <span className="text-sm font-medium" style={{ color: '#131415' }}>
-                      Typical pickup times
+                      Typical visit times
                     </span>
                   </div>
                   <p className="text-sm" style={{ color: '#7B828A' }}>
@@ -85,7 +88,7 @@ export function ServiceArea() {
 
                 <div className="mt-5">
                   <p className="mb-2 text-sm font-medium" style={{ color: '#131415' }}>
-                    Popular routes include:
+                    Popular walk spots include:
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {area.landmarks.map((landmark) => (
@@ -114,7 +117,7 @@ export function ServiceArea() {
             <div className="overflow-hidden rounded-lg border" style={{ borderColor: '#E6E3DA', backgroundColor: '#EFEEE9' }}>
               <Image
                 src="/maps-coverage-saltaire.png"
-                alt="Coverage map showing Saltaire and Shipley walking area."
+                alt="Coverage map showing Saltaire and Shipley for walks, pet sits and home visits."
                 width={2400}
                 height={1500}
                 sizes="(max-width: 1024px) 100vw, 50vw"

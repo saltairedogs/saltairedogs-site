@@ -148,8 +148,6 @@ export default function ChoosingDogWalkerClient() {
   const toc: TocItem[] = useMemo(
     () => [
       { id: "overview", label: "Overview", level: 1 },
-      { id: "pricing", label: "Prices & What Affects Them", level: 1 },
-      { id: "estimator", label: "Price Estimator", level: 1 },
       { id: "insurance", label: "Insurance & Compliance", level: 1 },
       { id: "references", label: "References & Checks", level: 1 },
       { id: "red-flags", label: "Red Flags (and fixes)", level: 1 },
@@ -210,6 +208,7 @@ export default function ChoosingDogWalkerClient() {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: BRAND.pebble, color: BRAND.ink }}>
+      {/* Progress bar kept non-sticky to match "no sticky nav" request */}
       <ProgressBar progress={progress} />
       <Hero readingTime={readingTime} />
 
@@ -233,6 +232,7 @@ export default function ChoosingDogWalkerClient() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 pb-24">
         {/* Sidebar */}
         <aside className="order-last lg:order-first lg:col-span-3 space-y-6">
+          {/* Non-sticky TOC (removed sticky classes in component) */}
           <StickyToc toc={toc} activeId={activeId} />
 
           {/* Quick actions */}
@@ -278,11 +278,11 @@ export default function ChoosingDogWalkerClient() {
                 <Icon.Phone className="h-4 w-4" /> Contact
               </Link>
               <Link
-                href="/pricing"
+                href="/services"
                 className="inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold"
                 style={{ backgroundColor: "#fff", borderColor: BRAND.hairline, color: BRAND.ink }}
               >
-                Pricing
+                Services
               </Link>
             </div>
           </div>
@@ -296,7 +296,7 @@ export default function ChoosingDogWalkerClient() {
           <Section id="overview" title="Overview">
             <p>
               Choosing a dog walker is half logistics, half trust. This guide gives you the <em>exact</em> checks and questions
-              to compare Saltaire walkers fairly—across price, insurance, references and the subtle “red flags” you can spot on a first call.
+              to compare Saltaire walkers fairly—across insurance, references and the subtle “red flags” you can spot on a first call.
               Use it as a worksheet, share it with a partner, and keep it handy during trials.
             </p>
             <Callout type="success" title="Quick summary">
@@ -305,7 +305,6 @@ export default function ChoosingDogWalkerClient() {
             </Callout>
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <Badge tone="brass">Transparent pricing</Badge>
               <Badge tone="slate">Insurance explained</Badge>
               <Badge tone="stone">Red flags to avoid</Badge>
             </div>
@@ -313,56 +312,8 @@ export default function ChoosingDogWalkerClient() {
 
           <Divider />
 
-          {/* Prices & Drivers */}
-          <Section id="pricing" title="Prices & What Actually Affects Them">
-            <p style={{ color: BRAND.slate }}>
-              Prices reflect time, travel, group size, and training skill. Focus on value & consistency over the lowest sticker price.
-            </p>
-
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ExplainerCard
-                title="What you’re paying for"
-                bullets={[
-                  "Time on-foot (not van time)",
-                  "Pickups/drop-offs & route planning",
-                  "Group management & handling skill",
-                  "Insurance, training, and first-aid",
-                ]}
-              />
-              <ExplainerCard
-                title="Why quotes differ"
-                bullets={[
-                  "Solo vs group walks",
-                  "Senior/puppy handling",
-                  "Reactive cases or bespoke routes",
-                  "Distance and parking constraints",
-                ]}
-              />
-            </div>
-
-            <PricingGrid />
-
-            <ProTip title="Beware of ‘too cheap to be true’">
-              A rate that’s far below local norms usually means time is being saved <em>somewhere</em>: shorter walks, big groups,
-              or gaps in insurance/compliance. Always verify the details.
-            </ProTip>
-          </Section>
-
-          <Divider />
-
-          {/* Estimator */}
-          <Section id="estimator" title="Simple Price Estimator (ballpark)">
-            <p style={{ color: BRAND.slate }}>
-              Use this interactive calculator to sketch a weekly ballpark. It’s intentionally conservative; always confirm a final quote in writing.
-            </p>
-            <Estimator />
-            <Callout type="info" title="How to compare fairly">
-              Compare total weekly cost for your specific pattern (days, times, solo/group, pickups). Per-walk prices can look similar while
-              weekly totals differ massively.
-            </Callout>
-          </Section>
-
-          <Divider />
+          {/* Pricing-related content removed by request */}
+          {/* Divider removed to close gaps */}
 
           {/* Insurance */}
           <Section id="insurance" title="Insurance & Compliance (clear & simple)">
@@ -497,7 +448,7 @@ export default function ChoosingDogWalkerClient() {
 function ProgressBar({ progress }: { progress: number }) {
   return (
     <div
-      className="sticky top-0 z-40 h-1 w-full print:hidden"
+      className="h-1 w-full print:hidden"
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={100}
@@ -531,7 +482,7 @@ function Hero({ readingTime }: { readingTime: string }) {
           </span>
 
           <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
-            Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags
+            Choosing a Saltaire Dog Walker: Insurance, References & Red Flags
           </h1>
           <p className="mt-3 text-lg" style={{ color: BRAND.slate }}>
             A practical, plain-English checklist to compare walkers fairly and choose with confidence.
@@ -556,7 +507,7 @@ function Hero({ readingTime }: { readingTime: string }) {
 function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
   return (
     <nav
-      className="lg:sticky lg:top-20 rounded-2xl p-5 shadow-sm"
+      className="rounded-2xl p-5 shadow-sm"
       aria-label="On this page"
       style={{ backgroundColor: "#fff", border: `1px solid ${BRAND.hairline}` }}
     >
@@ -1030,7 +981,7 @@ function ScriptsBlock() {
           <h4 className="text-sm font-semibold">First message (copy/paste)</h4>
           <pre className="mt-2 rounded-lg p-4 text-xs whitespace-pre-wrap" style={{ backgroundColor: BRAND.stone }}>
 Hello! We’re in Saltaire near Roberts Park and looking for a dog walker 3x weekly around lunchtime.
-Could you share your prices, group size, insurance details (PDF), and earliest trial availability?
+Could you share your group size, insurance details (PDF), and earliest trial availability?
 We have a friendly 3-year-old who’s good on-lead. Thanks!</pre>
         </div>
         <div>
@@ -1045,7 +996,7 @@ Hi, I’m checking references for [Walker]. Would you mind 3 quick questions?
           <h4 className="text-sm font-semibold">After-trial acceptance (polite & clear)</h4>
           <pre className="mt-2 rounded-lg p-4 text-xs whitespace-pre-wrap" style={{ backgroundColor: BRAND.stone }}>
 Hi [Name], the trial went well and we’d love to book [days/times]. 
-Could you confirm weekly cost, group size cap, and share T&Cs & vet consent? 
+Could you confirm schedule, group size cap, and share T&Cs & vet consent? 
 We’ll send keys next week with a backup contact. Thanks so much!</pre>
         </div>
       </div>
@@ -1072,10 +1023,9 @@ function DownloadCard({ title, href, desc }: { title: string; href: string; desc
 
 function Faq() {
   const items = [
-    { q: "What’s a fair price in Saltaire right now?", a: "Small groups: ~£10–£15 for 45–60 min; Solo: ~£14–£20 for 30–45 min. Confirm inclusions and travel." },
     { q: "How long should a trial be?", a: "Two weeks at consistent times. Ask for short daily notes and how your dog settles after drop-off." },
     { q: "What insurance document should I ask for?", a: "A PDF with policy number, provider, expiry date, and cover lines (public liability; where relevant: care, custody & control; key cover; transport)." },
-    { q: "Can a cheaper rate still be safe?", a: "Yes—if group sizes are small, comms are clear and the paperwork checks out. Cheap with poor documentation is a red flag." },
+    { q: "How do I ask for references politely?", a: "Try two recent clients. Ask how long they’ve used the walker, how comms are on normal vs tricky days, and if they’d recommend them for a sensitive dog." },
     { q: "Do walkers handle reactive dogs?", a: "Some do with capped groups and specific routes/timings. Ask their criteria before accepting a reactive case." },
   ];
   return (
@@ -1106,7 +1056,7 @@ function BottomCta() {
     >
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h3 className="text-2xl font-semibold">Want transparent pricing & calm routes?</h3>
+          <h3 className="text-2xl font-semibold">Want calm routes and clear communication?</h3>
           <p className="mt-1 opacity-90 max-w-xl">
             We’ll share insurance PDFs, references and trial options up front. If we’re not the best fit, we’ll suggest alternatives.
           </p>
@@ -1118,13 +1068,13 @@ function BottomCta() {
             style={{ backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}
           >
             <Icon.Mail className="h-4 w-4" /> Contact us
-          </Link>
-          <Link
-            href="/pricing"
-            className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold"
-            style={{ backgroundColor: "#fff", color: BRAND.brassDark }}
-          >
-            See pricing
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold"
+                style={{ backgroundColor: "#fff", borderColor: BRAND.hairline, color: BRAND.ink }}
+              >
+                Services
+              </Link>
           </Link>
         </div>
       </div>
@@ -1165,10 +1115,8 @@ function getArticleJsonLd() {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    headline:
-      "Choosing a Saltaire Dog Walker: Prices, Insurance, References & Red Flags",
-    description:
-      "Practical buyer’s guide for Saltaire: pricing drivers, insurance essentials, reference checks, and red flags—plus scripts and checklists.",
+    headline: "Choosing a Saltaire Dog Walker: Insurance, References & Red Flags",
+    description: "Practical buyer’s guide for Saltaire: insurance essentials, reference checks, and red flags—plus scripts and checklists.",
     image: [absoluteUrl("/og-default.jpg")],
     datePublished: "2024-08-22",
     dateModified: "2025-10-16",
@@ -1185,8 +1133,7 @@ function getArticleJsonLd() {
     wordCount: 1800,
     timeRequired: "PT14M",
     articleSection: ["Dog Walking", "Saltaire Advice"],
-    keywords:
-      "Saltaire dog walker, prices, insurance, references, red flags, due diligence, buyer guide",
+    keywords: "Saltaire dog walker, insurance, references, red flags, due diligence, buyer guide",
   } as const;
 }
 
@@ -1209,16 +1156,16 @@ function getBreadcrumbsJsonLd() {
 function getFaqJsonLd() {
   const faq = [
     {
-      q: "What’s a fair price in Saltaire right now?",
-      a: "Small groups: ~£10–£15 for 45–60 min; Solo: ~£14–£20 for 30–45 min. Confirm inclusions and travel.",
-    },
-    {
       q: "How long should a trial be?",
       a: "Two weeks at consistent times. Ask for short daily notes and how your dog settles after drop-off.",
     },
     {
       q: "What insurance document should I ask for?",
       a: "A PDF with policy number, provider, expiry date, and cover lines like public liability, care/custody/control, key cover and transport if used.",
+    },
+    {
+      q: "How do I ask for references politely?",
+      a: "Try two recent clients. Ask how long they’ve used the walker, how comms are on normal vs tricky days, and if they’d recommend them for a sensitive dog.",
     },
     {
       q: "Do walkers handle reactive dogs?",

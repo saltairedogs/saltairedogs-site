@@ -65,7 +65,7 @@ export function Footer() {
             aria-label="Saltaire Dogs + Pets home"
           >
             <Image
-              src="/saltaire-dogs-logo-official.png"          // ← NEW LOGO
+              src="/saltaire-dogs-logo-official.png"
               alt="Saltaire Dogs + Pets logo"
               width={200} height={200}
               className="h-8 w-auto"
@@ -77,7 +77,8 @@ export function Footer() {
             Friendly, local care — DBS checked • Insured • Photo updates
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          {/* Button group: center on mobile, align right on desktop */}
+          <div className="mt-1 flex w-full flex-wrap items-center justify-center gap-2 sm:mt-0 sm:w-auto sm:justify-end">
             <a
               href={WA_LINK}
               target="_blank"

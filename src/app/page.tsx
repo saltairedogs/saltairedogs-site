@@ -35,8 +35,6 @@ export default function HomePage() {
           }),
         }}
       />
-      {/* Accessible skip link */}
-      <a href="#main" className="skip-link">Skip to content</a>
 
       {/* Global header/navigation */}
       <SiteHeader />

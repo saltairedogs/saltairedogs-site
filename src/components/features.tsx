@@ -4,27 +4,27 @@ import { HeartHandshake, Camera, MapPin, Clock } from 'lucide-react'
 const features = [
   {
     icon: HeartHandshake,
-    title: 'Short, steady walks',
+    title: 'At-home care (cats, small pets & dogs)',
     description:
-      'Calm, unrushed outings matched to your pet’s pace. Gentle routes, plenty of sniffing, home safe and settled.',
-  },
-  {
-    icon: Camera,
-    title: 'Clear photo notes',
-    description:
-      'A quick photo and a couple of lines after each visit, so you always know how it went.',
+      'Drop-ins for feeding and water, litter/cage refresh, a little play and settling time. Medication given if you provide it and leave notes.',
   },
   {
     icon: MapPin,
-    title: 'Local routes we know',
+    title: 'Local cover you can count on',
     description:
-      'Saltaire paths, towpaths and quiet loops we’ve used for years. We avoid pinch points and busy spots.',
+      'Saltaire & Shipley only—nearby, predictable, and quick to reach you. We know the buildings, the paths and the quiet corners.',
+  },
+  {
+    icon: Camera,
+    title: 'Clear photo notes, every visit',
+    description:
+      'A quick photo and a couple of lines after each visit or walk, so you always know how it went (food eaten, loo, mood, anything odd).',
   },
   {
     icon: Clock,
     title: 'Simple, reliable routine',
     description:
-      'Light scheduling that fits your day. Tell us your window and we’ll keep it consistent.',
+      'You pick a window—morning, midday or late afternoon—and we keep it consistent. Backup cover arranged for holidays/illness.',
   },
 ]
 
@@ -33,7 +33,7 @@ export function Features() {
     <Section
       eyebrow="A calm, local service"
       title="What it feels like to work with us"
-      description="Nothing fancy. Just steady care, clear updates and the same friendly face at your door."
+      description="Nothing fancy. Just steady care—home visits, feeding and short, steady walks—with clear updates and the same friendly face at your door."
       className="bg-[#F7F7F6] py-12 lg:py-20"
     >
       <div className="mx-auto max-w-6xl">

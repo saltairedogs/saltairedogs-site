@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 import BlogFilter from '@/components/blog/blog-filter'
-import { SAMPLE_BLOG_POSTS, getFeaturedPost, getPopularPosts } from '@/lib/blog-data'
+import { SAMPLE_BLOG_POSTS, getFeaturedPost } from '@/lib/blog-data'
 import { BLOG_CATEGORIES, type BlogCategory } from '@/lib/blog'
 
 /* --------------------------------- SEO --------------------------------- */
@@ -160,9 +160,9 @@ function BlogHero() {
 }
 
 /** Editorial hierarchy row: 1 large + 2 medium (friendly, non-corporate) */
-function EditorialRow() {
+function EditorialRow({ posts }: { posts: any[] }) {
   const featured = getFeaturedPost()
-  const pool = SAMPLE_BLOG_POSTS.filter((p) => p.slug !== featured?.slug)
+  const pool = posts.filter((p) => p.slug !== featured?.slug)
   const picks = pool.slice(0, 2)
 
   if (!featured || picks.length < 2) return null
@@ -211,7 +211,7 @@ function EditorialRow() {
   )
 }
 
-function CategoryFilterPanel({ activeCat }: { activeCat?: string }) {
+function CategoryFilterPanel({ activeCat, posts }: { activeCat?: string, posts: any[] }) {
   const categoryEntries = Object.entries(BLOG_CATEGORIES) as [BlogCategory, any][]
 
   return (
@@ -227,11 +227,11 @@ function CategoryFilterPanel({ activeCat }: { activeCat?: string }) {
           data-active={(!activeCat || activeCat === 'All') ? 'true' : 'false'}
         >
           <span className="font-medium">All</span>
-          <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{SAMPLE_BLOG_POSTS.length}</span>
+          <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{posts.length}</span>
         </Link>
 
         {categoryEntries.map(([categoryName, categoryData]) => {
-          const count = SAMPLE_BLOG_POSTS.filter((p: any) => p.category === categoryName).length
+          const count = posts.filter((p: any) => p.category === categoryName).length
           const isActive = activeCat === categoryName
           return (
             <Link
@@ -255,8 +255,10 @@ function CategoryFilterPanel({ activeCat }: { activeCat?: string }) {
   )
 }
 
-function PopularPosts() {
-  const popular = getPopularPosts(5)
+function PopularPosts({ posts }: { posts: any[] }) {
+  const popular = [...posts]
+    .sort((a, b) => (b.stats?.views + (b.stats?.likes ?? 0) * 3) - (a.stats?.views + (a.stats?.likes ?? 0) * 3))
+    .slice(0, 5)
   return (
     <div className="space-y-4">
       <h3 className="flex items-center gap-2 font-semibold text-text">
@@ -392,6 +394,15 @@ export default function BlogPage({
   const siteUrl = process.env.SITE_URL ?? 'https://saltairedogs.uk'
   const activeCat = typeof searchParams?.cat === 'string' ? searchParams?.cat : undefined
 
+  // Remove all "coming soon" placeholders from the hub
+  const isComingSoon = (p: any) =>
+    (typeof p.slug === 'string' && p.slug.startsWith('coming-soon-')) ||
+    (Array.isArray(p.tags) && p.tags.some((t: string) => t.toLowerCase() === 'coming soon')) ||
+    (typeof p.excerpt === 'string' && /coming\s+soon/i.test(p.excerpt)) ||
+    (typeof p.content === 'string' && /coming\s+soon/i.test(p.content))
+
+  const VISIBLE_POSTS = SAMPLE_BLOG_POSTS.filter((p) => !isComingSoon(p))
+
   const jsonLdBlog = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -404,7 +415,7 @@ export default function BlogPage({
   const jsonLdList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: SAMPLE_BLOG_POSTS.slice(0, 6).map((p, i) => ({
+    itemListElement: VISIBLE_POSTS.slice(0, 6).map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       url: `${siteUrl}/blog/${p.slug}`,
@@ -431,10 +442,10 @@ export default function BlogPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSearch) }} />
 
       {/* Hero */}
-      <BlogHero />
+  <BlogHero />
 
       {/* Editorial row */}
-      <EditorialRow />
+  <EditorialRow posts={VISIBLE_POSTS} />
 
       {/* Main body */}
       <div id="latest" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -464,14 +475,14 @@ export default function BlogPage({
                 </div>
               }
             >
-              <BlogFilter initialPosts={SAMPLE_BLOG_POSTS} />
+              <BlogFilter initialPosts={VISIBLE_POSTS} />
             </Suspense>
           </div>
 
           {/* Sidebar */}
           <aside className="space-y-8">
-            <CategoryFilterPanel activeCat={activeCat} />
-            <PopularPosts />
+            <CategoryFilterPanel activeCat={activeCat} posts={VISIBLE_POSTS} />
+            <PopularPosts posts={VISIBLE_POSTS} />
             <NewsletterCard />
           </aside>
         </div>

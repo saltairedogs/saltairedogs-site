@@ -662,8 +662,8 @@ export default function RobertsParkPerfectDogWalkClient({ showHero = true }: { s
               <Icon.Print className="h-4 w-4" /> Print
             </button>
 
-            <Link href="/pricing" className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700">
-              Book a walk
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700">
+              Contact us
             </Link>
           </div>
         </article>
@@ -766,9 +766,9 @@ function RouteCard({ name, distanceKm, durationMin, difficulty, highlights, mapH
         ))}
       </ul>
       <div className="mt-4 flex items-center gap-3">
-        <Link href="/areas" className="text-sm font-medium text-emerald-700 hover:text-emerald-800">Check coverage</Link>
-        <span className="text-slate-300">•</span>
-        <Link href="/pricing" className="text-sm text-slate-700 hover:text-slate-900">Get a quote</Link>
+  <Link href="/areas" className="text-sm font-medium text-emerald-700 hover:text-emerald-800">Check coverage</Link>
+  <span className="text-slate-300">•</span>
+  <Link href="/contact" className="text-sm text-slate-700 hover:text-slate-900">Get in touch</Link>
       </div>
     </div>
   );
@@ -886,8 +886,8 @@ function BottomCta() {
           <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur ring-1 ring-inset ring-white/30 hover:bg-white/20">
             Contact us
           </Link>
-          <Link href="/pricing" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50">
-            See pricing
+          <Link href="/services" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-emerald-800 hover:bg-emerald-50">
+            See services
           </Link>
         </div>
       </div>
@@ -913,7 +913,7 @@ function AuthorCard({ authorName = "Saltaire Dog Walks" }: { authorName?: string
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="sticky top-0 z-40 h-1 w-full bg-emerald-100">
+    <div className="h-1 w-full bg-emerald-100">
       <div
         className="h-full bg-emerald-600 transition-[width] duration-150"
         style={{ width: `${Math.round(progress * 100)}%` }}
@@ -962,7 +962,7 @@ function ArticleHero({ readingTime }: { readingTime: string }) {
 
 function StickyToc({ toc, activeId }: { toc: TocItem[]; activeId: string }) {
   return (
-    <nav className="lg:sticky lg:top-20 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <nav className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="text-sm font-semibold text-slate-900">On this page</div>
       <ol className="mt-3 space-y-2">
         {toc.map((t) => (

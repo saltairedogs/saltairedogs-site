@@ -200,39 +200,9 @@ export default function SaltaireGuideClient() {
 
   return (
     <main className="min-h-screen bg-white text-[15.5px] leading-[1.75]">
-      <div
-        className="sticky top-0 z-40 h-1 w-full"
-        role="progressbar"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={Math.round(progress * 100)}
-        style={{ backgroundColor: COLORS.brandSoft }}
-      >
-        <div
-          className="h-full transition-[width] duration-200"
-          style={{ width: `${Math.round(progress * 100)}%`, backgroundColor: COLORS.brand }}
-        />
-      </div>
+      {/* No in-article progress bar or navigation */}
 
       <Hero readingTime={readingTime} />
-
-      <InlineNav
-        items={[
-          { href: "#overview", label: "Overview" },
-          { href: "#routes", label: "Top Routes" },
-          { href: "#windows", label: "Quiet Windows" },
-          { href: "#etiquette", label: "Local Rules" },
-          { href: "#seasons", label: "Seasonal Tips" },
-          { href: "#gear", label: "Gear" },
-          { href: "#training", label: "Micro-Drills" },
-          { href: "#access", label: "Accessibility" },
-          { href: "#cafes", label: "Cafés" },
-          { href: "#parking", label: "Parking" },
-          { href: "#emergency", label: "Safety" },
-          { href: "#faq", label: "FAQs" },
-          { href: "#downloads", label: "Downloads" },
-        ]}
-      />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldArticle) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldFAQ) }} />
@@ -699,9 +669,9 @@ function RouteCard({ name, distanceKm, durationMin, difficulty, highlights, mapH
         ))}
       </ul>
       <div className="mt-4 flex items-center gap-3">
-        <a href="/areas" className="text-sm font-semibold hover:opacity-80" style={{ color: COLORS.brandDeep }}>Check coverage</a>
-        <span className="text-slate-300" aria-hidden="true">•</span>
-        <a href="/pricing" className="text-sm hover:opacity-80" style={{ color: COLORS.body }}>See pricing</a>
+  <a href="/areas" className="text-sm font-semibold hover:opacity-80" style={{ color: COLORS.brandDeep }}>Check coverage</a>
+  <span className="text-slate-300" aria-hidden="true">•</span>
+  <a href="/services" className="text-sm hover:opacity-80" style={{ color: COLORS.body }}>See services</a>
       </div>
     </div>
   );
@@ -1007,7 +977,7 @@ function BottomCta() {
         </div>
         <div className="flex items-center gap-3">
           <PrimaryButton asChild highContrast><Link href="/contact">Book a Walk</Link></PrimaryButton>
-          <GhostButton onClick={() => (window.location.href = "/pricing")}>See pricing</GhostButton>
+          <GhostButton onClick={() => (window.location.href = "/services")}>See services</GhostButton>
         </div>
       </div>
     </section>

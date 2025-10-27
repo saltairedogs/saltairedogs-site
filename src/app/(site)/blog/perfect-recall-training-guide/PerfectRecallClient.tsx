@@ -617,7 +617,7 @@ export default function PerfectRecallClient({
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="sticky top-0 z-40 h-[3px] w-full" style={{ background: BRAND.hair }}>
+    <div className="h-[3px] w-full" style={{ background: BRAND.hair }}>
       <div
         className="h-full transition-[width] duration-150"
         style={{ width: `${Math.round(progress * 100)}%`, background: BRAND.brass }}
