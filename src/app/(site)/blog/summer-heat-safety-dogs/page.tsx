@@ -192,7 +192,7 @@ export default function Page() {
       <figure className="mt-10 overflow-hidden rounded-3xl border border-border">
         <div className="relative h-64 w-full sm:h-80">
           <Image
-            src="/walking-sat-dog.jpg"
+            src="/poodle-brown.png"
             alt="Calm lead walking in dappled shade near Saltaire"
             fill
             sizes="(max-width: 768px) 100vw, 900px"

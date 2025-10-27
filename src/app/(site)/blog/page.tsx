@@ -159,58 +159,6 @@ function BlogHero() {
   )
 }
 
-/** Editorial hierarchy row: 1 large + 2 medium (friendly, non-corporate) */
-function EditorialRow({ posts }: { posts: any[] }) {
-  const featured = getFeaturedPost()
-  const pool = posts.filter((p) => p.slug !== featured?.slug)
-  const picks = pool.slice(0, 2)
-
-  if (!featured || picks.length < 2) return null
-
-  return (
-    <section aria-labelledby="editorial-row" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-      <div className="mb-6 flex items-center justify-between">
-        <h2 id="editorial-row" className="text-lg font-semibold text-text">Editor’s picks</h2>
-        <Link href="/about" className="hidden items-center gap-2 text-sm font-medium text-muted-foreground hover:text-text sm:flex">
-          About the blog <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        <ArticleCard
-          variant="lead"
-          post={{
-            slug: featured.slug,
-            title: featured.title,
-            excerpt: featured.excerpt,
-            image: featured.coverImage?.src || '/og-default.jpg',
-            alt: featured.coverImage?.alt || featured.title,
-            category: featured.category,
-            readMin: featured.readingTime,
-            views: featured.stats?.views ?? undefined,
-          }}
-        />
-        {picks.map((p) => (
-          <ArticleCard
-            key={p.slug}
-            variant="support"
-            post={{
-              slug: p.slug,
-              title: p.title,
-              excerpt: p.excerpt,
-              image: p.coverImage?.src || '/og-default.jpg',
-              alt: p.coverImage?.alt || p.title,
-              category: p.category,
-              readMin: p.readingTime,
-              views: p.stats?.views ?? undefined,
-            }}
-          />
-        ))}
-      </div>
-    </section>
-  )
-}
-
 function CategoryFilterPanel({ activeCat, posts }: { activeCat?: string, posts: any[] }) {
   const categoryEntries = Object.entries(BLOG_CATEGORIES) as [BlogCategory, any][]
 
@@ -442,10 +390,7 @@ export default function BlogPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSearch) }} />
 
       {/* Hero */}
-  <BlogHero />
-
-      {/* Editorial row */}
-  <EditorialRow posts={VISIBLE_POSTS} />
+      <BlogHero />
 
       {/* Main body */}
       <div id="latest" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

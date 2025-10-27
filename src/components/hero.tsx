@@ -19,7 +19,7 @@ export function Hero() {
       {/* Full-bleed image */}
       <div className="relative h-[640px] sm:h-[620px] lg:h-[720px] w-full">
         <Image
-          src="/saltaire-dog-river.png"
+          src="/poodle-brown.png"
           alt="Saltaire at first light—calm pet care by the canal near Salts Mill"
           fill
           priority

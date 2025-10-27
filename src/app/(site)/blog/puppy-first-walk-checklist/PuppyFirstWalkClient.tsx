@@ -649,7 +649,7 @@ export default function PuppyFirstWalkClient() {
             />
 
             <ImageFrame
-              src="/images/blog/puppy-first-walk-map.jpg"
+              src="/poodle-brown.png"
               alt="A simple first-walk loop map through a quiet residential street"
               caption="Start close to home; aim for predictable sights and surfaces."
             />
