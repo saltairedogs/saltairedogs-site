@@ -9,9 +9,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { MapPin, ArrowLeft, Clock } from 'lucide-react'
 import PerfectRecallClient from './PerfectRecallClient'
 
-const post = SAMPLE_BLOG_POSTS.find(
-  (p) => p.slug === 'perfect-recall-training-guide'
-)!
+const post = SAMPLE_BLOG_POSTS.find((p) => p.slug === 'perfect-recall-training-guide')!
+
+// Hard-set publication date per request
+const PUBLISHED_ISO = '2025-10-05'
+const PUBLISHED_LABEL = new Date(PUBLISHED_ISO).toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
 
 export const metadata: Metadata = {
   title: `${post.title} | Saltaire Dog Walks Blog`,
@@ -44,7 +50,6 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const siteUrl = process.env.SITE_URL ?? 'https://saltairedogs.uk'
-  const publishedDate = new Date(post.datePublished).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
   const url = `${siteUrl}/blog/${post.slug}`
   const waShare = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + url)}`
   const mailShare = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(url)}`
@@ -56,8 +61,8 @@ export default function Page() {
     headline: post.title,
     description: post.excerpt,
     image: [`${siteUrl}${post.coverImage.src}`],
-    datePublished: post.datePublished,
-    dateModified: post.datePublished,
+    datePublished: PUBLISHED_ISO,
+    dateModified: PUBLISHED_ISO,
     author: [{ '@type': 'Organization', name: post.author.name }],
     publisher: { '@type': 'Organization', name: 'Saltaire Dog Walks' },
     mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
@@ -103,19 +108,30 @@ export default function Page() {
       </div>
 
       <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-        {/* Title card */}
+        {/* Title card (single source of truth for title + meta) */}
         <header
           className="mx-auto -mt-10 rounded-2xl border bg-white/95 p-5 shadow-sm ring-1 ring-black/5 backdrop-blur md:p-7"
           style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
         >
           <div className="mb-2 flex flex-wrap gap-2 md:hidden">
-            <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-semibold text-[#131415]">{post.category}</span>
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-semibold text-[#131415]">
+              {post.category}
+            </span>
             {post.location && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-medium text-[#131415]"><MapPin className="h-3.5 w-3.5" /> {post.location}</span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-medium text-[#131415]">
+                <MapPin className="h-3.5 w-3.5" /> {post.location}
+              </span>
             )}
           </div>
-          <h1 className="text-balance text-2xl font-extrabold leading-tight text-[#131415] sm:text-3xl">{post.title}</h1>
-          {post.excerpt && <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-[#7B828A]">{post.excerpt}</p>}
+
+          <h1 className="text-balance text-2xl font-extrabold leading-tight text-[#131415] sm:text-3xl">
+            {post.title}
+          </h1>
+
+          {post.excerpt && (
+            <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-[#7B828A]">{post.excerpt}</p>
+          )}
+
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-3 text-sm text-[#7B828A]">
               <span className="inline-flex items-center gap-2">
@@ -126,17 +142,34 @@ export default function Page() {
                 <span className="font-medium text-[#131415]">Saltaire Dog Walks</span>
               </span>
               <span aria-hidden>•</span>
-              <time dateTime={post.datePublished}>{publishedDate}</time>
+              <time dateTime={PUBLISHED_ISO}>{PUBLISHED_LABEL}</time>
               {typeof post.readingTime === 'number' && (
                 <>
                   <span aria-hidden>•</span>
-                  <span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {post.readingTime} min read</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="h-3.5 w-3.5" /> {post.readingTime} min read
+                  </span>
                 </>
               )}
             </div>
+
             <div className="flex gap-2">
-              <a href={mailShare} className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>Email</a>
-              <a href={waShare} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>Share</a>
+              <a
+                href={mailShare}
+                className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]"
+                style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
+              >
+                Email
+              </a>
+              <a
+                href={waShare}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]"
+                style={{ borderColor: 'var(--hairline,#E6E3DA)' }}
+              >
+                Share
+              </a>
             </div>
           </div>
         </header>
@@ -147,7 +180,8 @@ export default function Page() {
 
         {/* Content */}
         <div className="mt-8">
-          <PerfectRecallClient showHero={false} stickyToc={false} />
+          {/* Disable inner hero + meta bar to avoid duplication */}
+          <PerfectRecallClient showHero={false} stickyToc={true} showMetaBar={false} />
         </div>
 
         {/* Tags */}
@@ -156,7 +190,9 @@ export default function Page() {
             <h4 className="mb-3 font-semibold text-text">Tags</h4>
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag: string) => (
-                <Badge key={tag} variant="outline" className="text-sm">{tag}</Badge>
+                <Badge key={tag} variant="outline" className="text-sm">
+                  {tag}
+                </Badge>
               ))}
             </div>
           </div>
@@ -176,10 +212,14 @@ export default function Page() {
                   </div>
                   <CardContent className="p-4">
                     <h3 className="mb-2 line-clamp-2 font-semibold text-text">
-                      <Link href={`/blog/${rp.slug}`} className="link-underline">{rp.title}</Link>
+                      <Link href={`/blog/${rp.slug}`} className="link-underline">
+                        {rp.title}
+                      </Link>
                     </h3>
                     <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{rp.excerpt}</p>
-                    <div className="text-xs text-muted-foreground">{typeof rp.readingTime === 'number' ? `${rp.readingTime} min read` : null}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {typeof rp.readingTime === 'number' ? `${rp.readingTime} min read` : null}
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -191,11 +231,24 @@ export default function Page() {
         <Card className="mt-12 border-[#C89B3C]/20 bg-gradient-to-br from-[#C89B3C]/5 to-[#C89B3C]/10 p-8">
           <div className="mx-auto max-w-2xl text-center">
             <h3 className="mb-2 text-xl font-bold text-text">Tiny emails, useful tips</h3>
-            <p className="mb-6 text-muted-foreground">Occasional notes on local routes, safety, and calm handling. Unsubscribe anytime.</p>
+            <p className="mb-6 text-muted-foreground">
+              Occasional notes on local routes, safety, and calm handling. Unsubscribe anytime.
+            </p>
             <form action="/api/newsletter" method="post" className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
               <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
-              <input type="email" name="email" required placeholder="Your email address" className="flex-1 rounded-lg border border-border px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#C89B3C]/40" />
-              <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-[#C89B3C] px-4 py-2 text-sm font-semibold text-[#131415] hover:opacity-90">Subscribe</Link>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your email address"
+                className="flex-1 rounded-lg border border-border px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
+              />
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-lg bg-[#C89B3C] px-4 py-2 text-sm font-semibold text-[#131415] hover:opacity-90"
+              >
+                Subscribe
+              </Link>
             </form>
           </div>
         </Card>

@@ -11,7 +11,7 @@ import { Container } from '@/components/container'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
-  Home, Mail, Search, ArrowLeft, Dog, MapPin, Camera, ShieldCheck, Clock, Phone, HeartHandshake,
+  Home, Mail, Search, ArrowLeft, PawPrint, MapPin, Camera, ShieldCheck, Clock, Phone, HeartHandshake,
 } from 'lucide-react'
 
 const BRAND = {
@@ -30,11 +30,12 @@ const quickLinks = [
   { label: 'Contact', href: '/contact' },
 ]
 
+// Broadened to all animals
 const trustRow = [
   { icon: <ShieldCheck className="h-4 w-4" />, text: 'Enhanced DBS' },
-  { icon: <Camera className="h-4 w-4" />, text: 'GPS & Photos' },
-  { icon: <Dog className="h-4 w-4" />, text: 'Solo Walks' },
-  { icon: <Clock className="h-4 w-4" />, text: 'Reliable Windows' },
+  { icon: <Camera className="h-4 w-4" />, text: 'Photo updates' },
+  { icon: <PawPrint className="h-4 w-4" />, text: 'All animals' },
+  { icon: <Clock className="h-4 w-4" />, text: 'Reliable windows' },
 ]
 
 export default function NotFound() {
@@ -94,7 +95,7 @@ export default function NotFound() {
                 </Badge>
 
                 <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  We can’t find that page — but we can help your dog have a great day
+                  We can’t find that page — but we can help keep your pets looked after
                 </h1>
 
                 <p className="mt-2 max-w-prose text-[color:var(--mute,#7B828A)]">
@@ -113,7 +114,7 @@ export default function NotFound() {
                   <input
                     name="q"
                     type="search"
-                    placeholder="Try “services”, “puppy visits”, or “walk times”…"
+                    placeholder='Try “cat sitting”, “animal feeding”, or “parrot visits”…'
                     className="w-full bg-transparent px-2 py-2 text-sm outline-none"
                     aria-label="Search the site"
                   />
@@ -197,23 +198,23 @@ export default function NotFound() {
           </Container>
         </section>
 
-        {/* Explore cards (replaced pricing with areas) */}
+        {/* Explore cards (updated copy to all animals) */}
         <section className="pb-18 pt-2">
           <Container>
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
               <ExploreCard
-                href="/services"
+                href="/how-it-works"
                 title="What we offer"
-                copy="Solo walks, puppy visits and calm overnights—with clear updates."
+                copy="Dog walks, cat sitting, and small pets & exotics — with simple photo updates."
                 badge="Services"
-                icon={<Dog className="h-4 w-4" />}
+                icon={<PawPrint className="h-4 w-4" />}
                 image="/saltaire-victoria-road-schnauzer-on-lead.jpg"
               />
 
               <ExploreCard
                 href="/areas"
                 title="Areas we cover"
-                copy="Saltaire, Shipley & Baildon—ask if you’re nearby and we’ll try to fit you in."
+                copy="Saltaire, Shipley — if you’re nearby, message and we’ll try to fit you in."
                 badge="Service area"
                 icon={<MapPin className="h-4 w-4" />}
                 image="/maps-coverage-saltaire.png"
@@ -239,7 +240,7 @@ export default function NotFound() {
                     DBS & insured
                   </Badge>
                   <Badge className="bg-white text-[color:var(--ink,#131415)] ring-1" style={{ borderColor: BRAND.hair }}>
-                    GPS & photos
+                    Photo updates
                   </Badge>
                 </div>
               </div>

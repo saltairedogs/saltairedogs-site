@@ -92,6 +92,24 @@ export function Hero() {
                 </Button>
               </div>
 
+              {/* NEW: Trust row for mobile (matches desktop content) */}
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/85 sm:hidden">
+                <span className="inline-flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4" />
+                  DBS checked & insured
+                </span>
+                <span className="opacity-40">•</span>
+                <span className="inline-flex items-center gap-2">
+                  <Camera className="h-4 w-4" />
+                  Photo updates every visit
+                </span>
+                <span className="opacity-40">•</span>
+                <span className="inline-flex items-center gap-2">
+                  <PawPrint className="h-4 w-4" />
+                  Dogs, cats & small pets
+                </span>
+              </div>
+
               {/* Trust row (desktop only) */}
               <div className="mt-5 hidden flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/85 sm:flex">
                 <span className="inline-flex items-center gap-2">
