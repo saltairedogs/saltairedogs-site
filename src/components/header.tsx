@@ -178,6 +178,8 @@ export function Header() {
               <SheetContent
                 side="right"
                 className="w-[85vw] max-w-xs p-4 sm:p-5 rounded-xl shadow-lg bg-[#F7F7F6] ring-1 ring-[#E6E3DA]"
+                // Offset below the sticky announcement banner (h-8 => 32px + 2px border breathing)
+                style={{ top: '34px' }}
               >
                 <MobileNav
                   navigation={NAV}
