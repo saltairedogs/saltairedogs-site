@@ -4,6 +4,8 @@ import "./globals.css";
 import { inter } from "./fonts";
 // Vercel Analytics & Speed Insights
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { AnnouncementBanner } from "@/components/announcement-banner";
+import { NewsletterModal } from "@/components/newsletter-modal";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
       "DBS-checked solo walks and discreet pet sitting in Saltaire & Shipley. Photo updates after every visit.",
     url: "https://saltairedogs.uk",
     siteName: "Saltaire Dog Walks",
-    images: [{ url: "/og-default.jpg", width: 1200, height: 630, alt: "Saltaire Dog Walks" }],
+  images: [{ url: "/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero.webp", width: 1200, height: 630, alt: "Saltaire Dog Walks" }],
     locale: "en_GB",
     type: "website",
   },
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     title: "Saltaire Dog Walks",
     description:
       "DBS-checked solo walks and discreet pet sitting in Saltaire & Shipley. Photo updates after every visit.",
-    images: ["/og-default.jpg"],
+  images: ["/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero.webp"],
   },
   alternates: { canonical: "/" },
 };
@@ -42,6 +44,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.variable} min-h-screen text-foreground antialiased site-bg`}
       >
+        {/* Global offsets for sticky header under the announcement banner */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `:root{ --banner-offset: 32px; } @media(min-width:640px){ :root{ --banner-offset: 36px; } }`,
+          }}
+        />
+
+        {/* Announcement banner (sticky, above everything) */}
+        <AnnouncementBanner />
+
+        {/* Newsletter modal (first visit) */}
+        <NewsletterModal />
         {/* Palette tokens (warm, premium) */}
         <style
           dangerouslySetInnerHTML={{

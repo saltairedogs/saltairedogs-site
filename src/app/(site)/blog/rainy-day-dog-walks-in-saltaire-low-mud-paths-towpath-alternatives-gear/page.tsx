@@ -11,7 +11,8 @@ import { ArrowLeft, Clock } from 'lucide-react'
 const SITE_URL = process.env.SITE_URL ?? 'https://saltairedogs.uk'
 const SLUG = 'rainy-day-dog-walks-in-saltaire-low-mud-paths-towpath-alternatives-gear'
 const CANONICAL = `${SITE_URL}/blog/${SLUG}`
-const COVER_SRC = '/saltaire-victoria-road-schnauzer-on-lead.jpg'
+// Use an existing, optimized AVIF hero from public/ with multiple resolutions available
+const COVER_SRC = '/hirst-wood-shipley-glen-dog-walks-hero.avif'
 const COVER_ABS = `${SITE_URL}${COVER_SRC}`
 
 const POST = {
@@ -19,7 +20,10 @@ const POST = {
   title: 'Rainy-Day Dog Walks in Saltaire: Low-Mud Paths, Towpath Alternatives & Gear',
   excerpt:
     'Keep walks calm on wet days: streets that drain, easy swaps for the towpath, and a short kit list that actually helps.',
-  coverImage: { src: COVER_SRC, alt: 'Schnauzer on a damp Saltaire street, reflective harness on lead' },
+  coverImage: {
+    src: COVER_SRC,
+    alt: 'Hirst Wood and Shipley Glen paths after rain — a low-mud towpath alternative in Saltaire',
+  },
   author: { name: 'Saltaire Dogs + Pets' },
   datePublished: '2025-10-02T09:00:00.000Z', // fixed date
   dateModified: '2025-10-02T09:00:00.000Z',
@@ -103,7 +107,7 @@ export default function Page() {
             publisher: {
               '@type': 'Organization',
               name: 'Saltaire Dogs + Pets',
-              logo: { '@type': 'ImageObject', url: `${SITE_URL}/saltaire-dogs-logo-official.png` },
+              logo: { '@type': 'ImageObject', url: `${SITE_URL}/saltaire-dogs-logo-official.webp` },
             },
             description: POST.excerpt,
           }),

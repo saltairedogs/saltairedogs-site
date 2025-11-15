@@ -1,438 +1,450 @@
-// src/app/(site)/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access/page.tsx
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { ArrowLeft, Clock } from 'lucide-react'
-import { getRelatedPosts } from '@/lib/blog-data'
+// app/(site)/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access/page.tsx
+import Image from "next/image"
+import Link from "next/link"
 
-export const metadata: Metadata = {
+/**
+ * Image notes:
+ * - Export these variants (or adjust names to what you have):
+ *   /hirst-wood-shipley-glen-dog-walks-hero-2560w.avif
+ *   /hirst-wood-shipley-glen-dog-walks-hero-2560w.webp
+ *   /hirst-wood-shipley-glen-dog-walks-hero-1920w.avif
+ *   /hirst-wood-shipley-glen-dog-walks-hero-1920w.webp
+ *   /hirst-wood-shipley-glen-dog-walks-hero-1280w.avif
+ *   /hirst-wood-shipley-glen-dog-walks-hero-1280w.webp
+ *   /hirst-wood-shipley-glen-dog-walks-hero.png   (master fallback 3200×1600+)
+ */
+
+export const metadata = {
   title:
-    'Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access | Saltaire Dog Walks Blog',
+    "Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access",
   description:
-    'Circular routes, seasonal mud levels, and access notes for Hirst Wood and Shipley Glen. Quiet-time tips, safety checks, and realistic timings.',
-  openGraph: {
-    title:
-      'Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access',
-    description:
-      'Plan woodland loops with realistic mud ratings, access notes, and quiet-time tips—written by daily local walkers.',
-    type: 'article',
-    url: '/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access',
-    images: ['/poodle-walking-shipley-glenn.jpg'],
-  },
+    "Three circular dog walks linking Hirst Wood, the River Aire, canal towpath and Shipley Glen. Mud levels by season, access/parking, hazards (livestock/cyclists), and where to find drier paths after rain.",
   alternates: {
     canonical:
-      '/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access',
+      "https://saltairedogs.uk/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access",
   },
-}
-
-const post = {
-  slug: 'hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access',
-  title: 'Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access',
-  excerpt:
-    'Plan your woodland walks with practical, local detail—especially helpful after rain. Three circular loops, mud meter, access & safety notes.',
-  coverImage: { src: '/poodle-walking-shipley-glenn.jpg', alt: 'Dog walking on a woodland path near Shipley Glen' },
-  author: { name: 'Saltaire Dog Walks' },
-  datePublished: new Date().toISOString(),
-  readingTime: 9,
-  category: 'Local Spots',
-  tags: ['Hirst Wood', 'Shipley Glen', 'mud levels', 'circular walks', 'access'],
-  stats: { views: 0, likes: 0, helpfulVotes: 0 },
+  keywords: [
+    "Hirst Wood dog walk",
+    "Shipley Glen with dogs",
+    "Hirst Lock towpath dogs",
+    "mud levels Saltaire walks",
+    "quiet dog walks Saltaire",
+  ],
+  openGraph: {
+    title:
+      "Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access",
+    description:
+      "30/45/70-minute dog-friendly circuits from Saltaire and Hirst Wood—what’s muddy, what’s firm, and how to avoid the busy bits.",
+    type: "article",
+    url: "https://saltairedogs.uk/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access",
+  },
 }
 
 export default function Page() {
-  const siteUrl = process.env.SITE_URL ?? 'https://saltairedogs.uk'
-  const publishedDate = new Date(post.datePublished).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
-  const url = `${siteUrl}/blog/${post.slug}`
-  const waShare = `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + url)}`
-  const mailShare = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(url)}`
-  const related = getRelatedPosts(post as any, 3)
-
-  const jsonLdArticle = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: metadata.description,
-    image: [`${siteUrl}${post.coverImage.src}`],
-    datePublished: post.datePublished,
-    dateModified: post.datePublished,
-    author: [{ '@type': 'Organization', name: post.author.name }],
-    publisher: { '@type': 'Organization', name: 'Saltaire Dog Walks' },
-    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
-  }
-
-  const jsonLdFaq = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How muddy are Hirst Wood & Shipley Glen after rain?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Expect moderate to heavy mud on clay sections and in dips after prolonged rain. Boardwalks help in places, but choose routes with firmer edges if you need cleaner paws.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are there steep sections or steps?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Yes—Shipley Glen includes stepped paths and short, steeper scrambles. Choose the perimeter and bridleway lines for gentler gradients.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is off-lead okay?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            'Only if your recall is reliable around wildlife and other dogs. Use a standard lead or long line where visibility is limited, and follow local signage and seasonal notices.',
-        },
-      },
-    ],
-  }
+  const PUBLISHED_ISO = "2025-10-22T09:00:00Z"
+  const PUBLISHED_HUMAN = "22 Oct 2025"
+  const WA = `https://wa.me/447305367941?text=${encodeURIComponent(
+    "Hi! I’m in Saltaire/Hirst Wood. Could you help with dog walks or drop-ins on [dates/times]? My street is [your street]."
+  )}`
 
   return (
-    <article className="min-h-screen bg-bg">
-      {/* Banner */}
-      <div className="relative overflow-hidden border-b" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>
-        <div className="relative h-56 md:h-72 lg:h-80">
-          <Image src={post.coverImage.src} alt={post.coverImage.alt} fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_40%,rgba(0,0,0,0.25),transparent_60%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(19,20,21,0.45))]" />
+    <main className="bg-[#F7F7F6] text-[#131415]">
+      {/* -------------------------------- HERO -------------------------------- */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <picture>
+            <source
+              media="(min-width: 1280px)"
+              type="image/avif"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-2560w.avif"
+            />
+            <source
+              media="(min-width: 1280px)"
+              type="image/webp"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-2560w.webp"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/avif"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-1920w.avif"
+            />
+            <source
+              media="(min-width: 768px)"
+              type="image/webp"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-1920w.webp"
+            />
+            <source
+              type="image/avif"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-1280w.avif"
+            />
+            <source
+              type="image/webp"
+              srcSet="/hirst-wood-shipley-glen-dog-walks-hero-1280w.webp"
+            />
+            <Image
+              src="/hirst-wood-shipley-glen-dog-walks-hero.png"
+              alt="Hirst Wood path toward Shipley Glen at golden hour—woodland edge and firm track"
+              fill
+              priority
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMScgaGVpZ2h0PScxJyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPScxJyBoZWlnaHQ9JzEnIGZpbGw9IiNFREVCRUQiLz48L3N2Zz4="
+              className="object-cover"
+            />
+          </picture>
+          {/* readable overlays */}
+          <div className="absolute inset-0 bg-[radial-gradient(1100px_640px_at_45%_36%,rgba(0,0,0,0.30),transparent_62%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/24" />
         </div>
-        <div className="absolute left-4 top-4 flex items-center gap-2">
-          <Link href="/blog" className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-sm font-medium text-[#131415] ring-1 ring-black/5 backdrop-blur hover:bg-white" aria-label="Back to blog">
-            <ArrowLeft className="h-4 w-4" /> Back to blog
-          </Link>
-          <span className="hidden md:inline-flex items-center gap-1 rounded-full bg-white/75 px-2.5 py-1 text-xs font-semibold text-[#131415] ring-1 ring-black/5">{post.category}</span>
-        </div>
-      </div>
 
-      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-        {/* Title card */}
-        <header className="mx-auto -mt-10 rounded-2xl border bg-white/95 p-5 shadow-sm ring-1 ring-black/5 backdrop-blur md:p-7" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>
-          <div className="mb-2 flex flex-wrap gap-2 md:hidden">
-            <span className="inline-flex items-center gap-1 rounded-full bg-[#EFEEE9] px-2.5 py-1 text-xs font-semibold text-[#131415]">{post.category}</span>
-          </div>
-          <h1 className="text-balance text-2xl font-extrabold leading-tight text-[#131415] sm:text-3xl">{post.title}</h1>
-          {post.excerpt && <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-[#7B828A]">{post.excerpt}</p>}
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-3 text-sm text-[#7B828A]">
-              <span className="inline-flex items-center gap-2">
-                <Avatar className="h-6 w-6"><AvatarImage src={'/logo.svg'} /><AvatarFallback>SD</AvatarFallback></Avatar>
-                <span className="font-medium text-[#131415]">Saltaire Dog Walks</span>
-              </span>
-              <span aria-hidden>•</span>
-              <time dateTime={post.datePublished}>{publishedDate}</time>
-              {typeof post.readingTime === 'number' && (<><span aria-hidden>•</span><span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {post.readingTime} min read</span></>)}
-            </div>
-            <div className="flex gap-2">
-              <a href={mailShare} className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>Email</a>
-              <a href={waShare} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium text-[#131415] hover:bg-[#EFEEE9]" style={{ borderColor: 'var(--hairline,#E6E3DA)' }}>Share</a>
-            </div>
-          </div>
-        </header>
-      {/* JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
-
-      {/* Content */}
-      <div className="mt-8 prose prose-lg max-w-none prose-headings:text-text prose-p:text-muted-foreground prose-a:text-[#C89B3C]">
-      {/* Lead */}
-      <p className="text-lg text-muted-foreground">
-        Hirst Wood and Shipley Glen are our go-to woodland loops—shade in summer, shelter in drizzle, and enough variety
-        to keep dogs engaged without chaos. Below you’ll find three circulars with{' '}
-        <strong>realistic timings</strong>, a <strong>mud meter</strong>, clear <strong>access notes</strong>, and
-        safety tips for slopes, steps and winter light.
-      </p>
-
-      {/* Safety callout */}
-      <div
-        role="note"
-        aria-label="Woodland safety note"
-        className="my-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-900"
-      >
-        <strong className="font-semibold">Woodland etiquette:</strong> yield early on narrow sections, keep dogs close at
-        blind corners, and avoid greetings with on-lead dogs unless invited. Respect seasonal notices for wildlife.
-      </div>
-
-      {/* Figure */}
-      <figure className="mt-8 overflow-hidden rounded-3xl border border-border">
-        <div className="relative h-64 w-full sm:h-80">
-          <Image
-            src="/poodle-walking-shipley-glenn.jpg"
-            alt="Calm lead walking on a firm woodland path in Shipley Glen"
-            fill
-            sizes="(max-width: 768px) 100vw, 900px"
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
-        </div>
-        <figcaption className="px-4 py-3 text-sm text-muted-foreground">
-          Firm perimeter path in the Glen—good option after wet weather. Keep leads short near steps and pinch points.
-        </figcaption>
-      </figure>
-
-      {/* Mud meter */}
-      <section aria-labelledby="mud" className="mt-12">
-        <h2 id="mud">Mud meter (0–5)</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          A quick, honest scale so you can pick the right loop for the day. Values assume the last 48 hours’ weather.
-        </p>
-        <div className="mt-4 grid gap-4 lg:grid-cols-3">
-          {[
-            ['0–1 • Dry/Firm', 'Gravel, well-drained edges; shoes stay clean.'],
-            ['2–3 • Patchy/Mixed', 'Soft patches in dips; boardwalk sections useful.'],
-            ['4–5 • Muddy/Claggy', 'Clay holds water; expect slippy steps and puddles.'],
-          ].map(([label, desc]) => (
-            <div key={label} className="rounded-2xl border border-border bg-white p-4">
-              <p className="text-sm font-semibold">{label}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Three circulars */}
-      <section aria-labelledby="loops" className="mt-12">
-        <h2 id="loops">Three circular loops (with surfaces & timings)</h2>
-
-        {/* Loop 1 */}
-        <article className="mt-4 rounded-2xl border border-border bg-white p-5">
-          <h3 className="text-base font-semibold">1) Hirst Lock ↔ Nature Reserve Perimeter (≈25–35 mins)</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            A calm, mostly level loop: towpath start, then into the reserve perimeter and back via firm track.
-            Great for <em>steady on-lead practice</em> and puppies building confidence.
-          </p>
-          <ul className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-            <li><strong>Surface:</strong> towpath stone, compact soil, short boardwalks</li>
-            <li><strong>Mud:</strong> 2–3 after rain; 1–2 in dry spells</li>
-            <li><strong>Pinch points:</strong> reserve gates; give way if busy</li>
-            <li><strong>Notes:</strong> keep leads short near water and anglers</li>
-          </ul>
-        </article>
-
-        {/* Loop 2 */}
-        <article className="mt-4 rounded-2xl border border-border bg-white p-5">
-          <h3 className="text-base font-semibold">2) Shipley Glen Perimeter & Upper Edge (≈40–55 mins)</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            More variety with gentle elevation; good sight-lines along the upper edge. Ideal for{' '}
-            <em>long-line focus work</em> on quieter days.
-          </p>
-          <ul className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-            <li><strong>Surface:</strong> woodland track, stone steps (avoidable via bridleway lines)</li>
-            <li><strong>Mud:</strong> 2 in dry, 3–4 after rain on clay sections</li>
-            <li><strong>Pinch points:</strong> stepped paths and narrow boulders</li>
-            <li><strong>Notes:</strong> choose bridleways for prams/less steps</li>
-          </ul>
-        </article>
-
-        {/* Loop 3 */}
-        <article className="mt-4 rounded-2xl border border-border bg-white p-5">
-          <h3 className="text-base font-semibold">3) Glen Cross-Valley Figure-8 (≈60–75 mins)</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            The “big loop” with a satisfying mix of forest, edges and short climbs. Best for{' '}
-            <em>dogs with sure-footed confidence</em>.
-          </p>
-          <ul className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-            <li><strong>Surface:</strong> mixed woodland path, stone, occasional roots</li>
-            <li><strong>Mud:</strong> 3 in fair weather; 4–5 after continuous rain</li>
-            <li><strong>Pinch points:</strong> narrow ridges—keep dogs close</li>
-            <li><strong>Notes:</strong> carry water; shade can be cool even in summer</li>
-          </ul>
-        </article>
-      </section>
-
-      {/* Access & parking */}
-      <section aria-labelledby="access" className="mt-12">
-        <h2 id="access">Access, parking & gentle-gradient options</h2>
-        <div className="mt-4 overflow-hidden rounded-2xl border border-border">
-          <table className="w-full text-sm">
-            <thead className="bg-muted/40 text-left">
-              <tr>
-                <th className="px-4 py-3">Start point</th>
-                <th className="px-4 py-3">Parking / access</th>
-                <th className="px-4 py-3">Gradient</th>
-                <th className="px-4 py-3">Notes</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              <tr>
-                <td className="px-4 py-3 font-medium">Hirst Lock</td>
-                <td className="px-4 py-3">Street parking (respect residents). Flat towpath entry.</td>
-                <td className="px-4 py-3">Mostly level</td>
-                <td className="px-4 py-3">Gates into reserve; short boardwalks.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-medium">Glen Road bottom</td>
-                <td className="px-4 py-3">On-street. Steps on some lines.</td>
-                <td className="px-4 py-3">Gentle–moderate</td>
-                <td className="px-4 py-3">Use bridleway for fewer steps.</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-medium">Glen Tramway top</td>
-                <td className="px-4 py-3">Limited spaces. Quicker access to upper edge.</td>
-                <td className="px-4 py-3">Moderate</td>
-                <td className="px-4 py-3">Good sight-lines; can be breezy.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-2 text-xs text-muted-foreground">
-          Always check live signage/closures. Respect residents, verges and emergency access.
-        </p>
-      </section>
-
-      {/* Seasonal & weather notes */}
-      <section aria-labelledby="seasons" className="mt-12">
-        <h2 id="seasons">Seasonal & weather notes</h2>
-        <div className="mt-3 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-white p-4">
-            <h3 className="text-sm font-semibold">After rain</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Choose perimeter/bridleway lines and avoid clay dips. Boardwalks reduce mess but can be slick—steady pace,
-              short lead. Pack a small towel for paws.
+        <div className="mx-auto max-w-4xl px-4 py-24 sm:py-28 lg:py-36">
+          <div className="rounded-2xl bg-black/60 p-6 sm:p-8 text-white ring-1 ring-white/15 backdrop-blur">
+            <p className="mb-2 inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold">
+              Saltaire • Dog walks
             </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white p-4">
-            <h3 className="text-sm font-semibold">Wind & winter light</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Upper edges catch wind; woodland floor gets dim early. Add a light for your dog and avoid steep descents at dusk.
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+              Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access
+            </h1>
+            <p className="mt-3 text-lg text-white/90">
+              30/45/70-minute circuits linking Hirst Wood, the Aire, the Leeds–Liverpool
+              canal and Shipley Glen. What’s firm after rain, what gets muddy, and the easy
+              access points with parking.
             </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white p-4">
-            <h3 className="text-sm font-semibold">Nesting & wildlife</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Keep to paths in spring; avoid scrambling off-trail. Long lines only where visibility is clear and footfall is low.
+            <p className="mt-2 text-sm text-white/80">
+              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-white p-4">
-            <h3 className="text-sm font-semibold">Heat plan</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Woodland is cooler but still warm on climbs. Walk earlier, bring water, and pause in shade. Skip long fetch games.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Gear checklist */}
-      <section aria-labelledby="kit" className="mt-12">
-        <h2 id="kit">Quick kit (keeps walks easy)</h2>
-        <ul className="mt-2 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-          <li>Y-front harness + 1.5–2 m lead (long line for quiet fields)</li>
-          <li>Collapsible bowl & water (especially on the figure-8)</li>
-          <li>Microfibre towel for paws & car mats</li>
-          <li>High-viz or light in low light</li>
-          <li>Treat pouch for check-ins at pinch points</li>
-          <li>Spare bags; sealable pouch for rubbish</li>
-        </ul>
-      </section>
-
-      {/* Mini FAQ mirroring JSON-LD */}
-      <section aria-labelledby="faq" className="mt-12">
-        <h2 id="faq">Quick questions</h2>
-        <div className="mt-4 divide-y divide-border rounded-2xl border border-border bg-white">
-          {[
-            {
-              q: 'How muddy is it this week?',
-              a: 'If we’ve had steady rain for two days, expect Mud 3–4 in dips and on clay paths. Use perimeter lines for cleaner paws.',
-            },
-            {
-              q: 'Any steep bits to avoid with prams?',
-              a: 'Yes—use the bridleway lines around the Glen and stick to the reserve perimeter near Hirst Wood.',
-            },
-            {
-              q: 'Off-lead?',
-              a: 'Only with solid recall around wildlife/people. Otherwise use a long line in open, visible areas or keep to a standard lead.',
-            },
-          ].map((f) => (
-            <div key={f.q} className="px-5 py-4">
-              <p className="font-medium">{f.q}</p>
-              <p className="mt-1 text-muted-foreground">{f.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section aria-labelledby="cta" className="mt-14">
-        <div
-          className="relative overflow-hidden rounded-3xl px-6 py-10 text-white sm:px-10"
-          style={{
-            background:
-              'radial-gradient(1000px 600px at 10% 10%, rgba(200,155,60,0.18), transparent 60%), linear-gradient(135deg, #131415 0%, #1C1E20 100%)',
-          }}
-        >
-          <div className="relative mx-auto max-w-3xl">
-            <h2 id="cta" className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Want a woodland plan tailored to your dog?
-            </h2>
-            <p className="mt-2 text-white/85">
-              We pick gradients, surfaces and timings to suit your route—and send photo + GPS updates so you know how it
-              went.
-            </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact?topic=hirst-wood-shipley-glen"
-                className="inline-flex items-center justify-center rounded-xl bg-[#C89B3C] px-5 py-3 text-sm font-semibold text-[#131415] shadow-sm hover:opacity-90"
+              <a
+                href={WA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
+                style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                Book a meet &amp; greet
-              </Link>
+                WhatsApp: local dog walks
+              </a>
               <Link
-                href="/services"
-                className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/15"
+                href="/blog/best-saltaire-walks"
+                className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
               >
-                See services
+                Best Saltaire walks
               </Link>
             </div>
-            <p className="mt-4 text-xs text-white/70">DBS • First-aid • GPS &amp; photos • Calm handling</p>
           </div>
-          <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
         </div>
       </section>
-      </div>
 
-      {/* Tags */}
-      {post.tags?.length ? (
-        <div className="mt-10 border-t border-stone-200 pt-6">
-          <h4 className="mb-3 font-semibold text-text">Tags</h4>
-          <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag) => (<Badge key={tag} variant="outline" className="text-sm">{tag}</Badge>))}
+      {/* -------------------------------- BODY -------------------------------- */}
+      <article className="mx-auto max-w-3xl px-4 py-12 sm:py-16 lg:py-20">
+        {/* Intro */}
+        <p className="text-lg text-[#4A4F55]">
+          These routes start near <strong>Hirst Lock / Hirst Wood</strong> and loop the{" "}
+          <em>river path</em>, <em>canal towpath</em>, and the edge of{" "}
+          <strong>Shipley Glen</strong>. You’ll find a firm fallback even after
+          heavy rain, plus quieter tracks to avoid the busiest pinch points.
+        </p>
+
+        {/* TOC */}
+        <nav
+          aria-label="Table of contents"
+          className="mt-8 rounded-2xl border bg-white p-5 text-sm shadow-sm"
+          style={{ borderColor: "#E6E3DA" }}
+        >
+          <strong className="block">Contents</strong>
+          <ol className="mt-3 list-decimal space-y-1 pl-5 text-[#4A4F55]">
+            <li><a href="#routes" className="underline underline-offset-4">3 circular routes (30 / 45 / 70 mins)</a></li>
+            <li><a href="#mud" className="underline underline-offset-4">Mud levels by season & fallback surfaces</a></li>
+            <li><a href="#access" className="underline underline-offset-4">Access & parking (Hirst Lock, Glen, towpath)</a></li>
+            <li><a href="#rules" className="underline underline-offset-4">Lead rules, hazards & etiquette</a></li>
+            <li><a href="#facilities" className="underline underline-offset-4">Cafés, loos, water & bins</a></li>
+            <li><a href="#cta" className="underline underline-offset-4">Need help with walks while you’re busy?</a></li>
+          </ol>
+        </nav>
+
+        {/* Routes */}
+        <section id="routes" className="mt-12">
+          <h2 className="text-2xl font-bold">Three circular routes</h2>
+          <div className="mt-4 overflow-x-auto rounded-2xl border bg-white p-4" style={{ borderColor: "#E6E3DA" }}>
+            <table className="w-full border-collapse text-[14px]">
+              <thead>
+                <tr className="text-left">
+                  {["Name", "Time", "Surface", "Summary"].map((h) => (
+                    <th key={h} className="border-b py-2 pr-3 font-semibold" style={{ borderColor: "#EFEDE7" }}>
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="align-top text-[#4A4F55]">
+                {[
+                  [
+                    "Hirst Lock Short",
+                    "≈ 30 mins",
+                    "Mostly firm towpath",
+                    "Start Hirst Lock → east along towpath → turn at the footbridge → return on same side or cross and loop via Roberts Park paths.",
+                  ],
+                  [
+                    "Wood & Water Loop",
+                    "≈ 45 mins",
+                    "Mixed (firm towpath + woodland)",
+                    "Towpath from Hirst Lock → drop to riverside path by Hirst Wood → rejoin canal near the swing bridge → back to start.",
+                  ],
+                  [
+                    "Shipley Glen Circuit",
+                    "≈ 70 mins",
+                    "Mixed, some rocky/muddy",
+                    "From Hirst Wood climb to the Glen (tracks near the tramway) → woodland edge paths → descend towards Baildon/Prod Lane and loop back via towpath.",
+                  ],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-b last:border-0" style={{ borderColor: "#EFEDE7" }}>
+                    {row.map((cell, i) => (
+                      <td key={i} className="py-2 pr-3">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      ) : null}
 
-      {/* Related */}
-      {related.length > 0 && (
-        <section className="mt-16 border-t border-stone-200 pt-8">
-          <h2 className="mb-6 text-2xl font-bold text-text">More like this</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((rp: any) => (
-              <Card key={rp.slug} className="overflow-hidden transition hover:shadow-lg">
-                <div className="relative h-40">
-                  <Image src={rp.coverImage.src} alt={rp.coverImage.alt} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                  <Badge className="absolute left-3 top-3 bg-[#C89B3C] text-[#131415]">{rp.category}</Badge>
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="mb-2 line-clamp-2 font-semibold text-text"><Link href={`/blog/${rp.slug}`} className="link-underline">{rp.title}</Link></h3>
-                  <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{rp.excerpt}</p>
-                  <div className="text-xs text-muted-foreground">{typeof rp.readingTime === 'number' ? `${rp.readingTime} min read` : null}</div>
-                </CardContent>
-              </Card>
-            ))}
+          <p className="mt-3 text-sm text-[#7B828A]">
+            Tip: save “Hirst Lock” and “Shipley Glen Tramway” in your maps app. If the woods look muddy,
+            stick to the towpath and park paths for a clean-paws loop.
+          </p>
+        </section>
+
+        {/* Mud levels */}
+        <section id="mud" className="mt-12">
+          <h2 className="text-2xl font-bold">Mud levels by season & fallback</h2>
+          <div className="mt-4 grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border bg-white p-5 text-sm shadow-sm" style={{ borderColor: "#E6E3DA" }}>
+              <h3 className="text-base font-semibold">Autumn–Winter</h3>
+              <ul className="mt-2 list-disc space-y-2 pl-5 text-[#4A4F55]">
+                <li><strong>Hirst Wood riverside</strong> can be claggy; expect puddles after prolonged rain.</li>
+                <li><strong>Fallback:</strong> towpath (grit/stone) + park hard paths. Avoid steep Glen descents in very wet spells.</li>
+                <li>Wipe-down station: bring a small towel in a zip bag for paws/tummies post-walk.</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border bg-white p-5 text-sm shadow-sm" style={{ borderColor: "#E6E3DA" }}>
+              <h3 className="text-base font-semibold">Spring–Summer</h3>
+              <ul className="mt-2 list-disc space-y-2 pl-5 text-[#4A4F55]">
+                <li>Woodland dries well after 24–48 h of fair weather; roots/rocks remain uneven.</li>
+                <li><strong>Busy times:</strong> sunny evenings + weekends on the towpath; take the Glen edge for space.</li>
+                <li>Shade & water available along woodland and river; carry extra in heat.</li>
+              </ul>
+            </div>
           </div>
         </section>
-      )}
 
-      </div>
-    </article>
+        {/* Access & Parking */}
+        <section id="access" className="mt-12">
+          <h2 className="text-2xl font-bold">Access & parking</h2>
+          <div className="mt-4 overflow-x-auto rounded-2xl border bg-white p-4" style={{ borderColor: "#E6E3DA" }}>
+            <table className="w-full border-collapse text-[14px]">
+              <thead>
+                <tr className="text-left">
+                  {["Spot", "Postcode", "Notes"].map((h) => (
+                    <th key={h} className="border-b py-2 pr-3 font-semibold" style={{ borderColor: "#EFEDE7" }}>
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="align-top text-[#4A4F55]">
+                {[
+                  ["Hirst Lock / Hirst Wood", "BD18 4ND", "Towpath access, woodland entrances; limited on-street parking—be considerate."],
+                  ["Shipley Glen (lower access)", "BD17 5BN", "Paths to the Glen; some roadside spaces; check signs."],
+                  ["Roberts Park (overflow option)", "BD17 5RH", "Hard-path network; nice add-on to shorten muddy sections."],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-b last:border-0" style={{ borderColor: "#EFEDE7" }}>
+                    {row.map((cell, i) => (
+                      <td key={i} className="py-2 pr-3">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-[#7B828A]">
+            Public transport: trains to <strong>Saltaire</strong> station (then 10–15 mins walk to Hirst Lock) or
+            buses up to Baildon/Prod Lane for Shipley Glen access.
+          </p>
+        </section>
+
+        {/* Rules & hazards */}
+        <section id="rules" className="mt-12">
+          <h2 className="text-2xl font-bold">Lead rules, hazards & etiquette</h2>
+          <div className="mt-4 grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border bg-white p-5 text-sm shadow-sm" style={{ borderColor: "#E6E3DA" }}>
+              <h3 className="text-base font-semibold">Lead & right-of-way</h3>
+              <ul className="mt-2 list-disc space-y-2 pl-5 text-[#4A4F55]">
+                <li>Towpath is shared with cyclists—<strong>lead on</strong> when busy; keep right and cue sit-to-side for trains of bikes.</li>
+                <li>Near livestock (occasional in Glen edges): keep dogs on lead and give wide berth.</li>
+                <li>Recall practice? Use quiet woodland spurs; avoid blind bends and steep drops.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border bg-white p-5 text-sm shadow-sm" style={{ borderColor: "#E6E3DA" }}>
+              <h3 className="text-base font-semibold">Seasonal notes</h3>
+              <ul className="mt-2 list-disc space-y-2 pl-5 text-[#4A4F55]">
+                <li><strong>High water</strong> after storms—stay off river margins that undercut; use towpath/park network.</li>
+                <li><strong>Nesting birds</strong> Spring: keep curious noses out of bramble edges.</li>
+                <li>Evening midges near water—pack a quick wipe for face/ears if your dog is sensitive.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Facilities */}
+        <section id="facilities" className="mt-12">
+          <h2 className="text-2xl font-bold">Cafés, water & bins</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-[#4A4F55]">
+            <li>Water taps at some moorings (seasonal); carry a collapsible bowl.</li>
+            <li>Bins around Roberts Park and near Hirst Lock; pack out if none on the woodland side.</li>
+            <li>Saltaire cafés (downstream) welcome dogs outdoors; weekends get busy—go early.</li>
+          </ul>
+        </section>
+
+        {/* CTA */}
+        <section
+          id="cta"
+          className="mt-12 rounded-2xl border bg-white p-6 shadow-sm"
+          style={{ borderColor: "#E6E3DA" }}
+        >
+          <h2 className="text-2xl font-bold">Need reliable help with dog walks?</h2>
+          <p className="mt-3 text-[#4A4F55]">
+            I’m local to Saltaire/Hirst Wood—DBS checked, insured, and I send a short photo note after every walk.
+            From quick canal loops to longer Glen circuits, we’ll match the route to your dog and the day’s conditions.
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={WA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
+              style={{ backgroundColor: "#C89B3C", color: "#131415" }}
+            >
+              WhatsApp a quick request
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-xl border border-[#E6E3DA] bg-white px-5 py-3 text-base font-semibold text-[#131415] hover:bg-[#FAFAF9]"
+            >
+              Contact
+            </Link>
+          </div>
+        </section>
+
+        {/* Related */}
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold">Related reads</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-[#4A4F55]">
+            <li>
+              <Link href="/blog/roberts-park-dog-walks-safe-routes-off-lead-areas-and-parking-tips" className="underline underline-offset-4 hover:no-underline">
+                Roberts Park Dog Walks: safe routes, off-lead areas & parking tips
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/leeds-liverpool-canal-walks-in-saltaire-dog-safety-etiquette-busy-times" className="underline underline-offset-4 hover:no-underline">
+                Canal Walks in Saltaire: safety, etiquette & busy times
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/rainy-day-dog-walks-in-saltaire-low-mud-paths-towpath-alternatives-gear" className="underline underline-offset-4 hover:no-underline">
+                Rainy-Day Dog Walks: low-mud paths, towpath alternatives & gear
+              </Link>
+            </li>
+          </ul>
+        </section>
+
+        {/* Footer CTA */}
+        <section className="mt-14 rounded-2xl bg-[#131415] p-7 text-white">
+          <h2 className="text-2xl font-extrabold">Local, calm dog walks in Saltaire</h2>
+          <p className="mt-2 text-white/85">
+            Owner-led, insured and DBS checked. We keep routes sensible for the weather and your dog’s energy.
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={WA}
+              className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
+              style={{ backgroundColor: "#C89B3C", color: "#131415" }}
+            >
+              Get a WhatsApp quote
+            </a>
+            <Link
+              href="/dog-walking/saltaire"
+              className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
+            >
+              Dog walking in Saltaire
+            </Link>
+          </div>
+        </section>
+      </article>
+
+      {/* ----------------------- STRUCTURED DATA (Article) -------------------- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline:
+                "Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access",
+              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              datePublished: PUBLISHED_ISO,
+              dateModified: PUBLISHED_ISO,
+              mainEntityOfPage:
+                "https://saltairedogs.uk/blog/hirst-wood-shipley-glen-with-dogs-circular-walks-mud-levels-access",
+              image: [
+                "https://saltairedogs.uk/hirst-wood-shipley-glen-dog-walks-hero-2560w.avif",
+                "https://saltairedogs.uk/hirst-wood-shipley-glen-dog-walks-hero-2560w.webp",
+                "https://saltairedogs.uk/hirst-wood-shipley-glen-dog-walks-hero.png",
+              ],
+              keywords:
+                "Hirst Wood dog walk, Shipley Glen with dogs, towpath Saltaire dogs, mud levels Saltaire walks, quiet dog walks Saltaire",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Is the Hirst Wood riverside path muddy in winter?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text:
+                      "Often, yes—expect puddles after rain. Use the canal towpath and park hard paths as a cleaner fallback, then rejoin woodland where firm.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Where should dogs be on lead?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text:
+                      "Keep dogs on lead along the towpath when busy with cyclists, and near any livestock on the Glen edges. Choose quieter woodland spurs for recall practice.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Best parking for these loops?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text:
+                      "Hirst Lock (BD18 4ND) for towpath/woodland starts, Shipley Glen lower access (BD17 5BN) for Glen circuits, and Roberts Park (BD17 5RH) as a hard-path alternative.",
+                  },
+                },
+              ],
+            },
+          ]),
+        }}
+      />
+    </main>
   )
 }

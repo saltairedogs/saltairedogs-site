@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     title: "Contact — Saltaire Dogs + Pets",
     description: "WhatsApp, call, or email — whatever’s easiest. Local, DBS checked and insured.",
     type: "website",
-    images: [{ url: "/og-default.jpg" }],
+    images: [{ url: "/walking-sat-dog.webp" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact — Saltaire Dogs + Pets",
     description: "Quick, friendly contact for dog walks and pet visits around Saltaire.",
-    images: ["/og-default.jpg"],
+    images: ["/walking-sat-dog.webp"],
   },
 };
 
@@ -141,7 +141,7 @@ export default function ContactPage() {
               <figure className="overflow-hidden rounded-xl bg-[#EFEEE9] ring-1 ring-[#E6E3DA]">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/poodle-walking-shipley-glenn.jpg"
+                    src="/walking-sat-dog.webp"
                     alt="Calm walk near Saltaire."
                     fill
                     priority
@@ -248,7 +248,7 @@ function StructuredData() {
     email: EMAIL,
     telephone: PHONE_DISPLAY,
     areaServed: AREAS,
-    image: [`${siteUrl}/cover.jpg`],
+  image: [`${siteUrl}/cover.webp`],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Saltaire",

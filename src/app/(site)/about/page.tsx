@@ -133,7 +133,7 @@ export default function AboutPage() {
               name: 'Saltaire Dogs + Pets',
               url: 'https://saltairedogs.uk',
               areaServed: ['Saltaire', 'Shipley'],
-              image: 'https://saltairedogs.uk/saltaire-dogs-logo-official.png',
+              image: 'https://saltairedogs.uk/saltaire-dogs-logo-official.webp',
             },
             about: {
               '@type': 'Person',
@@ -150,8 +150,8 @@ export default function AboutPage() {
         {/* Background image (with blur placeholder) */}
         <div ref={heroImgRef} className="absolute inset-0 -z-10 will-change-transform motion-reduce:transform-none">
           <Image
-            src="/saltaire-dogs-river.png"
-            alt="Early light on the Saltaire canal — calm pet care on routes we know well"
+            src="/saltaire-salts-mill-river-aire-dawn-dog-walker-about-hero.avif"
+            alt="Warm dawn at Salts Mill on the River Aire in Saltaire — gentle mist, soft sunlight and a calm morning walk."
             fill
             sizes="100vw"
             priority
@@ -335,17 +335,17 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <MosaicImage
-                src="/saltaire-victoria-road-schnauzer-on-lead.jpg"
+                src="/saltaire-victoria-road-schnauzer-on-lead.webp"
                 alt="Schnauzer walking past Saltaire limestone terraces"
                 ratio="3/4"
               />
               <MosaicImage
-                src="/north-cliffe-dog-rainbow.jpg"
+                src="/north-cliffe-dog-rainbow.webp"
                 alt="Northcliffe walk after rain — rainbow over the trees"
                 ratio="3/4"
               />
               <MosaicImage
-                src="/poodle-walking-shipley-glenn.jpg"
+                src="/poodle-walking-shipley-glenn.webp"
                 alt="Poodle exploring a quiet Shipley Glen loop"
                 ratio="16/9"
                 span2

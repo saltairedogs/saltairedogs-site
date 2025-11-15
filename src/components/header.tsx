@@ -1,3 +1,4 @@
+// app/components/header.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -7,7 +8,7 @@ import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Container } from './container'
 import { MobileNav } from './mobile-nav'
-import { Menu, MessageCircle, Instagram } from 'lucide-react'
+import { Menu, MessageCircle, Instagram, Mail } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
@@ -23,6 +24,12 @@ const WA_TEXT = encodeURIComponent(
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 const INSTAGRAM_URL = 'https://www.instagram.com/saltairedogs/'
+const EMAIL_ADDRESS = 'hello@saltairedogs.uk'
+const MAILTO = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
+  'Saltaire Dogs + Pets — quick question'
+)}&body=${encodeURIComponent(
+  'Hi Giuseppe, \n\nI’m in/near Saltaire and need help with [walks/visits/feeding] on [dates].\n\nThanks!'
+)}`
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -41,8 +48,9 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${scrolled ? 'backdrop-blur-md' : ''}`}
+      className={`sticky z-50 w-full transition-all duration-200 ${scrolled ? 'backdrop-blur-md' : ''}`}
       style={{
+        top: 'var(--banner-offset, 0px)',
         backgroundColor: scrolled ? 'rgba(247,247,246,0.85)' : 'transparent',
         borderBottom: `1px solid ${scrolled ? '#E6E3DA' : 'transparent'}`,
       }}
@@ -56,7 +64,7 @@ export function Header() {
             aria-label="Saltaire Dogs + Pets — Home"
           >
             <Image
-              src="/saltaire-dogs-logo-official.png"
+              src="/saltaire-dogs-logo-official.webp"
               alt="Saltaire Dogs + Pets logo"
               width={200}
               height={200}
@@ -64,6 +72,54 @@ export function Header() {
               className={`w-auto transition-all ${scrolled ? 'h-9 lg:h-11' : 'h-12 lg:h-14'}`}
             />
           </Link>
+
+          {/* ---- Mobile inline mini nav + quick icons (ONE LINE) ---- */}
+          <div className="md:hidden flex-1 flex items-center justify-center gap-2 px-1">
+            <nav className="flex items-center gap-1.5" aria-label="Quick">
+              {NAV.map((item) => {
+                const active =
+                  pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={`mini-${item.name}`}
+                    href={item.href}
+                    className={`whitespace-nowrap rounded-full border px-3 py-1.5 text-[12px] font-semibold ${
+                      active
+                        ? 'bg-[#131415] text-white border-[#131415]'
+                        : 'bg-white/80 text-[#131415] border-[#E6E3DA]'
+                    }`}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              })}
+            </nav>
+
+            {/* tiny divider to breathe */}
+            <span className="h-6 w-px bg-[#E6E3DA]" />
+
+            {/* Quick icons */}
+            <div className="flex items-center gap-1.5">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Instagram"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#E6E3DA] bg-white/80"
+              >
+                <Instagram className="h-4 w-4 text-[#131415]" />
+              </a>
+              <a
+                href={MAILTO}
+                aria-label="Email us"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#E6E3DA] bg-white/80"
+              >
+                <Mail className="h-4 w-4 text-[#131415]" />
+              </a>
+            </div>
+          </div>
+          {/* --------------------------------------------------------- */}
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex lg:items-center lg:gap-6" aria-label="Primary">
@@ -123,7 +179,11 @@ export function Header() {
                 side="right"
                 className="w-[85vw] max-w-xs p-4 sm:p-5 rounded-xl shadow-lg bg-[#F7F7F6] ring-1 ring-[#E6E3DA]"
               >
-                <MobileNav navigation={NAV} currentPath={pathname ?? '/'} onClose={() => setMobileOpen(false)} />
+                <MobileNav
+                  navigation={NAV}
+                  currentPath={pathname ?? '/'}
+                  onClose={() => setMobileOpen(false)}
+                />
 
                 {/* Social / CTA block */}
                 <div className="mt-4 grid grid-cols-1 gap-2">

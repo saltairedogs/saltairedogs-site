@@ -16,7 +16,7 @@ export function MobileNav({ navigation, currentPath, onClose }: MobileNavProps) 
       <SheetHeader className="pb-3">
         <div className="flex items-center gap-3">
           <Image
-            src="/saltaire-dogs-logo-official.png"
+            src="/saltaire-dogs-logo-official.webp"
             alt="Saltaire Dogs + Pets"
             width={28}
             height={28}

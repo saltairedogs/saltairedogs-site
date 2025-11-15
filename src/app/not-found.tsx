@@ -73,7 +73,7 @@ export default function NotFound() {
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0 -z-20">
             <Image
-              src="/saltaire-canal-retriever-on-lead-cobbles.jpg"
+              src="/saltaire-dog-walk-salts-mill-canal-golden-hour-hero.webp"
               alt="Saltaire riverside at blue hour"
               fill
               priority
@@ -208,7 +208,7 @@ export default function NotFound() {
                 copy="Dog walks, cat sitting, and small pets & exotics — with simple photo updates."
                 badge="Services"
                 icon={<PawPrint className="h-4 w-4" />}
-                image="/saltaire-victoria-road-schnauzer-on-lead.jpg"
+                image="/saltaire-victoria-road-schnauzer-on-lead.webp"
               />
 
               <ExploreCard
@@ -217,7 +217,7 @@ export default function NotFound() {
                 copy="Saltaire, Shipley — if you’re nearby, message and we’ll try to fit you in."
                 badge="Service area"
                 icon={<MapPin className="h-4 w-4" />}
-                image="/maps-coverage-saltaire.png"
+                image="/maps-coverage-saltaire.webp"
               />
             </div>
 

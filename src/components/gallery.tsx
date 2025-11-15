@@ -9,22 +9,22 @@ import { Container } from './container'
  */
 const galleryImages = [
   {
-    src: '/saltaire-victoria-road-schnauzer-on-lead.jpg',
+    src: '/saltaire-victoria-road-schnauzer-on-lead.webp',
     alt: 'Miniature schnauzer on a lead walking along in Saltaire with limestone terraces in sunlight',
     caption: 'Stroll in Saltaire',
   },
   {
-    src: '/saltaire-canal-retriever-on-lead-cobbles.jpg',
+    src: '/saltaire-canal-retriever-on-lead-cobbles.webp',
     alt: 'Golden retriever on a lead walking ahead on the canal towpath in Saltaire with Salts Mill reflected in the water',
     caption: 'Saltaire canal walk',
   },
   {
-    src: '/poodle-walking-shipley-glenn.jpg',
+    src: '/poodle-walking-shipley-glenn.webp',
     alt: 'Poodle walking near Shipley Glen with woodland light',
     caption: 'Shipley Glen walk',
   },
   {
-    src: '/north-cliffe-dog-rainbow.jpg',
+    src: '/north-cliffe-dog-rainbow.webp',
     alt: 'Dog walking at Northcliffe with a rainbow in the sky',
     caption: 'Northcliffe rainbow walk',
   },
