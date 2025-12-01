@@ -20,7 +20,7 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       {/* Background image */}
-      <div className="relative h-[640px] sm:h-[620px] lg:h-[720px] w-full overflow-hidden">
+      <div className="relative h-[580px] sm:h-[620px] lg:h-[720px] w-full overflow-hidden">
         <Image
           src="/saltaire-dog-walk-salts-mill-canal-golden-hour-hero.avif"
           alt="Dog walker beside Salts Mill on the Leeds–Liverpool Canal in Saltaire at sunrise — calm, local dog walking and pet care."
@@ -30,7 +30,7 @@ export function Hero() {
           className="object-cover"
         />
         {/* Single, simple gradient for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/70" />
       </div>
 
       {/* Overlay content */}
@@ -41,30 +41,34 @@ export function Hero() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="mx-auto w-full max-w-3xl rounded-2xl border border-white/15 bg-black/70 px-4 py-5 sm:px-8 sm:py-8 text-center text-white shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
+              className="mx-auto w-full max-w-3xl rounded-2xl border border-white/15 bg-black/70 px-4 py-4 sm:px-8 sm:py-8 text-center text-white shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
             >
-              {/* Eyebrow */}
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
+              {/* Eyebrow (desktop / tablet only to save height on mobile) */}
+              <p className="hidden sm:block text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
                 Calm local pet care
               </p>
 
               {/* Main heading */}
               <h1
                 id="hero-heading"
-                className="mt-2 text-3xl sm:text-[2.5rem] sm:leading-[1.1] font-extrabold tracking-tight"
+                className="text-2xl sm:mt-2 sm:text-[2.5rem] sm:leading-[1.1] font-extrabold tracking-tight"
               >
                 Calm, local dog walking &amp; pet care in Saltaire &amp; Shipley
               </h1>
 
-              {/* Supporting copy */}
-              <p className="mt-3 text-[14px] sm:text-[15px] md:text-base leading-relaxed text-white/90">
+              {/* Supporting copy – shorter on mobile */}
+              <p className="mt-2 text-[13px] leading-relaxed text-white/90 sm:hidden">
+                Owner-led, DBS checked and insured dog walking &amp; pet sitting in Saltaire &amp; Shipley,
+                with clear photo notes after every visit.
+              </p>
+              <p className="mt-3 hidden text-[14px] sm:block sm:text-[15px] md:text-base leading-relaxed text-white/90">
                 Owner-led, DBS checked and insured dog walking &amp; pet sitting in Saltaire &amp; Shipley.
                 Walks, drop-ins and feeding for dogs, cats and small pets — with clear photo notes after
                 every visit.
               </p>
 
-              {/* Service chips */}
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+              {/* Service chips – keep for sm+ to reduce mobile height */}
+              <div className="mt-4 hidden flex-wrap items-center justify-center gap-2 sm:flex">
                 {['Dog walks', 'Drop-ins', 'Feeding visits'].map((t) => (
                   <span
                     key={t}
@@ -82,7 +86,7 @@ export function Hero() {
               </p>
 
               {/* CTAs */}
-              <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-4 sm:mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href={WA_LINK}
                   target="_blank"
@@ -108,8 +112,8 @@ export function Hero() {
                 </Button>
               </div>
 
-              {/* Trust row */}
-              <div className="mt-5 border-t border-white/10 pt-4">
+              {/* Trust row – only on sm+ */}
+              <div className="mt-5 hidden border-t border-white/10 pt-4 sm:block">
                 <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] sm:text-xs text-white/85">
                   <span className="inline-flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4" />

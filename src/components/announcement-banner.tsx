@@ -21,10 +21,10 @@ export function AnnouncementBanner() {
         href={WA_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="mx-auto flex h-8 max-w-6xl items-center justify-center px-4 text-center text-[13px] font-semibold underline-offset-4 hover:underline sm:px-6 sm:text-sm"
-        aria-label="Looking for walks or pet sitting? Message Giuseppe on WhatsApp"
+        className="mx-auto flex h-8 sm:h-9 max-w-6xl items-center justify-center px-3 text-center text-[12px] font-semibold underline-offset-4 hover:underline sm:px-6 sm:text-[13px]"
+        aria-label="Need pet care in Saltaire or Shipley? Message Giuseppe on WhatsApp"
       >
-        Looking for walks or pet sitting? Message Giuseppe on WhatsApp.
+        Need pet care in Saltaire or Shipley? WhatsApp Giuseppe.
       </a>
     </div>
   )
