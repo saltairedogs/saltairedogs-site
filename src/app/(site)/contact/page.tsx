@@ -6,7 +6,6 @@ import { Fragment } from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Button } from "../../../components/ui/button";
-import { Badge } from "../../../components/ui/badge";
 import { Separator } from "../../../components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../../components/ui/accordion";
 import ContactForm from "./contact-form";
@@ -17,41 +16,43 @@ import { Phone, Mail, MessageCircle, Clock, MapPin, ShieldCheck, Camera, KeyRoun
 /* Metadata                                                                    */
 /* -------------------------------------------------------------------------- */
 
+const siteUrl = process.env.SITE_URL ?? "https://www.saltairedogs.uk";
+
 export const metadata: Metadata = {
   title: "Contact — Saltaire Dogs + Pets",
-  description:
-    "Message for a quick, friendly quote. Local, DBS checked and insured. Photo updates after every visit.",
-  alternates: { canonical: "/contact" },
+  description: "Message for a quick, friendly quote. Local, DBS checked and insured. Photo updates after every visit.",
+  alternates: { canonical: `${siteUrl}/contact` },
   openGraph: {
     title: "Contact — Saltaire Dogs + Pets",
     description: "WhatsApp, call, or email — whatever’s easiest. Local, DBS checked and insured.",
     type: "website",
-    images: [{ url: "/walking-sat-dog.webp" }],
+    url: `${siteUrl}/contact`,
+    images: [{ url: "/images/contact/saltaire-dogs-contact-hero.webp" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact — Saltaire Dogs + Pets",
-    description: "Quick, friendly contact for dog walks and pet visits around Saltaire.",
-    images: ["/walking-sat-dog.webp"],
+    description: "Quick, friendly contact for dog walks and pet visits around Saltaire & Shipley.",
+    images: ["/images/contact/saltaire-dogs-contact-hero.webp"],
   },
+  robots: { index: true, follow: true },
 };
 
 /* -------------------------------------------------------------------------- */
 /* Constants                                                                   */
 /* -------------------------------------------------------------------------- */
 
-const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+const HERO_IMAGE = "/images/contact/saltaire-dogs-contact-hero.webp";
 
 const PHONE_DISPLAY = "07424 208127";
-const PHONE_TEL = "07424208127";
+const PHONE_E164 = "+447424208127";
+const PHONE_TEL = "tel:+447424208127";
+
 const WHATSAPP = "https://wa.me/447424208127";
 const EMAIL = "saltairedogs@proton.me";
+
 const AREAS = ["Saltaire", "Shipley", "Baildon"];
-const SERVICES = [
-  "Dog walk",
-  "Puppy drop-in",
-  "Cat/small pet visit",
-];
+const SERVICES = ["Dog walk", "Puppy drop-in", "Cat/small pet visit"];
 
 /* -------------------------------------------------------------------------- */
 /* Page                                                                        */
@@ -70,53 +71,84 @@ export default function ContactPage() {
         Skip to contact form
       </a>
 
-      {/* Hero — compact, warm */}
-      <section
-        className="relative py-10 md:py-14"
-        style={{
-          background:
-            "radial-gradient(700px 360px at 4% -10%, rgba(200,155,60,0.08), transparent 60%), linear-gradient(180deg,#F7F7F6 0%,#F3F2EE 100%)",
-        }}
-      >
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="grid items-center gap-8 md:grid-cols-[1.05fr,0.95fr]">
-            <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-[#131415] md:text-4xl">
+      {/* Full-width Hero */}
+      <section className="relative">
+        {/* Background image */}
+        <div className="relative h-[420px] md:h-[520px]">
+          <Image
+            src={HERO_IMAGE}
+            alt="A calm, practical pet care moment at home in Saltaire & Shipley."
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+
+          {/* Overlay gradients for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(700px_360px_at_10%_10%,rgba(200,155,60,0.20),transparent_60%)]" />
+        </div>
+
+        {/* Hero content */}
+        <div className="absolute inset-0">
+          <div className="mx-auto flex h-full max-w-6xl items-end px-4 pb-10 md:pb-14">
+            <div className="w-full">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/25 px-3 py-1 text-xs text-white/85 backdrop-blur">
+                <span className="font-medium text-white">Contact</span>
+                <span className="text-white/40">•</span>
+                <span>Saltaire • Shipley • Baildon</span>
+              </div>
+
+              <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight text-white md:text-5xl">
                 Say hello — we’ll get back quickly
               </h1>
-              <p className="mt-3 max-w-prose text-[#7B828A]">
+
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
                 Local and owner-led. DBS checked, insured, and steady handling. Message your street and what you need —
                 we’ll reply Mon–Sat, 8am–6pm.
               </p>
 
+              {/* Hero CTA row */}
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href={WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-[#131415] transition-[transform,opacity] hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-[#131415] transition-[transform,opacity] hover:-translate-y-0.5 hover:opacity-95"
                   style={{ backgroundColor: "#C89B3C" }}
-                  aria-label="Chat on WhatsApp"
+                  aria-label="Message on WhatsApp (fastest)"
                 >
                   <MessageCircle className="h-4 w-4" />
                   WhatsApp (fastest)
                 </a>
-                <Button asChild variant="outline" className="rounded-lg">
-                  <a href={`tel:${PHONE_TEL}`} aria-label={`Call ${PHONE_DISPLAY}`}>
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call {PHONE_DISPLAY}
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" className="rounded-lg">
-                  <a href={`mailto:${EMAIL}`}>
-                    <Mail className="mr-2 h-4 w-4" />
-                    Email {EMAIL}
-                  </a>
-                </Button>
+
+                <a
+                  href="#contact-form"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+                >
+                  Contact form
+                </a>
+
+                <a
+                  href={PHONE_TEL}
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+                  aria-label={`Call ${PHONE_DISPLAY}`}
+                >
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call {PHONE_DISPLAY}
+                </a>
+
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email
+                </a>
               </div>
 
-              {/* Small reassurance strip */}
-              <ul className="mt-6 grid gap-2 text-sm text-[#7B828A] sm:grid-cols-2">
+              {/* Reassurance strip */}
+              <ul className="mt-6 grid gap-2 text-sm text-white/85 sm:grid-cols-2 lg:grid-cols-4">
                 <li className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4" />
                   DBS checked & insured
@@ -135,34 +167,17 @@ export default function ContactPage() {
                 </li>
               </ul>
             </div>
-
-            {/* Friendly photo card */}
-            <div className="relative">
-              <figure className="overflow-hidden rounded-xl bg-[#EFEEE9] ring-1 ring-[#E6E3DA]">
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src="/walking-sat-dog.webp"
-                    alt="Calm walk near Saltaire."
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-              </figure>
-            </div>
           </div>
         </div>
       </section>
 
       <Separator className="mx-auto my-10 max-w-6xl bg-[#E6E3DA]" />
 
-      {/* Details + compact form */}
+      {/* Details + form */}
       <section className="pb-16">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-8 md:grid-cols-[0.9fr,1.1fr]">
-            {/* Left: quick ways to contact */}
+            {/* Left */}
             <Card>
               <CardHeader>
                 <CardTitle>Quick ways to reach us</CardTitle>
@@ -170,14 +185,14 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="grid gap-3 text-sm">
                 <ContactRow label="WhatsApp" value="Chat on WhatsApp" href={WHATSAPP} icon="whatsapp" external />
-                <ContactRow label="Phone" value={PHONE_DISPLAY} href={`tel:${PHONE_TEL}`} icon="phone" />
+                <ContactRow label="Phone" value={PHONE_DISPLAY} href={PHONE_TEL} icon="phone" />
                 <ContactRow label="Email" value={EMAIL} href={`mailto:${EMAIL}`} icon="mail" />
                 <ContactRow label="Hours" value="Mon–Sat 08:00–18:00 (flexible by request)" icon="clock" />
                 <ContactRow label="Areas" value={AREAS.join(", ")} icon="map" />
               </CardContent>
             </Card>
 
-            {/* Right: form */}
+            {/* Right */}
             <Card id="contact-form">
               <CardHeader>
                 <CardTitle>Tell us about your pet</CardTitle>
@@ -189,7 +204,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          {/* Light policies (collapsed) */}
+          {/* How we work */}
           <div className="mt-8">
             <Card>
               <CardHeader>
@@ -201,13 +216,15 @@ export default function ContactPage() {
                   <AccordionItem value="routes">
                     <AccordionTrigger>Routes & traffic</AccordionTrigger>
                     <AccordionContent className="text-[#7B828A]">
-                      We choose quiet loops, stop at every kerb, and keep leads short near roads. Hi-viz in low light.
+                      We choose sensible routes, keep leads short near roads, and adjust timing to avoid peak chaos.
+                      Hi-viz in low light.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="updates">
                     <AccordionTrigger>Updates</AccordionTrigger>
                     <AccordionContent className="text-[#7B828A]">
-                      Quick photo and a couple of lines after each visit. We’ll message if anything looks off at home.
+                      Quick photo + a couple of lines after each visit. If anything looks off at home, we message right
+                      away.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="keys">
@@ -240,15 +257,24 @@ function StructuredData() {
     ],
   };
 
+  const contactPage = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact — Saltaire Dogs + Pets",
+    url: `${siteUrl}/contact`,
+    description: "WhatsApp, call, or email for dog walking and pet visits in Saltaire & Shipley.",
+    isPartOf: { "@type": "WebSite", name: "Saltaire Dogs + Pets", url: siteUrl },
+  };
+
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Saltaire Dogs + Pets",
     url: siteUrl,
     email: EMAIL,
-    telephone: PHONE_DISPLAY,
+    telephone: PHONE_E164,
     areaServed: AREAS,
-  image: [`${siteUrl}/cover.webp`],
+    image: [`${siteUrl}${HERO_IMAGE}`],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Saltaire",
@@ -269,6 +295,7 @@ function StructuredData() {
   return (
     <Fragment>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
     </Fragment>
   );
@@ -298,13 +325,17 @@ type ContactRowProps = {
 };
 
 function ContactRow({ label, value, href, external, icon }: ContactRowProps) {
-  const Comp: any = href ? (href.startsWith("http") || href.startsWith("mailto") || href.startsWith("tel") ? "a" : Link) : "div";
+  const Comp: any = href
+    ? href.startsWith("http") || href.startsWith("mailto") || href.startsWith("tel")
+      ? "a"
+      : Link
+    : "div";
+
   const props = href
     ? {
         href,
-        ...(external ? { target: "_blank", rel: "noopener" } : {}),
-        className:
-          "group flex items-center justify-between rounded-xl border p-3 transition-colors hover:bg-[#EFEEE9]",
+        ...(external ? { target: "_blank", rel: "noopener noreferrer" } : {}),
+        className: "group flex items-center justify-between rounded-xl border p-3 transition-colors hover:bg-[#EFEEE9]",
       }
     : { className: "flex items-center justify-between rounded-xl border p-3" };
 
@@ -327,4 +358,3 @@ function ContactRow({ label, value, href, external, icon }: ContactRowProps) {
     </Comp>
   );
 }
-  

@@ -116,7 +116,7 @@ export function ServiceArea() {
           >
             <div className="overflow-hidden rounded-lg border" style={{ borderColor: '#E6E3DA', backgroundColor: '#EFEEE9' }}>
               <Image
-                src="/maps-coverage-saltaire.webp"
+                src="/images/homepage/maps-coverage-saltaire-shipley.webp"
                 alt="Coverage map showing Saltaire and Shipley for walks, pet sits and home visits."
                 width={2400}
                 height={1500}

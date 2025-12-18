@@ -40,7 +40,7 @@ type Post = {
 }
 
 // One canonical fallback hero we know exists
-const CANAL_HERO_BASE = "/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero"
+const CANAL_HERO_BASE = "/images/blog/hero/saltaire-leeds-liverpool-canal"
 
 // NOTE: For posts without a bespoke hero yet, we safely fall back to CANAL_HERO_BASE
 const POSTS: Post[] = [
@@ -86,7 +86,7 @@ const POSTS: Post[] = [
     date: "2025-10-13T09:00:00Z",
     humanDate: "13 Oct 2025",
     category: "Saltaire guides",
-    imageBase: "/saltaire-dogs-river",
+    imageBase: "/images/blog/hero/saltaire-leeds-liverpool-canal",
     imageAlt: "Dog on lead by the canal in Saltaire",
   },
   {
@@ -291,8 +291,8 @@ function Picture({
       <source media="(min-width:768px)" type="image/webp" srcSet={`${base}-1920w.webp`} />
       <source type="image/avif" srcSet={`${base}-1280w.avif`} />
       <source type="image/webp" srcSet={`${base}-1280w.webp`} />
-          <Image
-            src={`${base}.webp`}
+      <Image
+        src={`${base}.jpg`}
         alt={alt}
         fill
         priority={priority}
@@ -340,7 +340,7 @@ export default function Page({ searchParams }: { searchParams?: Search }) {
         <div className="absolute inset-0 -z-10">
           {/* Ambient hero background with gentle scrims for legibility */}
           <Image
-            src={`${CANAL_HERO_BASE}-2560w.webp`}
+            src={`${CANAL_HERO_BASE}.jpg`}
             alt=""
             fill
             priority

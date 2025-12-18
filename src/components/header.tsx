@@ -12,6 +12,7 @@ import { Menu, MessageCircle, Instagram, Mail } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
+  { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
@@ -43,6 +44,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const isActive = (href: string) => pathname === href || (href !== '/' && pathname?.startsWith(href))
+
   const linkBase =
     'text-[15px] font-semibold uppercase tracking-[0.06em] px-2.5 py-1.5 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40'
 
@@ -56,7 +59,11 @@ export function Header() {
       }}
     >
       <Container>
-        <div className={`flex items-center justify-between ${scrolled ? 'h-16' : 'h-20'} lg:${scrolled ? 'h-20' : 'h-24'}`}>
+        <div
+          className={`flex items-center justify-between ${
+            scrolled ? 'h-16' : 'h-20'
+          } lg:${scrolled ? 'h-20' : 'h-24'}`}
+        >
           {/* Logo (Home) */}
           <Link
             href="/"
@@ -77,8 +84,7 @@ export function Header() {
           <div className="md:hidden flex-1 flex items-center justify-center gap-2 px-1">
             <nav className="flex items-center gap-1.5" aria-label="Quick">
               {NAV.map((item) => {
-                const active =
-                  pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href))
+                const active = isActive(item.href)
                 return (
                   <Link
                     key={`mini-${item.name}`}
@@ -124,12 +130,14 @@ export function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex lg:items-center lg:gap-6" aria-label="Primary">
             {NAV.map((item) => {
-              const active = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href))
+              const active = isActive(item.href)
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`${linkBase} ${active ? 'text-[#131415]' : 'text-[#131415]/70 hover:text-[#131415]'}`}
+                  className={`${linkBase} ${
+                    active ? 'text-[#131415]' : 'text-[#131415]/70 hover:text-[#131415]'
+                  }`}
                   aria-current={active ? 'page' : undefined}
                 >
                   {item.name}
@@ -181,11 +189,7 @@ export function Header() {
                 // Offset below the sticky announcement banner (h-8 => 32px + 2px border breathing)
                 style={{ top: '34px' }}
               >
-                <MobileNav
-                  navigation={NAV}
-                  currentPath={pathname ?? '/'}
-                  onClose={() => setMobileOpen(false)}
-                />
+                <MobileNav navigation={NAV} currentPath={pathname ?? '/'} onClose={() => setMobileOpen(false)} />
 
                 {/* Social / CTA block */}
                 <div className="mt-4 grid grid-cols-1 gap-2">
