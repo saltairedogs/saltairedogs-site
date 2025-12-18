@@ -37,7 +37,7 @@ export const metadata = {
 export default function Page() {
   const PUBLISHED_ISO = "2025-10-18T09:00:00Z"
   const PUBLISHED_HUMAN = "18 Oct 2025"
-  const WA = `https://wa.me/447305367941?text=${encodeURIComponent(
+  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
     "Hi! I’m in/near Saltaire and need exotic-pet visits for [bearded dragon/gecko/snake/parrot/small mammal/fish] on [dates]."
   )}`
 

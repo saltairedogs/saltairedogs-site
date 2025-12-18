@@ -33,7 +33,7 @@ export default function SmallPetsExoticsPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7305 367941',
+          telephone: '+44 7424 208127',
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',

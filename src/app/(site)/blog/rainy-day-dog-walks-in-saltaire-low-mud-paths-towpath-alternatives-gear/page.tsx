@@ -85,7 +85,7 @@ export default function Page() {
   const waShare = `https://wa.me/?text=${encodeURIComponent(POST.title + ' ' + CANONICAL)}`
   const mailShare = `mailto:?subject=${encodeURIComponent(POST.title)}&body=${encodeURIComponent(CANONICAL)}`
   const waQuote =
-    'https://wa.me/447305367941?text=Hi!%20I%E2%80%99m%20in%20Saltaire.%20My%20street%20is%20[your%20street],%20pet%20is%20[dog/cat/small%20pet],%20and%20I%E2%80%99m%20looking%20for%20[walks/visits].'
+    'https://wa.me/447424208127?text=Hi!%20I%E2%80%99m%20in%20Saltaire.%20My%20street%20is%20[your%20street],%20pet%20is%20[dog/cat/small%20pet],%20and%20I%E2%80%99m%20looking%20for%20[walks/visits].'
 
   return (
     <article className="min-h-screen bg-bg">

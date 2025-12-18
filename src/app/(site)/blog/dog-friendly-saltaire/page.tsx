@@ -24,7 +24,7 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447305367941?text=${encodeURIComponent(
+  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
     "Hi! I'm in/visiting Saltaire and might need [walks/drop-ins/feeding] for my pet on [dates]. Can you help?"
   )}`
   const PUBLISHED_ISO = '2025-10-13T09:00:00Z'

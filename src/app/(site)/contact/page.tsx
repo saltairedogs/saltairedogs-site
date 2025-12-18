@@ -42,9 +42,9 @@ export const metadata: Metadata = {
 
 const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
 
-const PHONE_DISPLAY = "07305 367941";
-const PHONE_TEL = "07305367941";
-const WHATSAPP = "https://wa.me/447305367941";
+const PHONE_DISPLAY = "07424 208127";
+const PHONE_TEL = "07424208127";
+const WHATSAPP = "https://wa.me/447424208127";
 const EMAIL = "saltairedogs@proton.me";
 const AREAS = ["Saltaire", "Shipley", "Baildon"];
 const SERVICES = [

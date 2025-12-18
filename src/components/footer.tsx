@@ -5,7 +5,7 @@ import { Phone, Mail, MessageCircle, Instagram } from 'lucide-react'
 
 const currentYear = new Date().getFullYear()
 
-const WA_NUMBER = '447305367941'
+const WA_NUMBER = '447424208127'
 const WA_TEXT = encodeURIComponent(
   'Hi! I’m in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I’m looking for [walks/visits].'
 )
@@ -78,7 +78,7 @@ export function Footer() {
               addressRegion: 'West Yorkshire',
               addressCountry: 'GB',
             },
-            telephone: '+44 7305 367941',
+            telephone: '+44 7424 208127',
             openingHours: ['Mo-Sa 08:00-18:00'],
             url: 'https://saltairedogs.uk',
           }),
@@ -122,7 +122,7 @@ export function Footer() {
                 WhatsApp quote
               </a>
               <a
-                href="tel:+447305367941"
+                href="tel:+447424208127"
                 className="inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition-colors"
                 style={{ borderColor: '#E6E3DA', color: '#131415' }}
                 aria-label="Call Saltaire Dogs + Pets"

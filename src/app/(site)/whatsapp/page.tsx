@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER = '447305367941'
+const NUMBER = '447424208127'
 
 // default, open-ended message for the main buttons
 const DEFAULT_MSG =
@@ -74,7 +74,7 @@ export default function WhatsappPage() {
         name: 'Saltaire Dogs + Pets',
         url: 'https://www.saltairedogs.uk',
         areaServed: ['Saltaire', 'Shipley'],
-        telephone: '+44 7305 367941',
+        telephone: '+44 7424 208127',
         sameAs: ['https://www.instagram.com/saltairedogs'],
         address: {
           '@type': 'PostalAddress',

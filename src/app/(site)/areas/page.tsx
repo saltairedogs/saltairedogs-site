@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07305 367941'
-const NUMBER_TEL = 'tel:+447305367941'
+const NUMBER_DISPLAY = '07424 208127'
+const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function AreasPage() {
@@ -30,7 +30,7 @@ export default function AreasPage() {
         '@type': 'LocalBusiness',
         name: 'Saltaire Dogs + Pets',
         url: 'https://www.saltairedogs.uk',
-        telephone: '+44 7305 367941',
+        telephone: '+44 7424 208127',
         areaServed: ['Saltaire', 'Shipley'],
         serviceArea: [
           { '@type': 'AdministrativeArea', name: 'Saltaire' },

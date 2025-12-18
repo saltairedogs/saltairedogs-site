@@ -191,7 +191,7 @@ export default function AboutPage() {
               {/* Primary CTAs (consistent with site funnel) */}
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
-                  href={`https://wa.me/447305367941?text=${encodeURIComponent(
+                  href={`https://wa.me/447424208127?text=${encodeURIComponent(
                     "Hi! I'm in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I'm looking for [walks/drop-ins/feeding]."
                   )}`}
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold"
@@ -207,7 +207,7 @@ export default function AboutPage() {
                   size="lg"
                   className="h-12 rounded-xl border-white/40 bg-white/95 px-6 text-base font-semibold text-[#131415] hover:bg-white"
                 >
-                  <Link href="tel:+447305367941" aria-label="Call Saltaire Dogs + Pets">
+                  <Link href="tel:+447424208127" aria-label="Call Saltaire Dogs + Pets">
                     <Phone className="mr-2 h-5 w-5" />
                     Call us
                   </Link>
@@ -377,7 +377,7 @@ export default function AboutPage() {
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
-                  href={`https://wa.me/447305367941?text=${encodeURIComponent(
+                  href={`https://wa.me/447424208127?text=${encodeURIComponent(
                     "Hi! I'm in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I'm looking for [walks/drop-ins/feeding]."
                   )}`}
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-7 text-base font-semibold"
@@ -393,7 +393,7 @@ export default function AboutPage() {
                   size="lg"
                   className="h-12 rounded-xl border-white/30 bg-white/10 px-7 text-base font-semibold text-white hover:bg-white/15"
                 >
-                  <Link href="tel:+447305367941" aria-label="Call Saltaire Dogs + Pets">
+                  <Link href="tel:+447424208127" aria-label="Call Saltaire Dogs + Pets">
                     <Phone className="mr-2 h-4 w-4" />
                     07305&nbsp;367941
                   </Link>

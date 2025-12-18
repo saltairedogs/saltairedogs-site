@@ -40,7 +40,7 @@ export default function Page() {
   const PUBLISHED_ISO = "2025-10-22T09:00:00Z"
   const PUBLISHED_HUMAN = "22 Oct 2025"
 
-  const WA = `https://wa.me/447305367941?text=${encodeURIComponent(
+  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
     "Hi! I'm in/visiting Saltaire and would like a local dog walk or drop-in on [dates/times]."
   )}`
 

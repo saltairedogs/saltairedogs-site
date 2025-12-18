@@ -19,7 +19,7 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447305367941?text=${encodeURIComponent(
+  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
     "Hi! I'm in/visiting Saltaire and I’d love a quick quote for [walks/drop-ins/feeding] on [dates]."
   )}`
 

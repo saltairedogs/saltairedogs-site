@@ -7,7 +7,7 @@ import { Button } from '../components/ui/button'
 import { MessageCircle, Phone, ShieldCheck, Camera, PawPrint } from 'lucide-react'
 import { Container } from './container'
 
-const WA_NUMBER = '447305367941'
+const WA_NUMBER = '447424208127'
 const WA_TEXT = encodeURIComponent(
   "Hi Giuseppe, I'm in Saltaire/Shipley and looking for pet care."
 )
@@ -105,7 +105,7 @@ export function Hero() {
                   size="lg"
                   className="h-11 w-full sm:w-auto rounded-lg border border-white/55 bg-white/95 px-5 text-[14px] font-semibold text-[#131415] hover:bg-white"
                 >
-                  <Link href="tel:+447305367941">
+                  <Link href="tel:+447424208127">
                     <Phone className="mr-2 h-5 w-5" />
                     Call us
                   </Link>

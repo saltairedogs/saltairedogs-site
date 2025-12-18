@@ -6,10 +6,10 @@ import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
 import { MessageCircle, Phone, Mail, Sparkles } from "lucide-react";
 
-const PHONE_DISPLAY = "07305 367941";
-const PHONE_TEL = "07305367941";
+const PHONE_DISPLAY = "07424 208127";
+const PHONE_TEL = "07424208127";
 const EMAIL = "saltairedogs@proton.me";
-const WHATSAPP = "https://wa.me/447305367941";
+const WHATSAPP = "https://wa.me/447424208127";
 
 type Status =
   | { state: "idle" }

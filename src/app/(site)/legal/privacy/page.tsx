@@ -297,7 +297,7 @@ const policySections = [
     heading: "9. Contact for data requests",
     body: [
       `Email: ${CONTACT_EMAIL}`,
-  "Phone: 07305 367941 (Mon–Sat 08:00–18:00).",
+  "Phone: 07424 208127 (Mon–Sat 08:00–18:00).",
       "By post: Request details via email so we can ensure a secure exchange.",
       "We aim to respond to all data subject requests within one calendar month.",
     ],

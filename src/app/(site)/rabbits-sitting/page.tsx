@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07305 367941'
-const NUMBER_TEL = 'tel:+447305367941'
+const NUMBER_DISPLAY = '07424 208127'
+const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function RabbitsSittingPage() {
@@ -35,13 +35,13 @@ export default function RabbitsSittingPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7305 367941',
+          telephone: '+44 7424 208127',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
           url: 'https://www.saltairedogs.uk/whatsapp',
-          telephone: '+44 7305 367941',
+          telephone: '+44 7424 208127',
           email: 'saltairedogs@proton.me',
         },
       },
