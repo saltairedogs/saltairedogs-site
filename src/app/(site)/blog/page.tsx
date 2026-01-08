@@ -39,8 +39,8 @@ type Post = {
   imageAlt: string
 }
 
-// One canonical fallback hero we know exists
-const CANAL_HERO_BASE = "/images/blog/hero/saltaire-leeds-liverpool-canal"
+// One canonical fallback hero we know exists (with all responsive versions)
+const CANAL_HERO_BASE = "/saltaire-dog-walk-salts-mill-canal-golden-hour-hero"
 
 // NOTE: For posts without a bespoke hero yet, we safely fall back to CANAL_HERO_BASE
 const POSTS: Post[] = [
@@ -292,7 +292,7 @@ function Picture({
       <source type="image/avif" srcSet={`${base}-1280w.avif`} />
       <source type="image/webp" srcSet={`${base}-1280w.webp`} />
       <Image
-        src={`${base}.jpg`}
+        src={`${base}.png`}
         alt={alt}
         fill
         priority={priority}
@@ -340,7 +340,7 @@ export default function Page({ searchParams }: { searchParams?: Search }) {
         <div className="absolute inset-0 -z-10">
           {/* Ambient hero background with gentle scrims for legibility */}
           <Image
-            src={`${CANAL_HERO_BASE}.jpg`}
+            src={`${CANAL_HERO_BASE}.png`}
             alt=""
             fill
             priority

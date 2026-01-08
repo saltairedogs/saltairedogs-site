@@ -335,8 +335,8 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <MosaicImage
-                src="/saltaire-victoria-road-schnauzer-on-lead.webp"
-                alt="Schnauzer walking past Saltaire limestone terraces"
+                src="/poodle-brown.webp"
+                alt="Brown poodle on a calm Saltaire walk"
                 ratio="3/4"
               />
               <MosaicImage
