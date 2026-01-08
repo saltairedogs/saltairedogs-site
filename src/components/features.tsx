@@ -7,24 +7,32 @@ const features = [
     title: 'At-home care (cats, small pets & dogs)',
     description:
       'Drop-ins for feeding and water, litter/cage refresh, a little play and settling time. Medication given if you provide it and leave notes.',
+    gradient: 'from-emerald-400 to-green-500',
+    bg: 'bg-emerald-50',
   },
   {
     icon: MapPin,
     title: 'Local cover you can count on',
     description:
       'Saltaire & Shipley only—nearby, predictable, and quick to reach you. We know the buildings, the paths and the quiet corners.',
+    gradient: 'from-blue-400 to-cyan-500',
+    bg: 'bg-blue-50',
   },
   {
     icon: Camera,
     title: 'Clear photo notes, every visit',
     description:
       'A quick photo and a couple of lines after each visit or walk, so you always know how it went (food eaten, loo, mood, anything odd).',
+    gradient: 'from-purple-400 to-pink-500',
+    bg: 'bg-purple-50',
   },
   {
     icon: Clock,
     title: 'Simple, reliable routine',
     description:
       'You pick a window—morning, midday or late afternoon—and we keep it consistent. Backup cover arranged for holidays/illness.',
+    gradient: 'from-amber-400 to-orange-500',
+    bg: 'bg-amber-50',
   },
 ]
 
@@ -34,7 +42,7 @@ export function Features() {
       eyebrow="A calm, local service"
       title="What it feels like to work with us"
       description="Nothing fancy. Just steady care—home visits, feeding and short, steady walks—with clear updates and the same friendly face at your door."
-      className="bg-[#F7F7F6] py-12 lg:py-20"
+      className="bg-gradient-to-br from-gray-50 to-blue-50/30 py-12 lg:py-20"
     >
       <div className="mx-auto max-w-6xl">
         <ul role="list" className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -43,23 +51,24 @@ export function Features() {
             return (
               <li
                 key={f.title}
-                className="group rounded-lg ring-1 ring-[#E6E3DA] bg-white p-6 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.15)]"
+                className="group rounded-2xl ring-1 ring-gray-200 bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl hover:ring-gray-300"
               >
                 <div className="flex items-start gap-4">
-                  {/* Icon chip */}
+                  {/* Icon chip with gradient */}
                   <span
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 shrink-0"
-                    style={{ backgroundColor: '#EFEEE9', borderColor: '#E6E3DA' }}
+                    className={`inline-flex h-12 w-12 items-center justify-center rounded-xl shrink-0 ${f.bg} shadow-sm`}
                     aria-hidden="true"
                   >
-                    <Icon className="h-5 w-5" color="#131415" />
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${f.gradient}`}>
+                      <Icon className="h-4 w-4 text-white" />
+                    </div>
                   </span>
 
                   <div className="min-w-0">
-                    <h3 className="text-[17px] font-semibold text-[#131415]">
+                    <h3 className="text-base font-bold text-gray-900">
                       {f.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#7B828A]">
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">
                       {f.description}
                     </p>
                   </div>

@@ -4,137 +4,165 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/ui/button'
-import { MessageCircle, Phone, ShieldCheck, Camera, PawPrint } from 'lucide-react'
+import { MessageCircle, Phone, Sparkles, Heart, MapPin, Camera } from 'lucide-react'
 import { Container } from './container'
 
 const WA_NUMBER = '447424208127'
 const WA_TEXT = encodeURIComponent(
-  "Hi Giuseppe, I'm in Saltaire/Shipley and looking for pet care."
+  "Hi! I'm in Saltaire/Shipley and need pet care. Can we chat?"
 )
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 export function Hero() {
   return (
-    <section
-      className="relative isolate"
-      aria-labelledby="hero-heading"
-    >
-      {/* Background image */}
-      <div className="relative h-[580px] sm:h-[620px] lg:h-[720px] w-full overflow-hidden">
-        <Image
-          src="/saltaire-dog-walk-salts-mill-canal-golden-hour-hero.avif"
-          alt="Dog walker beside Salts Mill on the Leeds–Liverpool Canal in Saltaire at sunrise — calm, local dog walking and pet care."
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* Single, simple gradient for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/70" />
-      </div>
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-emerald-50 via-blue-50 to-amber-50">
+      {/* Background patterns for visual interest */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.08),transparent_50%)]" />
 
-      {/* Overlay content */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Container>
-          <div className="px-4 sm:px-6 lg:px-8">
+      <Container>
+        <div className="relative py-20 sm:py-28 lg:py-36">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+            {/* Left: Content */}
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="mx-auto w-full max-w-3xl rounded-2xl border border-white/15 bg-black/70 px-4 py-4 sm:px-8 sm:py-8 text-center text-white shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
+              transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              {/* Eyebrow (desktop / tablet only to save height on mobile) */}
-              <p className="hidden sm:block text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
-                Calm local pet care
-              </p>
-
-              {/* Main heading */}
-              <h1
-                id="hero-heading"
-                className="text-2xl sm:mt-2 sm:text-[2.5rem] sm:leading-[1.1] font-extrabold tracking-tight"
-              >
-                Calm, local dog walking &amp; pet care in Saltaire &amp; Shipley
-              </h1>
-
-              {/* Supporting copy – shorter on mobile */}
-              <p className="mt-2 text-[13px] leading-relaxed text-white/90 sm:hidden">
-                Owner-led, DBS checked and insured dog walking &amp; pet sitting in Saltaire &amp; Shipley,
-                with clear photo notes after every visit.
-              </p>
-              <p className="mt-3 hidden text-[14px] sm:block sm:text-[15px] md:text-base leading-relaxed text-white/90">
-                Owner-led, DBS checked and insured dog walking &amp; pet sitting in Saltaire &amp; Shipley.
-                Walks, drop-ins and feeding for dogs, cats and small pets — with clear photo notes after
-                every visit.
-              </p>
-
-              {/* Service chips – keep for sm+ to reduce mobile height */}
-              <div className="mt-4 hidden flex-wrap items-center justify-center gap-2 sm:flex">
-                {['Dog walks', 'Drop-ins', 'Feeding visits'].map((t) => (
-                  <span
-                    key={t}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-2.5 py-1 text-[12px] sm:text-[13px]"
-                  >
-                    <PawPrint className="h-3.5 w-3.5" />
-                    {t}
-                  </span>
-                ))}
+              {/* Eyebrow with personality */}
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-100 to-blue-100 px-4 py-2 ring-1 ring-emerald-200/50 shadow-sm">
+                <Sparkles className="h-4 w-4 text-emerald-600" />
+                <span className="text-sm font-semibold text-emerald-900">
+                  Your friendly local pet expert
+                </span>
               </div>
 
-              {/* Service area note */}
-              <p className="mt-3 text-[11px] sm:text-xs text-white/80">
-                Serving Saltaire &amp; Shipley, with Baildon visits available by enquiry.
+              {/* Headline - bold and personal */}
+              <h1 id="hero-heading" className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900">
+                I care for{' '}
+                <span className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  everything
+                </span>{' '}
+                from dogs to bearded dragons
+              </h1>
+
+              <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-700">
+                <strong className="text-gray-900">15+ years</strong> in Saltaire. Fair prices from{' '}
+                <strong className="text-emerald-600">£10</strong>. Photo updates every visit. I genuinely love what I do.
               </p>
 
+              {/* Key benefits with color */}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 ring-1 ring-emerald-200 shadow-sm">
+                  <MapPin className="h-4 w-4 text-emerald-700" />
+                  <span className="text-sm font-semibold text-emerald-900">15+ years local</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 ring-1 ring-blue-200 shadow-sm">
+                  <Heart className="h-4 w-4 text-blue-700" />
+                  <span className="text-sm font-semibold text-blue-900">Cheapest in Saltaire</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 ring-1 ring-purple-200 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-purple-700" />
+                  <span className="text-sm font-semibold text-purple-900">All animals</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 ring-1 ring-amber-200 shadow-sm">
+                  <Camera className="h-4 w-4 text-amber-700" />
+                  <span className="text-sm font-semibold text-amber-900">Photo updates</span>
+                </div>
+              </div>
+
               {/* CTAs */}
-              <div className="mt-4 sm:mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <a
                   href={WA_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 w-full sm:w-auto items-center justify-center gap-2 rounded-lg px-5 text-[14px] font-semibold"
-                  style={{ backgroundColor: '#C89B3C', color: '#131415' }}
-                  aria-label="Message Giuseppe on WhatsApp for a quick dog walking or pet sitting quote"
+                  className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 text-base font-bold text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/40"
+                  aria-label="Message on WhatsApp for a quick pet care quote"
                 >
                   <MessageCircle className="h-5 w-5" />
-                  60-second WhatsApp quote
+                  Message me on WhatsApp
                 </a>
 
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="h-11 w-full sm:w-auto rounded-lg border border-white/55 bg-white/95 px-5 text-[14px] font-semibold text-[#131415] hover:bg-white"
+                <a
+                  href="tel:+447424208127"
+                  className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-8 text-base font-bold text-gray-900 transition-all hover:scale-105 hover:border-gray-400 hover:shadow-lg"
                 >
-                  <Link href="tel:+447424208127">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Call us
-                  </Link>
-                </Button>
+                  <Phone className="h-5 w-5" />
+                  Call 07424 208127
+                </a>
               </div>
 
-              {/* Trust row – only on sm+ */}
-              <div className="mt-5 hidden border-t border-white/10 pt-4 sm:block">
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] sm:text-xs text-white/85">
-                  <span className="inline-flex items-center gap-2">
-                    <ShieldCheck className="h-4 w-4" />
-                    DBS checked &amp; insured
-                  </span>
-                  <span className="opacity-40">•</span>
-                  <span className="inline-flex items-center gap-2">
-                    <Camera className="h-4 w-4" />
-                    Photo updates every visit
-                  </span>
-                  <span className="opacity-40">•</span>
-                  <span className="inline-flex items-center gap-2">
-                    <PawPrint className="h-4 w-4" />
-                    Dogs, cats &amp; small pets
-                  </span>
+              <p className="mt-6 text-sm text-gray-600">
+                💬 <strong>Same-day replies.</strong> I'm Giuseppe, been caring for Saltaire pets since 2009.
+              </p>
+            </motion.div>
+
+            {/* Right: Image grid - visual, modern, colorful */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="relative"
+            >
+              {/* Main large image */}
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-1 ring-gray-900/10 shadow-2xl">
+                <Image
+                  src="/poodle-walking-shipley-glenn.webp"
+                  alt="Happy poodle enjoying a walk near Shipley Glen — Saltaire local dog walking"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                  className="object-cover"
+                />
+                {/* Floating badge on image */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="rounded-2xl bg-white/95 backdrop-blur-sm p-4 shadow-xl ring-1 ring-gray-900/10">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-blue-500 shadow-lg">
+                        <Heart className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-gray-900">Dogs, cats, rabbits...</div>
+                        <div className="text-xs text-gray-600">+ reptiles, birds, fish, chickens</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              {/* Floating smaller images for visual interest */}
+              <div className="absolute -top-4 -right-4 hidden lg:block">
+                <div className="h-32 w-32 overflow-hidden rounded-2xl ring-4 ring-white shadow-xl">
+                  <Image
+                    src="/poodle-brown.webp"
+                    alt="Brown poodle on Saltaire walk"
+                    width={128}
+                    height={128}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="absolute -bottom-6 -left-6 hidden lg:block">
+                <div className="h-40 w-40 overflow-hidden rounded-2xl ring-4 ring-white shadow-xl">
+                  <Image
+                    src="/north-cliffe-dog-rainbow.webp"
+                    alt="Beautiful rainbow over Northcliffe walk"
+                    width={160}
+                    height={160}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Decorative gradient blobs for modern aesthetic */}
+              <div className="absolute -top-8 -left-8 h-24 w-24 rounded-full bg-gradient-to-br from-emerald-400/20 to-blue-400/20 blur-2xl" />
+              <div className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-2xl" />
             </motion.div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </section>
   )
 }

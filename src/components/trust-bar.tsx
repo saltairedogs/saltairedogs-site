@@ -1,39 +1,57 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import { ShieldCheck, FileBadge2, Camera, MapPin, KeyRound, HeartHandshake } from 'lucide-react'
+import { Heart, Camera, MapPin, Smile, Check, Sparkles } from 'lucide-react'
 import { Container } from './container'
 
 const ITEMS = [
   {
-    icon: ShieldCheck,
-    label: 'DBS Checked',
-    description: 'Enhanced DBS on file',
+    icon: Smile,
+    label: 'Cheapest in Saltaire',
+    description: 'From £10 per visit',
+    color: 'from-amber-400 to-orange-500',
+    bg: 'bg-amber-50',
+    ring: 'ring-amber-200',
   },
   {
-    icon: FileBadge2,
-    label: 'Insured',
-    description: 'Public liability cover',
+    icon: Check,
+    label: 'Fully Insured',
+    description: 'Public liability',
+    color: 'from-emerald-400 to-green-500',
+    bg: 'bg-emerald-50',
+    ring: 'ring-emerald-200',
   },
   {
     icon: Camera,
     label: 'Photo Updates',
-    description: 'After every visit',
+    description: 'Every single visit',
+    color: 'from-blue-400 to-cyan-500',
+    bg: 'bg-blue-50',
+    ring: 'ring-blue-200',
   },
   {
     icon: MapPin,
-    label: 'Saltaire Local',
-    description: 'Shipley nearby',
+    label: '15+ Years Local',
+    description: 'Saltaire expert',
+    color: 'from-purple-400 to-pink-500',
+    bg: 'bg-purple-50',
+    ring: 'ring-purple-200',
   },
   {
-    icon: KeyRound,
-    label: 'Secure Keys',
-    description: 'No address on tags',
+    icon: Sparkles,
+    label: 'All Animals',
+    description: 'Dogs to dragons',
+    color: 'from-rose-400 to-pink-500',
+    bg: 'bg-rose-50',
+    ring: 'ring-rose-200',
   },
   {
-    icon: HeartHandshake,
-    label: 'Calm Handling',
-    description: 'Kind & steady care',
+    icon: Heart,
+    label: 'Love What I Do',
+    description: 'Not a side hustle',
+    color: 'from-red-400 to-rose-500',
+    bg: 'bg-red-50',
+    ring: 'ring-red-200',
   },
 ]
 
@@ -41,48 +59,58 @@ export function TrustBar() {
   const reduce = useReducedMotion()
 
   return (
-    <section
-      className="border-y py-8"
-      style={{ backgroundColor: '#F7F7F6', borderColor: '#E6E3DA' }}
-      aria-label="Trust and safety highlights"
-    >
+    <section className="relative py-12 sm:py-16 bg-white" aria-label="Why locals choose Saltaire Dogs + Pets">
       <Container>
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+            Why locals choose me
+          </h2>
+          <p className="mt-3 text-lg text-gray-600">
+            No big company overheads. No fancy office. Just me, doing what I love.
+          </p>
+        </motion.div>
+
         <motion.ul
           role="list"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          initial={reduce ? false : { opacity: 0 }}
+          whileInView={reduce ? {} : { opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6"
+          className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6"
         >
           {ITEMS.map((item, i) => {
             const Icon = item.icon
             return (
               <motion.li
                 key={item.label}
-                initial={reduce ? false : { opacity: 0, y: 16 }}
-                whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: reduce ? 0 : i * 0.05, ease: 'easeOut' }}
+                initial={reduce ? false : { opacity: 0, y: 20, scale: 0.9 }}
+                whileInView={reduce ? {} : { opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  delay: reduce ? 0 : 0.1 + i * 0.08,
+                  ease: 'easeOut',
+                }}
                 viewport={{ once: true, margin: '-80px' }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="group flex flex-col items-center text-center"
               >
                 <div
-                  className="mb-3 flex h-10 w-10 items-center justify-center rounded-full border bg-[#EFEEE9] ring-0 transition-all group-hover:shadow-sm"
-                  style={{ borderColor: '#E6E3DA' }}
+                  className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ${item.bg} ${item.ring} ring-1 shadow-lg transition-all group-hover:scale-110 group-hover:shadow-xl`}
                 >
-                  <Icon className="h-4 w-4" aria-hidden="true" color="#131415" />
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${item.color}`}>
+                    <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+                  </div>
                 </div>
 
-                <div
-                  className="text-[11px] font-semibold uppercase tracking-[0.08em]"
-                  style={{ color: '#131415' }}
-                >
-                  {item.label}
-                </div>
+                <div className="text-sm font-bold text-gray-900">{item.label}</div>
 
-                <p className="mt-1 hidden text-xs leading-snug lg:block" style={{ color: '#7B828A' }}>
-                  {item.description}
-                </p>
+                <p className="mt-1 text-xs text-gray-600">{item.description}</p>
               </motion.li>
             )
           })}
