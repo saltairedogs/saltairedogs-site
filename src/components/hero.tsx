@@ -130,31 +130,6 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Floating smaller images for visual interest */}
-              <div className="absolute -top-4 -right-4 hidden lg:block">
-                <div className="h-32 w-32 overflow-hidden rounded-2xl ring-4 ring-white shadow-xl">
-                  <Image
-                    src="/poodle-brown.webp"
-                    alt="Brown poodle on Saltaire walk"
-                    width={128}
-                    height={128}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="absolute -bottom-6 -left-6 hidden lg:block">
-                <div className="h-40 w-40 overflow-hidden rounded-2xl ring-4 ring-white shadow-xl">
-                  <Image
-                    src="/north-cliffe-dog-rainbow.webp"
-                    alt="Beautiful rainbow over Northcliffe walk"
-                    width={160}
-                    height={160}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-
               {/* Subtle decorative element */}
               <div className="absolute -top-8 -left-8 h-32 w-32 rounded-full bg-emerald-400/10 blur-2xl" />
             </motion.div>
