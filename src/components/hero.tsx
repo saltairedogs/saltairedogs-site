@@ -15,10 +15,9 @@ const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-emerald-50 via-blue-50 to-amber-50">
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-slate-50 to-emerald-50/30">
       {/* Background patterns for visual interest */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.06),transparent_50%)]" />
 
       <Container>
         <div className="relative py-20 sm:py-28 lg:py-36">
@@ -30,7 +29,7 @@ export function Hero() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
               {/* Eyebrow with personality */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-100 to-blue-100 px-4 py-2 ring-1 ring-emerald-200/50 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 ring-1 ring-emerald-200/50 shadow-sm">
                 <Sparkles className="h-4 w-4 text-emerald-600" />
                 <span className="text-sm font-semibold text-emerald-900">
                   Your friendly local pet expert
@@ -40,7 +39,7 @@ export function Hero() {
               {/* Headline - bold and personal */}
               <h1 id="hero-heading" className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900">
                 I care for{' '}
-                <span className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-emerald-600">
                   everything
                 </span>{' '}
                 from dogs to bearded dragons
@@ -51,23 +50,23 @@ export function Hero() {
                 <strong className="text-emerald-600">£10</strong>. Photo updates every visit. I genuinely love what I do.
               </p>
 
-              {/* Key benefits with color */}
+              {/* Key benefits - simplified palette */}
               <div className="mt-8 flex flex-wrap gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 ring-1 ring-emerald-200 shadow-sm">
-                  <MapPin className="h-4 w-4 text-emerald-700" />
-                  <span className="text-sm font-semibold text-emerald-900">15+ years local</span>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-gray-200 shadow-sm">
+                  <MapPin className="h-4 w-4 text-gray-600" />
+                  <span className="text-sm font-semibold text-gray-900">15+ years local</span>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 ring-1 ring-blue-200 shadow-sm">
-                  <Heart className="h-4 w-4 text-blue-700" />
-                  <span className="text-sm font-semibold text-blue-900">Cheapest in Saltaire</span>
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 ring-1 ring-emerald-200 shadow-sm">
+                  <Heart className="h-4 w-4 text-emerald-700" />
+                  <span className="text-sm font-semibold text-emerald-900">Cheapest in Saltaire</span>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 ring-1 ring-purple-200 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-purple-700" />
-                  <span className="text-sm font-semibold text-purple-900">All animals</span>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-gray-200 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-gray-600" />
+                  <span className="text-sm font-semibold text-gray-900">All animals</span>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 ring-1 ring-amber-200 shadow-sm">
-                  <Camera className="h-4 w-4 text-amber-700" />
-                  <span className="text-sm font-semibold text-amber-900">Photo updates</span>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-gray-200 shadow-sm">
+                  <Camera className="h-4 w-4 text-gray-600" />
+                  <span className="text-sm font-semibold text-gray-900">Photo updates</span>
                 </div>
               </div>
 
@@ -119,7 +118,7 @@ export function Hero() {
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="rounded-2xl bg-white/95 backdrop-blur-sm p-4 shadow-xl ring-1 ring-gray-900/10">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-blue-500 shadow-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 shadow-lg">
                         <Heart className="h-6 w-6 text-white" />
                       </div>
                       <div>
@@ -156,9 +155,8 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Decorative gradient blobs for modern aesthetic */}
-              <div className="absolute -top-8 -left-8 h-24 w-24 rounded-full bg-gradient-to-br from-emerald-400/20 to-blue-400/20 blur-2xl" />
-              <div className="absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-2xl" />
+              {/* Subtle decorative element */}
+              <div className="absolute -top-8 -left-8 h-32 w-32 rounded-full bg-emerald-400/10 blur-2xl" />
             </motion.div>
           </div>
         </div>

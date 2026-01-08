@@ -25,7 +25,7 @@ const serviceAreas = [
 
 export function ServiceArea() {
   return (
-    <section className="py-12 lg:py-20 bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/50">
+    <section className="py-12 lg:py-20 bg-white">
       <Container>
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
@@ -33,7 +33,7 @@ export function ServiceArea() {
             Where we cover
           </h2>
           <p className="text-base md:text-lg text-gray-600">
-            We cover <strong className="font-semibold text-emerald-700">Saltaire &amp; Shipley</strong> for walks, pet sitting, drop-ins and feeding.
+            We cover <strong className="font-semibold text-emerald-600">Saltaire &amp; Shipley</strong> for walks, pet sitting, drop-ins and feeding.
             Baildon is by enquiry—if it's a good fit for both of us, we'll make it work.
           </p>
         </div>
@@ -48,15 +48,15 @@ export function ServiceArea() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="rounded-2xl border border-gray-200 bg-gray-50 p-5 md:p-6 shadow-md hover:shadow-lg hover:border-emerald-200 transition-all"
               >
                 <header className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span
-                      className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${index === 0 ? 'bg-emerald-50' : 'bg-blue-50'} shadow-sm`}
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 shadow-sm"
                       aria-hidden="true"
                     >
-                      <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${index === 0 ? 'from-emerald-400 to-green-500' : 'from-blue-400 to-cyan-500'}`}>
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600">
                         <MapPin className="h-4 w-4 text-white" />
                       </div>
                     </span>
@@ -65,7 +65,7 @@ export function ServiceArea() {
                     </h3>
                   </div>
 
-                  <Badge className="rounded-full px-2.5 py-1 text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
+                  <Badge className="rounded-full px-2.5 py-1 text-xs bg-emerald-100 text-emerald-700 border border-emerald-300 font-semibold">
                     Active
                   </Badge>
                 </header>
@@ -133,7 +133,7 @@ export function ServiceArea() {
 
         {/* Coverage & availability banner */}
         <div
-          className="mt-12 rounded-2xl p-6 lg:p-8 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-blue-50 shadow-lg"
+          className="mt-12 rounded-2xl p-6 lg:p-8 border border-gray-200 bg-gray-50 shadow-sm"
         >
           <h3
             className="mb-4 text-sm font-bold uppercase tracking-wide text-center text-gray-900"

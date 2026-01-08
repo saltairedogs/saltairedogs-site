@@ -9,49 +9,49 @@ const ITEMS = [
     icon: Smile,
     label: 'Cheapest in Saltaire',
     description: 'From £10 per visit',
-    color: 'from-amber-400 to-orange-500',
-    bg: 'bg-amber-50',
-    ring: 'ring-amber-200',
+    color: 'bg-emerald-600',
+    bg: 'bg-emerald-50',
+    ring: 'ring-emerald-200',
   },
   {
     icon: Check,
     label: 'Fully Insured',
     description: 'Public liability',
-    color: 'from-emerald-400 to-green-500',
-    bg: 'bg-emerald-50',
-    ring: 'ring-emerald-200',
+    color: 'bg-gray-700',
+    bg: 'bg-gray-50',
+    ring: 'ring-gray-200',
   },
   {
     icon: Camera,
     label: 'Photo Updates',
     description: 'Every single visit',
-    color: 'from-blue-400 to-cyan-500',
-    bg: 'bg-blue-50',
-    ring: 'ring-blue-200',
+    color: 'bg-emerald-600',
+    bg: 'bg-emerald-50',
+    ring: 'ring-emerald-200',
   },
   {
     icon: MapPin,
     label: '15+ Years Local',
     description: 'Saltaire expert',
-    color: 'from-purple-400 to-pink-500',
-    bg: 'bg-purple-50',
-    ring: 'ring-purple-200',
+    color: 'bg-gray-700',
+    bg: 'bg-gray-50',
+    ring: 'ring-gray-200',
   },
   {
     icon: Sparkles,
     label: 'All Animals',
     description: 'Dogs to dragons',
-    color: 'from-rose-400 to-pink-500',
-    bg: 'bg-rose-50',
-    ring: 'ring-rose-200',
+    color: 'bg-emerald-600',
+    bg: 'bg-emerald-50',
+    ring: 'ring-emerald-200',
   },
   {
     icon: Heart,
     label: 'Love What I Do',
     description: 'Not a side hustle',
-    color: 'from-red-400 to-rose-500',
-    bg: 'bg-red-50',
-    ring: 'ring-red-200',
+    color: 'bg-gray-700',
+    bg: 'bg-gray-50',
+    ring: 'ring-gray-200',
   },
 ]
 
@@ -101,9 +101,9 @@ export function TrustBar() {
                 className="group flex flex-col items-center text-center"
               >
                 <div
-                  className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ${item.bg} ${item.ring} ring-1 shadow-lg transition-all group-hover:scale-110 group-hover:shadow-xl`}
+                  className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl ${item.bg} ${item.ring} ring-1 shadow-md transition-all group-hover:scale-105 group-hover:shadow-lg`}
                 >
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${item.color}`}>
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${item.color}`}>
                     <Icon className="h-5 w-5 text-white" aria-hidden="true" />
                   </div>
                 </div>
