@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
-  ShieldCheck,
   Heart,
   MapPin,
   Smile,
@@ -14,6 +13,7 @@ import {
   Phone,
   Check,
   Sparkles,
+  Send,
 } from 'lucide-react'
 
 const BRAND = {
@@ -22,25 +22,6 @@ const BRAND = {
   stone: '#EFEEE9',
   hair: '#E6E3DA',
 }
-
-// Testimonials data
-const testimonials = [
-  {
-    quote: "Giuseppe's brilliant with our nervous spaniel. He knows all the quiet routes and sends photos every time. Fair prices too.",
-    author: "Sarah M.",
-    location: "Victoria Road, Saltaire",
-  },
-  {
-    quote: "Only person we trust with our bearded dragon! Giuseppe actually knows what he's doing with reptiles. Can't recommend enough.",
-    author: "Tom & Lisa",
-    location: "Shipley",
-  },
-  {
-    quote: "Been using Giuseppe for 3 years. Always reliable, genuinely cares about the animals, and cheapest rates in the area.",
-    author: "Rachel P.",
-    location: "Saltaire",
-  },
-]
 
 const animalTypes = [
   { icon: '🐕', label: 'Dogs', detail: 'All sizes, nervous/reactive welcome' },
@@ -54,6 +35,40 @@ const animalTypes = [
 ]
 
 export default function AboutClient() {
+  const [reviewForm, setReviewForm] = useState({
+    name: '',
+    location: '',
+    rating: 5,
+    review: '',
+    email: '',
+  })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewForm),
+      })
+
+      if (!response.ok) throw new Error('Failed to submit review')
+
+      setSubmitted(true)
+      setReviewForm({ name: '', location: '', rating: 5, review: '', email: '' })
+    } catch (err) {
+      setError('Failed to submit review. Please try again or contact us directly.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   // Soft reveal on scroll
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -305,11 +320,11 @@ export default function AboutClient() {
               style={{ borderColor: BRAND.hair }}
             >
               <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 ring-1 ring-rose-100">
-                <ShieldCheck className="h-5 w-5 text-rose-700" />
+                <Check className="h-5 w-5 text-rose-700" />
               </div>
-              <h3 className="text-lg font-semibold">DBS checked & insured</h3>
+              <h3 className="text-lg font-semibold">Fully insured</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Enhanced DBS, public liability, canine first-aid. All the important boring stuff covered.
+                Public liability coverage for your peace of mind.
               </p>
             </article>
           </div>
@@ -404,37 +419,155 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* REVIEW SUBMISSION */}
       <section className="py-16 sm:py-20" style={{ backgroundColor: BRAND.stone }}>
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What locals say</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Share your experience</h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              Don't just take my word for it. Here's what Saltaire neighbors think.
+              Used my services? I'd love to hear your feedback. Your review helps other Saltaire locals make the right choice.
             </p>
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial, idx) => (
-              <div
-                key={idx}
-                data-reveal
-                className="rounded-2xl border bg-white p-6"
-                style={{ borderColor: BRAND.hair }}
-              >
-                <div className="mb-3 flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed text-[#7B828A]">"{testimonial.quote}"</p>
-                <div className="mt-4 border-t pt-4" style={{ borderColor: BRAND.hair }}>
-                  <p className="text-sm font-semibold">{testimonial.author}</p>
-                  <p className="text-xs text-[#7B828A]">{testimonial.location}</p>
-                </div>
+          {submitted ? (
+            <div
+              className="mx-auto mt-10 max-w-2xl rounded-2xl border bg-white p-8 text-center"
+              style={{ borderColor: BRAND.hair }}
+              data-reveal
+            >
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 ring-1 ring-emerald-100">
+                <Check className="h-8 w-8 text-emerald-600" />
               </div>
-            ))}
-          </div>
+              <h3 className="mt-4 text-xl font-semibold">Thank you!</h3>
+              <p className="mt-2 text-[#7B828A]">
+                Your review has been submitted and will appear on the site once approved. I really appreciate you taking
+                the time.
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-6 text-sm font-semibold underline underline-offset-4"
+                style={{ color: BRAND.gold }}
+              >
+                Submit another review
+              </button>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleReviewSubmit}
+              className="mx-auto mt-10 max-w-2xl rounded-2xl border bg-white p-8"
+              style={{ borderColor: BRAND.hair }}
+              data-reveal
+            >
+              <div className="space-y-6">
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-semibold">
+                      Your name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      required
+                      value={reviewForm.name}
+                      onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                      style={{ borderColor: BRAND.hair }}
+                      placeholder="e.g. Sarah M."
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="location" className="block text-sm font-semibold">
+                      Location *
+                    </label>
+                    <input
+                      type="text"
+                      id="location"
+                      required
+                      value={reviewForm.location}
+                      onChange={(e) => setReviewForm({ ...reviewForm, location: e.target.value })}
+                      className="mt-2 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                      style={{ borderColor: BRAND.hair }}
+                      placeholder="e.g. Saltaire, Shipley"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold">
+                    Email (optional, won't be published)
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={reviewForm.email}
+                    onChange={(e) => setReviewForm({ ...reviewForm, email: e.target.value })}
+                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                    style={{ borderColor: BRAND.hair }}
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold">Your rating *</label>
+                  <div className="mt-2 flex gap-2">
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                      <button
+                        key={rating}
+                        type="button"
+                        onClick={() => setReviewForm({ ...reviewForm, rating })}
+                        className="transition-transform hover:scale-110"
+                      >
+                        <Star
+                          className={`h-8 w-8 ${
+                            rating <= reviewForm.rating
+                              ? 'fill-amber-400 text-amber-400'
+                              : 'text-gray-300'
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="review" className="block text-sm font-semibold">
+                    Your review *
+                  </label>
+                  <textarea
+                    id="review"
+                    required
+                    value={reviewForm.review}
+                    onChange={(e) => setReviewForm({ ...reviewForm, review: e.target.value })}
+                    rows={4}
+                    className="mt-2 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2"
+                    style={{ borderColor: BRAND.hair }}
+                    placeholder="Tell others about your experience..."
+                  />
+                </div>
+
+                {error && (
+                  <div className="rounded-xl bg-red-50 p-4 text-sm text-red-800">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold transition-opacity disabled:opacity-50"
+                  style={{ backgroundColor: BRAND.gold, color: BRAND.ink }}
+                >
+                  <Send className="h-5 w-5" />
+                  {submitting ? 'Submitting...' : 'Submit review'}
+                </button>
+
+                <p className="text-center text-xs text-[#7B828A]">
+                  Reviews are moderated and will appear on the site once approved.
+                </p>
+              </div>
+            </form>
+          )}
         </div>
       </section>
 
@@ -443,7 +576,7 @@ export default function AboutClient() {
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">The boring but important stuff</h2>
-            <p className="mt-4 text-lg text-[#7B828A]">All the credentials and safety bits you'd expect.</p>
+            <p className="mt-4 text-lg text-[#7B828A]">Safety and professionalism you can count on.</p>
           </div>
 
           <div
@@ -454,24 +587,8 @@ export default function AboutClient() {
             <div className="flex items-start gap-3">
               <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
               <div>
-                <h3 className="font-semibold">Enhanced DBS checked</h3>
-                <p className="mt-1 text-sm text-[#7B828A]">Certificate on file, dates available on request</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
-              <div>
                 <h3 className="font-semibold">Fully insured</h3>
-                <p className="mt-1 text-sm text-[#7B828A]">Public liability coverage for peace of mind</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
-              <div>
-                <h3 className="font-semibold">Canine first-aid trained</h3>
-                <p className="mt-1 text-sm text-[#7B828A]">Know what to do in emergencies</p>
+                <p className="mt-1 text-sm text-[#7B828A]">Public liability coverage for your peace of mind</p>
               </div>
             </div>
 
@@ -479,7 +596,23 @@ export default function AboutClient() {
               <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
               <div>
                 <h3 className="font-semibold">Secure key storage</h3>
-                <p className="mt-1 text-sm text-[#7B828A]">Tagged by code only, no addresses</p>
+                <p className="mt-1 text-sm text-[#7B828A]">Tagged by code only, no addresses stored</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+              <div>
+                <h3 className="font-semibold">Photo updates</h3>
+                <p className="mt-1 text-sm text-[#7B828A]">Clear communication after every visit</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+              <div>
+                <h3 className="font-semibold">Local expertise</h3>
+                <p className="mt-1 text-sm text-[#7B828A]">15+ years knowing Saltaire inside and out</p>
               </div>
             </div>
           </div>

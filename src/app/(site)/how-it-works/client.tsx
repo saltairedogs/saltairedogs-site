@@ -262,9 +262,9 @@ export default function HowItWorksClient() {
               <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 ring-1 ring-rose-100">
                 <Heart className="h-5 w-5 text-rose-700" />
               </div>
-              <h3 className="text-lg font-semibold">DBS checked & insured</h3>
+              <h3 className="text-lg font-semibold">Fully insured</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Enhanced DBS, public liability, canine first-aid — all the boring-but-important stuff.
+                Public liability coverage for your peace of mind.
               </p>
             </article>
           </div>
