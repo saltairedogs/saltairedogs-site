@@ -12,10 +12,7 @@ const BUSINESS_NAME = 'Saltaire Dogs + Pets'
 const SITE_URL = 'https://www.saltairedogs.uk'
 const UPDATED = '2025-12-18'
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
-const WHATSAPP = '/whatsapp'
 
 const SERVICES = [
   {
@@ -108,7 +105,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Services — Saltaire Dogs + Pets',
     description:
-      'Dog walking, cat sitting and calm home visits in Saltaire (BD18) and Shipley. Choose a service and book fast on WhatsApp.',
+      'Dog walking, cat sitting and calm home visits in Saltaire (BD18) and Shipley. Choose a service and get in touch to book.',
     url: `${SITE_URL}/services`,
     siteName: BUSINESS_NAME,
     type: 'website',
@@ -142,7 +139,7 @@ export default function ServicesPage() {
     },
     {
       q: 'How do I book fastest?',
-      a: 'WhatsApp is quickest. Send your area (Saltaire/Shipley), dates, what service you need, and any key notes (routine/meds/indoor-only).',
+      a: 'Get in touch via the contact form or email. Send your area (Saltaire/Shipley), dates, what service you need, and any key notes (routine/meds/indoor-only).',
     },
     {
       q: 'Do you send updates?',
@@ -177,7 +174,7 @@ export default function ServicesPage() {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: SITE_URL,
-        telephone: '+44 7424 208127',
+        email: 'saltairedogs@proton.me',
         areaServed: ['Saltaire', 'Shipley', 'BD18', 'Bradford'],
       },
       {
@@ -256,17 +253,11 @@ export default function ServicesPage() {
 
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link
-                    href={WHATSAPP}
+                    href="/contact"
                     className="inline-flex items-center justify-center rounded-lg bg-[#C89B3C] px-4 py-2 text-sm font-semibold text-[#131415] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
                   >
-                    Message on WhatsApp
+                    Get in touch
                   </Link>
-                  <a
-                    href={NUMBER_TEL}
-                    className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
-                  >
-                    Call {NUMBER_DISPLAY}
-                  </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -411,17 +402,11 @@ export default function ServicesPage() {
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
-                href={WHATSAPP}
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-lg bg-[#C89B3C] px-4 py-2 text-sm font-semibold text-[#131415] hover:opacity-95"
               >
-                Message on WhatsApp
+                Get in touch
               </Link>
-              <a
-                href={NUMBER_TEL}
-                className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50"
-              >
-                Call {NUMBER_DISPLAY}
-              </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50"

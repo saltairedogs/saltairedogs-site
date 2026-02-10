@@ -7,13 +7,13 @@ export const metadata = {
   description:
     'See Saltaire in 1, 3, or 6 hours. Simple map cues, step-by-step routes, parking/train tips, and where to pause for coffee or photos. Flat, family-friendly options.',
   alternates: { canonical: 'https://saltairedogs.uk/blog/saltaire-map-itineraries' },
-  authors: [{ name: 'Giuseppe (Saltaire Dogs + Pets)' }],
+  authors: [{ name: 'Saltaire Dogs + Pets' }],
   openGraph: {
     title: 'Saltaire Map & Easy Itineraries',
     description:
       'Three no-fuss routes (1, 3 & 6 hrs) covering Salts Mill, Roberts Park, the canal and photo spots—plus parking and train tips.',
     type: 'article',
-    authors: ['Giuseppe (Saltaire Dogs + Pets)'],
+    authors: ['Saltaire Dogs + Pets'],
     publishedTime: '2025-10-15T09:00:00Z',
     images: [
       { url: 'https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.avif' },
@@ -24,9 +24,6 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm visiting Saltaire and might need [walks/drop-ins/feeding] on [dates]. Can you help?"
-  )}`
   const PUBLISHED_ISO = '2025-10-15T09:00:00Z'
   const PUBLISHED_HUMAN = '15 Oct 2025'
 
@@ -82,7 +79,7 @@ export default function Page() {
               —with coffee stops and photo spots baked in.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{' '}
+              By <em>Saltaire Dogs + Pets</em> •{' '}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -243,15 +240,13 @@ export default function Page() {
             drop-ins and feeding for dogs, cats and small pets.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -287,13 +282,13 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Want a friendly, reliable local while you’re here?</h2>
           <p className="mt-2 text-white/85">I can help with walks, drop-ins and feeding—clear updates every time.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              Get a quick WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -313,7 +308,7 @@ export default function Page() {
               '@context': 'https://schema.org',
               '@type': 'Article',
               headline: 'Saltaire Map & Easy Itineraries (1, 3 & 6 Hours)',
-              author: { '@type': 'Person', name: 'Giuseppe (Saltaire Dogs + Pets)' },
+              author: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
               datePublished: '2025-10-15T09:00:00Z',
               dateModified: '2025-10-15T09:00:00Z',
               image: [

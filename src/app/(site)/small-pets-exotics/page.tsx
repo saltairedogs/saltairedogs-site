@@ -33,7 +33,7 @@ export default function SmallPetsExoticsPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
@@ -48,7 +48,7 @@ export default function SmallPetsExoticsPage() {
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
+          url: 'https://www.saltairedogs.uk/contact',
         },
       },
       {
@@ -108,10 +108,10 @@ export default function SmallPetsExoticsPage() {
           {/* CTA row */}
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
             <Link
               href="/contact"
@@ -212,10 +212,10 @@ export default function SmallPetsExoticsPage() {
           {/* Final CTA */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
             <Link
               href="/contact"

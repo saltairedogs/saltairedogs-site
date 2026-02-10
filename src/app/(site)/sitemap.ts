@@ -42,7 +42,6 @@ const ROUTES: string[] = [
   '/parrots-visits',
   '/rabbits-sitting',
   '/small-pets-exotics',
-  '/whatsapp',
 ]
 
 // exclude utility/dynamic routes defensively (in case they slip in)

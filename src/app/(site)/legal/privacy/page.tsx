@@ -122,7 +122,7 @@ const dataCategories = [
   {
     heading: "Communications",
     items: [
-      "Emails, phone calls, SMS/WhatsApp messages and their metadata (time, sender).",
+      "Emails, phone calls, SMS messages and their metadata (time, sender).",
       "Inbound website form submissions and our replies.",
     ],
   },
@@ -236,7 +236,7 @@ const policySections = [
     heading: "2. What data we collect",
     body: [
       "Details submitted through our contact form (your name, email, phone, service preferences and message).",
-      "Emails, WhatsApp messages or direct messages that you send to us when enquiring about services.",
+      "Emails or direct messages that you send to us when enquiring about services.",
       "Booking records, appointment history, feedback and testimonials that you voluntarily provide.",
       "Emergency contact details, veterinary contact information and care instructions you choose to share for your pet.",
     ],
@@ -297,7 +297,7 @@ const policySections = [
     heading: "9. Contact for data requests",
     body: [
       `Email: ${CONTACT_EMAIL}`,
-  "Phone: 07424 208127 (Mon–Sat 08:00–18:00).",
+  "We aim to respond to email data requests within 48 hours.",
       "By post: Request details via email so we can ensure a secure exchange.",
       "We aim to respond to all data subject requests within one calendar month.",
     ],

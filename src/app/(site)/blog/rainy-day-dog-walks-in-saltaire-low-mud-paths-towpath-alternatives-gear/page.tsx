@@ -84,8 +84,6 @@ export default function Page() {
 
   const waShare = `https://wa.me/?text=${encodeURIComponent(POST.title + ' ' + CANONICAL)}`
   const mailShare = `mailto:?subject=${encodeURIComponent(POST.title)}&body=${encodeURIComponent(CANONICAL)}`
-  const waQuote =
-    'https://wa.me/447424208127?text=Hi!%20I%E2%80%99m%20in%20Saltaire.%20My%20street%20is%20[your%20street],%20pet%20is%20[dog/cat/small%20pet],%20and%20I%E2%80%99m%20looking%20for%20[walks/visits].'
 
   return (
     <article className="min-h-screen bg-bg">
@@ -253,24 +251,16 @@ export default function Page() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Local & reliable</p>
                 <h3 className="text-xl font-bold tracking-tight">Want easy, weather-savvy walks?</h3>
                 <p className="max-w-prose text-muted-foreground">
-                  Message us for a quick WhatsApp quote—routes tailored to your dog, your routine, and the forecast.
+                  Get in touch for a quick quote—routes tailored to your dog, your routine, and the forecast.
                 </p>
               </div>
               <div className="flex gap-3">
                 <Link
-                  href={waQuote}
-                  aria-label="Get a WhatsApp quote"
+                  href="/contact"
                   className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold"
                   style={{ backgroundColor: '#C89B3C', color: '#131415' }}
                 >
-                  WhatsApp quote
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-xl border px-4 py-2 text-sm font-semibold"
-                  style={{ borderColor: 'var(--hairline,#E6E3DA)', color: '#131415' }}
-                >
-                  Contact
+                  Contact us
                 </Link>
               </div>
             </div>

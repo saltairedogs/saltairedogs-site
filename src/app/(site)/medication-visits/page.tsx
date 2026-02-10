@@ -17,8 +17,6 @@ const UPDATED = '2025-12-18'
 // Save your generated hero image into: /public/medication-visits-hero.webp
 const HERO_IMAGE = '/medication-visits-hero.webp'
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export const metadata: Metadata = {
@@ -96,7 +94,6 @@ export default function MedicationVisitsPage() {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: SITE_URL,
-        telephone: '+44 7424 208127',
         email: 'saltairedogs@proton.me',
         areaServed: ['Saltaire', 'Shipley', 'BD18', 'Bradford'],
         image: [`${SITE_URL}${HERO_IMAGE}`],
@@ -110,13 +107,12 @@ export default function MedicationVisitsPage() {
           '@type': 'LocalBusiness',
           name: BUSINESS_NAME,
           url: SITE_URL,
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: `${SITE_URL}/whatsapp`,
-          telephone: '+44 7424 208127',
+          url: `${SITE_URL}/contact`,
           email: 'saltairedogs@proton.me',
         },
       },
@@ -185,17 +181,11 @@ export default function MedicationVisitsPage() {
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Link
-                    href="/whatsapp"
+                    href="/contact"
                     className="inline-flex items-center justify-center rounded-lg bg-[#C89B3C] px-4 py-2 font-medium text-[#131415] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white/30"
                   >
-                    Message on WhatsApp
+                    Get in touch
                   </Link>
-                  <a
-                    href={NUMBER_TEL}
-                    className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
-                  >
-                    Call {NUMBER_DISPLAY}
-                  </a>
                   <Link
                     href="/contact"
                     className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -321,17 +311,11 @@ export default function MedicationVisitsPage() {
         {/* Final CTA */}
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
-          <a
-            href={NUMBER_TEL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Call {NUMBER_DISPLAY}
-          </a>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

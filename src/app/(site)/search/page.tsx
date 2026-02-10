@@ -134,7 +134,7 @@ export default function SearchPage({
         {/* Suggested links if no query */}
         {q === '' && (
           <div className="mt-6 grid gap-2 sm:grid-cols-2">
-            {['/whatsapp','/cat-sitting','/animal-feeding','/small-pets-exotics','/parrots-visits','/long-shift-support','/new-baby-help'].map((u) => {
+            {['/contact','/cat-sitting','/animal-feeding','/small-pets-exotics','/parrots-visits','/long-shift-support','/new-baby-help'].map((u) => {
               const doc = SEARCH_INDEX.find(d => d.url === u)!
               return (
                 <Link key={u} href={u} className="rounded-xl border border-slate-200 p-4 hover:bg-slate-50">

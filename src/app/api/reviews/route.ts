@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     // For now, just log it (TEMPORARY - replace with Supabase)
     console.log('Review submitted:', { name, location, rating, review, email })
 
-    // TODO: Send email notification to Giuseppe about new review
+    // TODO: Send email notification about new review
     // You could use Resend, SendGrid, or another email service
 
     return NextResponse.json({
@@ -100,7 +100,7 @@ create policy "Anyone can submit reviews"
   to anon
   with check (true);
 
--- Only authenticated users (Giuseppe) can view/approve reviews
+-- Only authenticated admin users can view/approve reviews
 create policy "Only admins can view reviews"
   on reviews for select
   using (auth.role() = 'authenticated');

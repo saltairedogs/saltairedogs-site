@@ -5,7 +5,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'New Baby Help — Kind, Flexible Pet Visits | Saltaire & Shipley',
   description:
-    'Gentle, flexible pet visits while you settle in with a new baby. Feeding, water, walks or drop-ins to your routine. Saltaire & Shipley. Message on WhatsApp.',
+    'Gentle, flexible pet visits while you settle in with a new baby. Feeding, water, walks or drop-ins to your routine. Saltaire & Shipley. Get in touch to book.',
   alternates: { canonical: 'https://www.saltairedogs.uk/new-baby-help' },
   openGraph: {
     title: 'New Baby Help — Kind, Flexible Pet Visits',
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function NewBabyHelpPage() {
@@ -35,13 +33,12 @@ export default function NewBabyHelpPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
-          telephone: '+44 7424 208127',
+          url: 'https://www.saltairedogs.uk/contact',
           email: 'saltairedogs@proton.me',
         },
       },
@@ -99,10 +96,10 @@ export default function NewBabyHelpPage() {
           {/* Fast contact row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium text-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
             <Link
               href="/contact"
@@ -110,14 +107,9 @@ export default function NewBabyHelpPage() {
             >
               Contact form
             </Link>
-            <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-              <a href={NUMBER_TEL} className="underline underline-offset-2">
-                Call {NUMBER_DISPLAY}
-              </a>
-              <a href={EMAIL} className="underline underline-offset-2">
-                Email
-              </a>
-            </div>
+            <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+              Email
+            </a>
           </div>
 
           {/* What we help with */}
@@ -194,10 +186,10 @@ export default function NewBabyHelpPage() {
           {/* Final contact row */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
             <Link
               href="/contact"
@@ -205,12 +197,6 @@ export default function NewBabyHelpPage() {
             >
               Contact form
             </Link>
-            <a
-              href={NUMBER_TEL}
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            >
-              Call {NUMBER_DISPLAY}
-            </a>
             <a
               href={EMAIL}
               className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

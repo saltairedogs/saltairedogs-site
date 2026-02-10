@@ -7,13 +7,13 @@ export const metadata = {
   description:
     'Everything you need to plan a visit to Salts Mill in Saltaire: the 1853 Gallery (David Hockney), bookshop, art supplies, home & design stores, food, parking, access, rainy-day ideas, and easy add-on walks.',
   alternates: { canonical: 'https://saltairedogs.uk/blog/salts-mill-complete-guide' },
-  authors: [{ name: 'Giuseppe (Saltaire Dogs + Pets)' }],
+  authors: [{ name: 'Saltaire Dogs + Pets' }],
   openGraph: {
     title: 'Salts Mill, Saltaire – Complete Visitor Guide',
     description:
       'Galleries, shops, food, parking and local tips—make the most of your time at Salts Mill (plus easy walks and what to do if it rains).',
     type: 'article',
-    authors: ['Giuseppe (Saltaire Dogs + Pets)'],
+    authors: ['Saltaire Dogs + Pets'],
     publishedTime: '2025-10-14T09:00:00Z',
     images: [
       { url: 'https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.avif' },
@@ -24,9 +24,6 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm visiting Saltaire and may need [walks/drop-ins/feeding] while I'm at Salts Mill. Can you help on [dates/times]?"
-  )}`
   const PUBLISHED_ISO = '2025-10-14T09:00:00Z'
   const PUBLISHED_HUMAN = '14 Oct 2025'
 
@@ -83,7 +80,7 @@ export default function Page() {
               parking, access, rainy-day plans and easy walks nearby.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{' '}
+              By <em>Saltaire Dogs + Pets</em> •{' '}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -258,15 +255,13 @@ export default function Page() {
             drop-ins and feeding for dogs, cats and small pets.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -332,18 +327,12 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Want a calm, reliable local while you explore?</h2>
           <p className="mt-2 text-white/85">Walks, drop-ins and feeding—clear photo updates after every visit.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              Get a quick WhatsApp quote
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
-            >
-              Contact
+              Get a quote
             </Link>
           </div>
         </section>
@@ -358,7 +347,7 @@ export default function Page() {
               '@context': 'https://schema.org',
               '@type': 'Article',
               headline: 'Salts Mill, Saltaire – Complete Visitor Guide',
-              author: { '@type': 'Person', name: 'Giuseppe (Saltaire Dogs + Pets)' },
+              author: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
               datePublished: '2025-10-14T09:00:00Z',
               dateModified: '2025-10-14T09:00:00Z',
               image: [

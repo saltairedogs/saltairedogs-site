@@ -8,7 +8,7 @@ import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Container } from './container'
 import { MobileNav } from './mobile-nav'
-import { Menu, MessageCircle, Instagram, Mail } from 'lucide-react'
+import { Menu, Instagram, Mail } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
@@ -18,18 +18,12 @@ const NAV = [
   { name: 'Contact', href: '/contact' },
 ]
 
-const WA_NUMBER = '447424208127'
-const WA_TEXT = encodeURIComponent(
-  "Hi! I'm in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I'm looking for [walks/visits]."
-)
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
-
 const INSTAGRAM_URL = 'https://www.instagram.com/saltairedogs/'
 const EMAIL_ADDRESS = 'hello@saltairedogs.uk'
 const MAILTO = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(
   'Saltaire Dogs + Pets — quick question'
 )}&body=${encodeURIComponent(
-  'Hi Giuseppe, \n\nI’m in/near Saltaire and need help with [walks/visits/feeding] on [dates].\n\nThanks!'
+  'Hi,\n\nI’m in/near Saltaire and need help with [walks/visits/feeding] on [dates].\n\nThanks!'
 )}`
 
 export function Header() {
@@ -162,19 +156,6 @@ export function Header() {
               <span className="sm:hidden">Instagram</span>
             </a>
 
-            {/* WhatsApp (desktop) */}
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-[14px] font-semibold text-[#131415] shadow-none focus:outline-none focus:ring-2 focus:ring-[#C89B3C]/40"
-              style={{ backgroundColor: '#C89B3C' }}
-              aria-label="Get a 60-second quote on WhatsApp"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Quote on WhatsApp
-            </a>
-
             {/* Mobile Menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
@@ -206,18 +187,7 @@ export function Header() {
                     Instagram
                   </a>
 
-                  <a
-                    href={WA_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2.5 rounded-lg px-4 py-2.5 text-[14px] font-semibold text-[#131415]"
-                    style={{ backgroundColor: '#C89B3C' }}
-                    aria-label="Get a 60-second quote on WhatsApp"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <MessageCircle className="h-5 w-5" />
-                    Quote on WhatsApp
-                  </a>
+                  {/* Additional CTAs removed */}
                 </div>
               </SheetContent>
             </Sheet>

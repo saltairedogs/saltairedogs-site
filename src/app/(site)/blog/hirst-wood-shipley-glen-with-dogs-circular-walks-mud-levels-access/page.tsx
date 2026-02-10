@@ -43,9 +43,6 @@ export const metadata = {
 export default function Page() {
   const PUBLISHED_ISO = "2025-10-22T09:00:00Z"
   const PUBLISHED_HUMAN = "22 Oct 2025"
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I’m in Saltaire/Hirst Wood. Could you help with dog walks or drop-ins on [dates/times]? My street is [your street]."
-  )}`
 
   return (
     <main className="bg-[#F7F7F6] text-[#131415]">
@@ -111,20 +108,18 @@ export default function Page() {
               access points with parking.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              By <em>Saltaire Dogs + Pets</em> •{" "}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                WhatsApp: local dog walks
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog/best-saltaire-walks"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -322,20 +317,12 @@ export default function Page() {
             From quick canal loops to longer Glen circuits, we’ll match the route to your dog and the day’s conditions.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              WhatsApp a quick request
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-[#E6E3DA] bg-white px-5 py-3 text-base font-semibold text-[#131415] hover:bg-[#FAFAF9]"
-            >
-              Contact
+              Get in touch
             </Link>
           </div>
         </section>
@@ -369,13 +356,13 @@ export default function Page() {
             Owner-led, insured and DBS checked. We keep routes sensible for the weather and your dog’s energy.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              Get a WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/dog-walking/saltaire"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -396,7 +383,7 @@ export default function Page() {
               "@type": "Article",
               headline:
                 "Hirst Wood & Shipley Glen with Dogs: Circular Walks, Mud Levels & Access",
-              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              author: { "@type": "Organization", name: "Saltaire Dogs + Pets" },
               datePublished: PUBLISHED_ISO,
               dateModified: PUBLISHED_ISO,
               mainEntityOfPage:

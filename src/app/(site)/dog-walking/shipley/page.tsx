@@ -21,8 +21,6 @@ export const metadata: Metadata = {
 }
 
 const UPDATED = '2025-12-18'
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function DogWalkingShipleyPage() {
@@ -59,12 +57,12 @@ export default function DogWalkingShipleyPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
+          url: 'https://www.saltairedogs.uk/contact',
         },
       },
       {
@@ -148,22 +146,16 @@ export default function DogWalkingShipleyPage() {
 
           {/* CTAs (no coloured button backgrounds) */}
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/whatsapp" className={btnPrimary}>
-              Message on WhatsApp
+            <Link href="/contact" className={btnPrimary}>
+              Get in touch
             </Link>
-            <Link href="/contact" className={btnSecondary}>
-              Contact form
-            </Link>
-            <a href={NUMBER_TEL} className={btnGhost}>
-              Call {NUMBER_DISPLAY}
-            </a>
             <a href={EMAIL} className={btnGhost}>
               Email
             </a>
           </div>
 
           <p className="mt-3 text-xs text-slate-600">
-            Quickest booking: WhatsApp your area in Shipley + what you need + your dog’s breed/age/temperament.
+            Quickest booking: send us your area in Shipley + what you need + your dog's breed/age/temperament.
           </p>
         </div>
       </header>
@@ -282,34 +274,28 @@ export default function DogWalkingShipleyPage() {
         <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-bold tracking-tight text-slate-900">Book a Shipley dog walk</h2>
           <p className="mt-2 max-w-prose text-slate-700">
-            Message on WhatsApp with your area in Shipley, your dog’s details, and preferred days — you’ll get a clear yes/no and next steps.
+            Get in touch with your area in Shipley, your dog's details, and preferred days — you'll get a clear yes/no and next steps.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Link href="/whatsapp" className={btnPrimary}>
-              Message on WhatsApp
-            </Link>
-            <a href={NUMBER_TEL} className={btnSecondary}>
-              Call {NUMBER_DISPLAY}
-            </a>
-            <Link href="/contact" className={btnSecondary}>
-              Contact form
+            <Link href="/contact" className={btnPrimary}>
+              Get in touch
             </Link>
           </div>
         </section>
       </main>
 
-      {/* Sticky mobile CTA (no coloured backgrounds beyond slate) */}
+      {/* Sticky mobile CTA */}
       <div className="md:hidden fixed bottom-3 left-3 right-3 z-50">
         <div className="rounded-3xl border border-black/10 bg-white/95 backdrop-blur shadow-lg p-3 flex gap-2">
-          <a href={NUMBER_TEL} className="flex-1 rounded-2xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white">
-            Call
-          </a>
           <Link
-            href="/whatsapp"
-            className="flex-1 rounded-2xl border border-black/10 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-900"
+            href="/contact"
+            className="flex-1 rounded-2xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white"
           >
-            WhatsApp
+            Contact
           </Link>
+          <a href={EMAIL} className="flex-1 rounded-2xl border border-black/10 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-900">
+            Email
+          </a>
         </div>
       </div>
 

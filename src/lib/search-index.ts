@@ -11,10 +11,10 @@ export type SearchDoc = {
 export const SEARCH_INDEX: SearchDoc[] = [
   /* ----------------------------- Contact & About ---------------------------- */
   {
-    url: '/whatsapp',
-    title: 'WhatsApp Contact',
-    blurb: 'Message us about dog walks, cat sitting, animal feeding or home visits.',
-    tags: ['contact', 'whatsapp', 'message', 'chat', 'book', 'quote'],
+    url: '/contact',
+    title: 'Contact',
+    blurb: 'Get in touch about dog walks, cat sitting, animal feeding or home visits.',
+    tags: ['contact', 'email', 'message', 'chat', 'book', 'quote'],
   },
   {
     url: '/contact',

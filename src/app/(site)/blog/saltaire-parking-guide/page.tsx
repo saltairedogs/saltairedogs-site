@@ -7,13 +7,13 @@ export const metadata = {
   description:
     'Where to park in Saltaire: free Salts Mill parking, pay-and-display options, on-street rules, Sundays, busy days, Blue Badge info, and quick itineraries.',
   alternates: { canonical: 'https://saltairedogs.uk/blog/saltaire-parking-guide' },
-  authors: [{ name: 'Giuseppe (Saltaire Dogs + Pets)' }],
+  authors: [{ name: 'Saltaire Dogs + Pets' }],
   openGraph: {
     title: 'Saltaire Parking Guide',
     description:
       'Free Salts Mill parking, pay-and-display options, on-street rules, Sundays, busy days, and Blue Badge info.',
     type: 'article',
-    authors: ['Giuseppe (Saltaire Dogs + Pets)'],
+    authors: ['Saltaire Dogs + Pets'],
     publishedTime: '2025-10-11T09:00:00Z',
     images: [
       { url: 'https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.avif' },
@@ -24,9 +24,6 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm visiting Saltaire and may need [dog walks/drop-ins/feeding] while I'm here. Can you help on [dates/times]?"
-  )}`
   const PUBLISHED_ISO = '2025-10-11T09:00:00Z'
   const PUBLISHED_HUMAN = '11 Oct 2025'
 
@@ -86,7 +83,7 @@ export default function Page() {
               options when the mill is full.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{' '}
+              By <em>Saltaire Dogs + Pets</em> •{' '}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -214,15 +211,13 @@ export default function Page() {
             pets—so you can make the most of your day. DBS checked, insured, and I send photo notes after every visit.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -280,13 +275,13 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Need local pet care while you visit?</h2>
           <p className="mt-2 text-white/85">I’m close by—DBS checked, insured, with photo updates after every visit.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              Get a quick WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -306,7 +301,7 @@ export default function Page() {
               '@context': 'https://schema.org',
               '@type': 'Article',
               headline: 'Saltaire Parking Guide',
-              author: { '@type': 'Person', name: 'Giuseppe (Saltaire Dogs + Pets)' },
+              author: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
               datePublished: '2025-10-11T09:00:00Z',
               dateModified: '2025-10-11T09:00:00Z',
               image: [

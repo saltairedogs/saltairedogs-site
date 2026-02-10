@@ -23,31 +23,9 @@ export const metadata: Metadata = {
 const BUSINESS_NAME = 'Saltaire Dogs + Pets'
 const SITE_URL = 'https://www.saltairedogs.uk'
 
-// ✅ Use this number everywhere
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_E164 = '+447424208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
-function waMeLink(e164: string, text?: string) {
-  const n = e164.replace(/[^\d+]/g, '').replace('+', '')
-  const base = `https://wa.me/${n}`
-  return text ? `${base}?text=${encodeURIComponent(text)}` : base
-}
-
 export default function PetSittingHubPage() {
-  const waPrefill = waMeLink(
-    NUMBER_E164,
-    `Hi Saltaire Dogs + Pets — enquiry via saltairedogs.uk.
-Service: Pet sitting / home visits
-Area: (Saltaire or Shipley)
-Dates needed:
-Visit frequency: (1x/day / 2x/day / other)
-Pets: (type + name + age)
-Any meds / special instructions:
-Access notes (key safe / key handover):`
-  )
-
   const faqs = [
     {
       q: 'What is “pet sitting” on this site?',
@@ -63,7 +41,7 @@ Access notes (key safe / key handover):`
     },
     {
       q: 'How do I book fastest?',
-      a: 'WhatsApp is quickest. Send your area (Saltaire/Shipley), dates, visit frequency and any key notes (meds, indoor-only, hiding spots, entry instructions).',
+      a: 'Get in touch via our contact form or email with your area (Saltaire/Shipley), dates, visit frequency and any key notes (meds, indoor-only, hiding spots, entry instructions).',
     },
   ] as const
 
@@ -89,7 +67,7 @@ Access notes (key safe / key handover):`
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: SITE_URL,
-        telephone: NUMBER_E164,
+        email: 'saltairedogs@proton.me',
         areaServed: ['Saltaire', 'Shipley', 'BD18', 'Bradford'],
       },
       {
@@ -151,30 +129,16 @@ Access notes (key safe / key handover):`
 
         {/* Fast contact row */}
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          <a
-            href={waPrefill}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-center font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
-          >
-            WhatsApp (fastest)
-          </a>
-
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
+            className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-center font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
             Contact form
           </Link>
 
-          <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-            <a href={NUMBER_TEL} className="underline underline-offset-2">
-              Call {NUMBER_DISPLAY}
-            </a>
-            <a href={EMAIL} className="underline underline-offset-2">
-              Email
-            </a>
-          </div>
+          <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            Email
+          </a>
         </div>
       </header>
 
@@ -298,24 +262,10 @@ Access notes (key safe / key handover):`
         <section className="rounded-xl border border-slate-200 p-6">
           <h2 className="text-lg font-semibold">Book fast</h2>
           <p className="mt-2 max-w-prose text-slate-700">
-            WhatsApp works best — send your area, dates, visit frequency, and any key notes (meds, indoor-only, entry
+            Get in touch with your area, dates, visit frequency, and any key notes (meds, indoor-only, entry
             instructions).
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={waPrefill}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
-            >
-              WhatsApp (fastest)
-            </a>
-            <a
-              href={NUMBER_TEL}
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            >
-              Call {NUMBER_DISPLAY}
-            </a>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

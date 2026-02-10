@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function AreasPage() {
@@ -30,7 +28,7 @@ export default function AreasPage() {
         '@type': 'LocalBusiness',
         name: 'Saltaire Dogs + Pets',
         url: 'https://www.saltairedogs.uk',
-        telephone: '+44 7424 208127',
+        email: 'saltairedogs@proton.me',
         areaServed: ['Saltaire', 'Shipley'],
         serviceArea: [
           { '@type': 'AdministrativeArea', name: 'Saltaire' },
@@ -90,21 +88,14 @@ export default function AreasPage() {
         {/* Fast contact */}
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Contact form
-          </Link>
-          <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-            <a href={NUMBER_TEL} className="underline underline-offset-2">Call {NUMBER_DISPLAY}</a>
-            <a href={EMAIL} className="underline underline-offset-2">Email</a>
-          </div>
+          <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            Email
+          </a>
         </div>
       </section>
 
@@ -179,11 +170,8 @@ export default function AreasPage() {
             Message with your street and what you need. If the timing and distance make sense, we’ll try to fit you in.
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <Link href="/whatsapp" className="rounded-lg bg-green-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-green-700">
-              WhatsApp
-            </Link>
-            <Link href="/contact" className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-slate-50">
-              Contact form
+            <Link href="/contact" className="rounded-lg bg-green-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-green-700">
+              Get in touch
             </Link>
           </div>
         </div>

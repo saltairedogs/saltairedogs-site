@@ -18,13 +18,13 @@ export const metadata = {
     "chicken sitter Saltaire",
   ],
   alternates: { canonical: "https://saltairedogs.uk/blog/exotic-pet-sitting-saltaire" },
-  authors: [{ name: "Giuseppe (Saltaire Dogs + Pets)" }],
+  authors: [{ name: "Saltaire Dogs + Pets" }],
   openGraph: {
     title: "Exotic Pet Sitting in Saltaire",
     description:
       "Home-visits for reptiles, parrots, small mammals & fish in Saltaire & Shipley. Temps/humidity checks, feeding and tidy-up—plus a quick photo note.",
     type: "article",
-    authors: ["Giuseppe (Saltaire Dogs + Pets)"],
+    authors: ["Saltaire Dogs + Pets"],
     publishedTime: "2025-10-18T09:00:00Z",
     images: [
       { url: "https://saltairedogs.uk/saltaire-exotic-pet-sitting-hero-2560w.avif", width: 2560, height: 1280 },
@@ -37,9 +37,6 @@ export const metadata = {
 export default function Page() {
   const PUBLISHED_ISO = "2025-10-18T09:00:00Z"
   const PUBLISHED_HUMAN = "18 Oct 2025"
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I’m in/near Saltaire and need exotic-pet visits for [bearded dragon/gecko/snake/parrot/small mammal/fish] on [dates]."
-  )}`
 
   return (
     <main className="bg-[#F7F7F6] text-[#131415]">
@@ -84,19 +81,17 @@ export default function Page() {
               photo note after each visit.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              By <em>Saltaire Dogs + Pets</em> •{" "}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                WhatsApp: exotic pet visits (Saltaire)
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog/bearded-dragon-care-saltaire"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -194,7 +189,7 @@ export default function Page() {
         <section id="how" className="mt-12">
           <h2 className="text-2xl font-bold">How visits work</h2>
           <ol className="mt-4 list-decimal space-y-2 pl-5 text-[#4A4F55]">
-            <li><strong>Quick intro:</strong> message on WhatsApp with species, dates and postcode.</li>
+            <li><strong>Quick intro:</strong> get in touch with species, dates and postcode.</li>
             <li><strong>Notes & routine:</strong> you share feeding amounts, lights/thermostat timings and any quirks.</li>
             <li><strong>Visit plan:</strong> we confirm frequency and keys/lockbox. You’ll get a short photo note after each visit.</li>
           </ol>
@@ -224,15 +219,13 @@ export default function Page() {
             checks, measured feeds, tidy-up and a brief photo update.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
           <p className="mt-2 text-sm text-[#7B828A]">
             Keywords: <em>reptile sitter Saltaire</em>, <em>parrot feeding Saltaire</em>, <em>exotic pet sitting Saltaire</em>.
@@ -271,7 +264,7 @@ export default function Page() {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: "Exotic Pet Sitting in Saltaire: Reptiles, Parrots, Small Mammals & Fish",
-              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              author: { "@type": "Organization", name: "Saltaire Dogs + Pets" },
               datePublished: PUBLISHED_ISO,
               dateModified: PUBLISHED_ISO,
               mainEntityOfPage: "https://saltairedogs.uk/blog/exotic-pet-sitting-saltaire",

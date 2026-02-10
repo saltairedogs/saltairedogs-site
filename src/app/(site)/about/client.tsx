@@ -9,8 +9,7 @@ import {
   Smile,
   Camera,
   Star,
-  MessageCircle,
-  Phone,
+  Mail,
   Check,
   Sparkles,
   Send,
@@ -142,10 +141,9 @@ export default function AboutClient() {
       priceRange: '£10-£15',
     },
     about: {
-      '@type': 'Person',
-      name: 'Giuseppe',
-      jobTitle: 'Owner',
-      worksFor: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
+      '@type': 'Organization',
+      name: 'Saltaire Dogs + Pets',
+      url: 'https://saltairedogs.uk',
     },
   }
 
@@ -182,28 +180,26 @@ export default function AboutClient() {
             </h1>
 
             <p className="mt-4 text-lg leading-relaxed text-white/90">
-              I'm <strong>Giuseppe</strong>. Been caring for Saltaire pets for <strong>15+ years</strong>. I love what
-              I do, keep prices fair, and care for <strong>everything from dogs to bearded dragons</strong>.
+              We've been caring for Saltaire pets for <strong>15+ years</strong>. We love what
+              we do, keep prices fair, and care for <strong>everything from dogs to bearded dragons</strong>.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href={`https://wa.me/447424208127?text=${encodeURIComponent(
-                  "Hi Giuseppe! I'm in Saltaire and need help with my pet. Can we chat?"
-                )}`}
+              <Link
+                href="/contact"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold"
                 style={{ backgroundColor: BRAND.gold, color: BRAND.ink }}
               >
-                <MessageCircle className="h-5 w-5" />
-                Message Giuseppe
-              </a>
+                <Mail className="h-5 w-5" />
+                Get in touch
+              </Link>
 
               <a
-                href="tel:+447424208127"
+                href="mailto:saltairedogs@proton.me"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 text-base font-semibold text-white hover:bg-white/15"
               >
-                <Phone className="h-5 w-5" />
-                Call 07424 208127
+                <Mail className="h-5 w-5" />
+                Email us
               </a>
             </div>
 
@@ -232,11 +228,11 @@ export default function AboutClient() {
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Why locals choose me over other pet services
+              Why locals choose us over other pet services
             </h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              I'm not a big company with franchises and shareholders. I'm your neighbor who genuinely loves animals and
-              keeps things simple and affordable.
+              We're not a big company with franchises and shareholders. We're your neighbours who genuinely love animals and
+              keep things simple and affordable.
             </p>
           </div>
 
@@ -254,7 +250,7 @@ export default function AboutClient() {
               </div>
               <h3 className="text-lg font-semibold">Cheapest in Saltaire</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                From £10 per visit. No franchise fees or big overheads — just me doing what I love.
+                From £10 per visit. No franchise fees or big overheads — just a dedicated local team.
               </p>
             </article>
 
@@ -268,7 +264,7 @@ export default function AboutClient() {
               </div>
               <h3 className="text-lg font-semibold">Only service covering exotic pets</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Most places just do dogs and cats. I care for reptiles, birds, fish, chickens — the lot.
+                Most places just do dogs and cats. We care for reptiles, birds, fish, chickens — the lot.
               </p>
             </article>
 
@@ -282,7 +278,7 @@ export default function AboutClient() {
               </div>
               <h3 className="text-lg font-semibold">15+ years local knowledge</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                I know every towpath, quiet route, and safe crossing. Been here longer than most services.
+                We know every towpath, quiet route, and safe crossing. Been here longer than most services.
               </p>
             </article>
 
@@ -294,9 +290,9 @@ export default function AboutClient() {
               <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 ring-1 ring-emerald-100">
                 <Heart className="h-5 w-5 text-emerald-700" />
               </div>
-              <h3 className="text-lg font-semibold">I actually love this work</h3>
+              <h3 className="text-lg font-semibold">We actually love this work</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Not a side hustle. This is what I do and what I enjoy. You'll feel the difference.
+                Not a side hustle. This is what we do and what we enjoy. You'll feel the difference.
               </p>
             </article>
 
@@ -331,28 +327,28 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* GIUSEPPE'S STORY */}
+      {/* OUR STORY */}
       <section className="py-16 sm:py-20" style={{ backgroundColor: BRAND.stone }}>
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto grid max-w-4xl items-center gap-10 lg:grid-cols-2">
             <div data-reveal className="order-2 lg:order-1">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Meet Giuseppe</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our story</h2>
               <div className="mt-6 space-y-4 text-[#7B828A]">
                 <p className="text-base leading-relaxed">
-                  I've lived in Saltaire for <strong className="text-[#131415]">over 15 years</strong>. I started this
-                  because I genuinely love animals and wanted to do something I actually enjoy every day.
+                  We've been in Saltaire for <strong className="text-[#131415]">over 15 years</strong>. Our team genuinely
+                  loves animals and we wouldn't want to do anything else.
                 </p>
                 <p className="text-base leading-relaxed">
-                  I keep prices low because I have no fancy office, no employees to pay, no shareholders. Just me, doing
-                  what I love, and passing the savings to you.
+                  We keep prices low because there's no fancy office and no shareholders. Just a dedicated team doing
+                  what we love, and passing the savings to you.
                 </p>
                 <p className="text-base leading-relaxed">
-                  Most pet services stop at dogs and cats. I learned about reptiles, birds, and exotic pets because{' '}
+                  Most pet services stop at dogs and cats. We learned about reptiles, birds, and exotic pets because{' '}
                   <strong className="text-[#131415]">locals needed help</strong> and no one else was offering it. Now
-                  I'm probably the only person in Saltaire who'll happily check on your bearded dragon.
+                  we're probably the only service in Saltaire that'll happily check on your bearded dragon.
                 </p>
                 <p className="text-base leading-relaxed">
-                  I know the towpaths, Roberts Park, Shipley Glen — all the quiet routes where nervous dogs feel
+                  We know the towpaths, Roberts Park, Shipley Glen — all the quiet routes where nervous dogs feel
                   comfortable. That knowledge comes from <strong className="text-[#131415]">being here</strong>, not
                   from a training manual.
                 </p>
@@ -365,7 +361,7 @@ export default function AboutClient() {
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold ring-1 ring-[#E6E3DA]">
                   <Heart className="h-4 w-4 text-rose-600" />
-                  <span>Genuinely loves animals</span>
+                  <span>Genuinely love animals</span>
                 </div>
               </div>
             </div>
@@ -374,7 +370,7 @@ export default function AboutClient() {
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-[#E6E3DA]">
                 <Image
                   src="/poodle-brown.webp"
-                  alt="Giuseppe with a happy dog in Saltaire"
+                  alt="A happy dog in Saltaire"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -386,15 +382,15 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* WHAT I CARE FOR */}
+      {/* WHAT WE CARE FOR */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              I care for everything (seriously, everything)
+              We care for everything (seriously, everything)
             </h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              While other services limit themselves to dogs and cats, I've built expertise across all common pets —
+              While other services limit themselves to dogs and cats, we've built expertise across all common pets —
               plus the unusual ones.
             </p>
           </div>
@@ -414,7 +410,7 @@ export default function AboutClient() {
           </div>
 
           <p className="mt-8 text-center text-sm text-[#7B828A]" data-reveal>
-            Got something else? <strong>Just ask.</strong> If it's safe and I can do it properly, I'll help.
+            Got something else? <strong>Just ask.</strong> If it's safe and we can do it properly, we'll help.
           </p>
         </div>
       </section>
@@ -425,7 +421,7 @@ export default function AboutClient() {
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Share your experience</h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              Used my services? I'd love to hear your feedback. Your review helps other Saltaire locals make the right choice.
+              Used our services? We'd love to hear your feedback. Your review helps other Saltaire locals make the right choice.
             </p>
           </div>
 
@@ -440,7 +436,7 @@ export default function AboutClient() {
               </div>
               <h3 className="mt-4 text-xl font-semibold">Thank you!</h3>
               <p className="mt-2 text-[#7B828A]">
-                Your review has been submitted and will appear on the site once approved. I really appreciate you taking
+                Your review has been submitted and will appear on the site once approved. We really appreciate you taking
                 the time.
               </p>
               <button
@@ -632,27 +628,25 @@ export default function AboutClient() {
             <div className="relative mx-auto max-w-3xl" data-reveal>
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to chat?</h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">
-                Message me with what you need. I'll reply today with honest advice and clear pricing.
+                Get in touch with what you need. We'll reply today with honest advice and clear pricing.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href={`https://wa.me/447424208127?text=${encodeURIComponent(
-                    "Hi Giuseppe! I'm in Saltaire and need help with my pet. Can we chat?"
-                  )}`}
+                <Link
+                  href="/contact"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-7 text-base font-semibold"
                   style={{ backgroundColor: BRAND.gold, color: BRAND.ink }}
                 >
-                  <MessageCircle className="h-5 w-5" />
-                  WhatsApp Giuseppe
-                </a>
+                  <Mail className="h-5 w-5" />
+                  Contact us
+                </Link>
 
                 <a
-                  href="tel:+447424208127"
+                  href="mailto:saltairedogs@proton.me"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-7 text-base font-semibold text-white hover:bg-white/15"
                 >
-                  <Phone className="h-5 w-5" />
-                  Call 07424 208127
+                  <Mail className="h-5 w-5" />
+                  Email us
                 </a>
               </div>
 

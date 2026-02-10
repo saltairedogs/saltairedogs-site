@@ -7,13 +7,13 @@ export const metadata = {
   description:
     'Three easy Saltaire walking routes: 30, 45 and 60-minute loops covering Salts Mill, the Leeds & Liverpool Canal, Roberts Park and Victoria Road. Surfaces, access, where to start, and dog-friendly notes.',
   alternates: { canonical: 'https://saltairedogs.uk/blog/best-saltaire-walks' },
-  authors: [{ name: 'Giuseppe (Saltaire Dogs + Pets)' }],
+  authors: [{ name: 'Saltaire Dogs + Pets' }],
   openGraph: {
     title: 'Best Saltaire Walks',
     description:
       'Three easy Saltaire loops (30/45/60 minutes) with simple turn-by-turns, surfaces and access notes.',
     type: 'article',
-    authors: ['Giuseppe (Saltaire Dogs + Pets)'],
+    authors: ['Saltaire Dogs + Pets'],
     publishedTime: '2025-10-12T09:00:00Z',
     images: [
       { url: 'https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.avif' },
@@ -24,9 +24,6 @@ export const metadata = {
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm visiting Saltaire and may need [dog walks/drop-ins/feeding]. Can you help on [dates/times]?"
-  )}`
   const PUBLISHED_ISO = '2025-10-12T09:00:00Z'
   const PUBLISHED_HUMAN = '12 Oct 2025'
 
@@ -82,7 +79,7 @@ export default function Page() {
               notes included.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{' '}
+              By <em>Saltaire Dogs + Pets</em> •{' '}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -207,15 +204,13 @@ export default function Page() {
             pets—DBS checked, insured, and I send photo notes after every visit.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -264,13 +259,13 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Need local pet care while you walk?</h2>
           <p className="mt-2 text-white/85">DBS checked, insured, with photo updates after every visit.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              Get a quick WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -290,7 +285,7 @@ export default function Page() {
               '@context': 'https://schema.org',
               '@type': 'Article',
               headline: 'Best Saltaire Walks: 30, 45 & 60-Minute Loops',
-              author: { '@type': 'Person', name: 'Giuseppe (Saltaire Dogs + Pets)' },
+              author: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
               datePublished: '2025-10-12T09:00:00Z',
               dateModified: '2025-10-12T09:00:00Z',
               image: [

@@ -5,7 +5,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Dog Walking — Quiet Local Routes & Clear Updates | Saltaire & Shipley',
   description:
-    'Dog walking in Saltaire & Shipley with simple updates. Quiet local routes, steady pacing and owner-led preferences. WhatsApp for slots.',
+    'Dog walking in Saltaire & Shipley with simple updates. Quiet local routes, steady pacing and tailored to your preferences. Get in touch for slots.',
   alternates: { canonical: 'https://www.saltairedogs.uk/dog-walking' },
   openGraph: {
     title: 'Dog Walking — Saltaire & Shipley',
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function DogWalkingPage() {
@@ -35,7 +33,7 @@ export default function DogWalkingPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
@@ -48,7 +46,7 @@ export default function DogWalkingPage() {
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
+          url: 'https://www.saltairedogs.uk/contact',
         },
       },
       {
@@ -90,28 +88,21 @@ export default function DogWalkingPage() {
         <div className="mx-auto max-w-4xl px-4 pt-14 pb-6 sm:pt-20 sm:pb-10">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">Dog walking — Saltaire & Shipley</h1>
           <p className="mt-3 text-slate-700">
-            Quiet, local routes with clear updates and owner-led preferences. We keep pacing steady and distractions low,
+            Quiet, local routes with clear updates, tailored to your preferences. We keep pacing steady and distractions low,
             and send a short photo note after each walk.
           </p>
 
           {/* Fast contact row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium text-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            >
-              Contact form
-            </Link>
-            <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-              <a href={NUMBER_TEL} className="underline underline-offset-2">Call {NUMBER_DISPLAY}</a>
-              <a href={EMAIL} className="underline underline-offset-2">Email</a>
-            </div>
+            <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+              Email
+            </a>
           </div>
 
           {/* What’s included + local value */}
@@ -194,9 +185,7 @@ export default function DogWalkingPage() {
 
           {/* Final contact row */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link href="/whatsapp" className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">Message on WhatsApp</Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Contact form</Link>
-            <a href={NUMBER_TEL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Call {NUMBER_DISPLAY}</a>
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">Get in touch</Link>
             <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Email</a>
           </div>
         </div>

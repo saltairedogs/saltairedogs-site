@@ -5,7 +5,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Parrot & Cockatiel Home Visits — Saltaire & Shipley | Saltaire Dogs + Pets',
   description:
-    'Parrot and cockatiel home visits in Saltaire & Shipley. Fresh food and water, cage tidy, and calm, unhurried check-ins to your routine. Message on WhatsApp.',
+    'Parrot and cockatiel home visits in Saltaire & Shipley. Fresh food and water, cage tidy, and calm, unhurried check-ins to your routine. Get in touch to book.',
   alternates: { canonical: 'https://www.saltairedogs.uk/parrots-visits' },
   openGraph: {
     title: 'Parrot & Cockatiel Home Visits — Saltaire & Shipley',
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function ParrotsVisitsPage() {
@@ -35,13 +33,12 @@ export default function ParrotsVisitsPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
-          telephone: '+44 7424 208127',
+          url: 'https://www.saltairedogs.uk/contact',
           email: 'saltairedogs@proton.me',
         },
       },
@@ -102,10 +99,10 @@ export default function ParrotsVisitsPage() {
           {/* Fast contact row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
-              href="/whatsapp"
+              href="/contact"
               className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium text-center shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Message on WhatsApp
+              Get in touch
             </Link>
             <Link
               href="/contact"
@@ -113,14 +110,9 @@ export default function ParrotsVisitsPage() {
             >
               Contact form
             </Link>
-            <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-              <a href={NUMBER_TEL} className="underline underline-offset-2">
-                Call {NUMBER_DISPLAY}
-              </a>
-              <a href={EMAIL} className="underline underline-offset-2">
-                Email
-              </a>
-            </div>
+            <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+              Email
+            </a>
           </div>
         </div>
       </section>
@@ -186,8 +178,8 @@ export default function ParrotsVisitsPage() {
               Saltaire & Shipley. Further out? Send a message — if it’s a fit, we’ll try to make it work.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Link href="/whatsapp" className="rounded-lg bg-green-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-green-700">
-                WhatsApp
+              <Link href="/contact" className="rounded-lg bg-green-600 px-3 py-1.5 text-white text-sm font-medium hover:bg-green-700">
+                Get in touch
               </Link>
               <Link href="/contact" className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-slate-50">
                 Contact form
@@ -228,10 +220,10 @@ export default function ParrotsVisitsPage() {
         {/* Final contact row */}
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
           <Link
             href="/contact"
@@ -239,12 +231,6 @@ export default function ParrotsVisitsPage() {
           >
             Contact form
           </Link>
-          <a
-            href={NUMBER_TEL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Call {NUMBER_DISPLAY}
-          </a>
           <a
             href={EMAIL}
             className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteUrl}/contact` },
   openGraph: {
     title: "Contact — Saltaire Dogs + Pets",
-    description: "WhatsApp, call, or email — whatever’s easiest. Local, DBS checked and insured.",
+    description: "Email or use our contact form — whatever's easiest. Local, DBS checked and insured.",
     type: "website",
     url: `${siteUrl}/contact`,
     images: [{ url: "/images/contact/saltaire-dogs-contact-hero.webp" }],
@@ -44,11 +44,6 @@ export const metadata: Metadata = {
 
 const HERO_IMAGE = "/images/contact/saltaire-dogs-contact-hero.webp";
 
-const PHONE_DISPLAY = "07424 208127";
-const PHONE_E164 = "+447424208127";
-const PHONE_TEL = "tel:+447424208127";
-
-const WHATSAPP = "https://wa.me/447424208127";
 const EMAIL = "saltairedogs@proton.me";
 
 const AREAS = ["Saltaire", "Shipley", "Baildon"];
@@ -104,38 +99,18 @@ export default function ContactPage() {
               </h1>
 
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
-                Local and owner-led. DBS checked, insured, and steady handling. Message your street and what you need —
-                we’ll reply Mon–Sat, 8am–6pm.
+                Local and professional. DBS checked, insured, and steady handling. Message your street and what you need —
+                we'll reply Mon–Sat, 8am–6pm.
               </p>
 
               {/* Hero CTA row */}
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-[#131415] transition-[transform,opacity] hover:-translate-y-0.5 hover:opacity-95"
-                  style={{ backgroundColor: "#C89B3C" }}
-                  aria-label="Message on WhatsApp (fastest)"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp (fastest)
-                </a>
-
-                <a
                   href="#contact-form"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
+                  className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-[#131415] transition-[transform,opacity] hover:-translate-y-0.5 hover:opacity-95"
+                  style={{ backgroundColor: "#C89B3C" }}
                 >
                   Contact form
-                </a>
-
-                <a
-                  href={PHONE_TEL}
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/15"
-                  aria-label={`Call ${PHONE_DISPLAY}`}
-                >
-                  <Phone className="mr-2 h-4 w-4" />
-                  Call {PHONE_DISPLAY}
                 </a>
 
                 <a
@@ -184,8 +159,6 @@ export default function ContactPage() {
                 <CardDescription>Whatever’s easiest — we’ll reply within hours (Mon–Sat).</CardDescription>
               </CardHeader>
               <CardContent className="grid gap-3 text-sm">
-                <ContactRow label="WhatsApp" value="Chat on WhatsApp" href={WHATSAPP} icon="whatsapp" external />
-                <ContactRow label="Phone" value={PHONE_DISPLAY} href={PHONE_TEL} icon="phone" />
                 <ContactRow label="Email" value={EMAIL} href={`mailto:${EMAIL}`} icon="mail" />
                 <ContactRow label="Hours" value="Mon–Sat 08:00–18:00 (flexible by request)" icon="clock" />
                 <ContactRow label="Areas" value={AREAS.join(", ")} icon="map" />
@@ -262,7 +235,7 @@ function StructuredData() {
     "@type": "ContactPage",
     name: "Contact — Saltaire Dogs + Pets",
     url: `${siteUrl}/contact`,
-    description: "WhatsApp, call, or email for dog walking and pet visits in Saltaire & Shipley.",
+    description: "Email or contact form for dog walking and pet visits in Saltaire & Shipley.",
     isPartOf: { "@type": "WebSite", name: "Saltaire Dogs + Pets", url: siteUrl },
   };
 
@@ -272,7 +245,6 @@ function StructuredData() {
     name: "Saltaire Dogs + Pets",
     url: siteUrl,
     email: EMAIL,
-    telephone: PHONE_E164,
     areaServed: AREAS,
     image: [`${siteUrl}${HERO_IMAGE}`],
     address: {

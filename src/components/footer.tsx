@@ -2,22 +2,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from './container'
-import { Phone, Mail, MessageCircle, Instagram, MapPin, Clock } from 'lucide-react'
+import { Mail, Instagram, MapPin, Clock } from 'lucide-react'
 
 const currentYear = new Date().getFullYear()
 
 const SITE_URL = 'https://www.saltairedogs.uk'
 const BUSINESS = 'Saltaire Dogs + Pets'
 
-const PHONE_DISPLAY = '07424 208127'
-const PHONE_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
-
-const WA_NUMBER = '447424208127'
-const WA_TEXT = encodeURIComponent(
-  'Hi! I’m in Saltaire. My street is [your street], pet is [dog/cat/small pet], and I’m looking for [walks/visits].'
-)
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 const INSTAGRAM_URL = 'https://www.instagram.com/saltairedogs/'
 
@@ -103,7 +95,7 @@ export function Footer() {
             '@type': 'LocalBusiness',
             name: BUSINESS,
             url: SITE_URL,
-            telephone: '+44 7424 208127',
+            email: 'saltairedogs@proton.me',
             image: `${SITE_URL}/saltaire-dogs-logo-official.webp`,
             address: {
               '@type': 'PostalAddress',
@@ -161,26 +153,7 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 md:justify-end">
-                  <a
-                    href={WA_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-[#131415]"
-                    style={{ backgroundColor: '#C89B3C' }}
-                    aria-label="Get a quote on WhatsApp"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp quote
-                  </a>
-                  <a
-                    href={PHONE_TEL}
-                    className="inline-flex items-center gap-2 rounded-xl border bg-white/60 px-4 py-2 text-sm font-semibold text-[#131415] hover:bg-white/80"
-                    style={{ borderColor: '#E6E3DA' }}
-                    aria-label="Call Saltaire Dogs + Pets"
-                  >
-                    <Phone className="h-4 w-4" />
-                    Call
-                  </a>
+                  {/* Contact via email, Instagram below */}
                   <a
                     href={EMAIL}
                     className="inline-flex items-center gap-2 rounded-xl border bg-white/60 px-4 py-2 text-sm font-semibold text-[#131415] hover:bg-white/80"

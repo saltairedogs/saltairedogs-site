@@ -3,7 +3,7 @@
 // Goals:
 // - Answer the #1 conversion question (price) with clear “from” guide prices
 // - Rank for local-intent price searches (Saltaire/Shipley/BD18)
-// - Push WhatsApp/Call above the fold
+// - Push Contact/Email above the fold
 // - Structured data: WebPage + BreadcrumbList + LocalBusiness + OfferCatalog + FAQPage
 
 import type { Metadata } from "next";
@@ -21,29 +21,10 @@ const UPDATED = "2025-12-18";
 // Put your generated image in /public/images/pricing-page/pricing-entryway.webp (or change this path)
 const HERO_IMAGE = "/images/pricing-page/pricing-entryway.webp";
 
-const PHONE_DISPLAY = "07424 208127";
-const PHONE_E164 = "+447424208127";
-const PHONE_TEL = "tel:+447424208127";
-const WHATSAPP_E164 = "447424208127";
-const WHATSAPP_BASE = `https://wa.me/${WHATSAPP_E164}`;
 const EMAIL = "saltairedogs@proton.me";
 const EMAIL_MAILTO = `mailto:${EMAIL}`;
 
 const AREAS = ["Saltaire", "Shipley", "BD18", "Baildon"] as const;
-
-function waPrefill(text: string) {
-  return `${WHATSAPP_BASE}?text=${encodeURIComponent(text)}`;
-}
-
-const WHATSAPP_QUOTE = waPrefill(
-  `Hi Saltaire Dogs + Pets — quick quote please.
-
-Area: (Saltaire/Shipley/BD18)
-Service: (dog walking / cat sitting / home visits)
-Pet(s): (breed/age/temperament)
-Days/times needed:
-Anything important (reactive/nervous/meds/keys):`
-);
 
 type PriceCard = {
   title: string;
@@ -89,12 +70,12 @@ const ADD_ONS = [
 export const metadata: Metadata = {
   title: "Pricing — Dog Walking & Pet Sitting in Saltaire & Shipley (BD18)",
   description:
-    "Guide prices for dog walking, cat sitting and home visits in Saltaire & Shipley (BD18). Transparent ‘from’ pricing, calm care, and fast WhatsApp booking.",
+    "Guide prices for dog walking, cat sitting and home visits in Saltaire & Shipley (BD18). Transparent 'from' pricing, calm care, and easy online booking.",
   alternates: { canonical: `${SITE_URL}${PATH}` },
   openGraph: {
     title: "Pricing — Saltaire Dogs + Pets",
     description:
-      "Guide prices for dog walking and pet sitting in Saltaire & Shipley (BD18). Fast WhatsApp booking and calm, routine-led care.",
+      "Guide prices for dog walking and pet sitting in Saltaire & Shipley (BD18). Easy online booking and calm, routine-led care.",
     url: `${SITE_URL}${PATH}`,
     siteName: BUSINESS_NAME,
     type: "website",
@@ -122,7 +103,7 @@ export default function PricingPage() {
   const faqs = [
     {
       q: "Are these fixed prices?",
-      a: "They’re guide prices (“from”). Exact pricing depends on your area, visit length, number of pets, and any special requirements. Message on WhatsApp for a quick yes/no and a clear quote.",
+      a: "They\u2019re guide prices (\u201cfrom\u201d). Exact pricing depends on your area, visit length, number of pets, and any special requirements. Get in touch for a quick yes/no and a clear quote.",
     },
     {
       q: "Do you charge extra for reactive or nervous dogs?",
@@ -168,7 +149,7 @@ export default function PricingPage() {
     name: BUSINESS_NAME,
     url: SITE_URL,
     email: EMAIL,
-    telephone: PHONE_E164,
+    /* phone removed */
     areaServed: AREAS,
     image: [`${SITE_URL}${HERO_IMAGE}`],
     address: {
@@ -261,25 +242,17 @@ export default function PricingPage() {
                 </h1>
 
                 <p className="mt-3 max-w-prose text-base text-white/85 sm:text-lg">
-                  Simple guide prices for Saltaire &amp; Shipley. Calm care, routine-led visits, and fast WhatsApp booking.
+                  Simple guide prices for Saltaire &amp; Shipley. Calm care, routine-led visits, and easy online booking.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a
-                    href={WHATSAPP_QUOTE}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/contact"
                     className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-[#131415] hover:opacity-95"
                     style={{ backgroundColor: "#C89B3C" }}
                   >
-                    Get a quote on WhatsApp
-                  </a>
-                  <a
-                    href={PHONE_TEL}
-                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/15"
-                  >
-                    Call {PHONE_DISPLAY}
-                  </a>
+                    Get a quote
+                  </Link>
                   <a
                     href={EMAIL_MAILTO}
                     className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/15"
@@ -442,23 +415,21 @@ export default function PricingPage() {
         <section className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
           <h2 className="text-xl font-bold tracking-tight">Want a quick quote?</h2>
           <p className="mt-2 text-slate-700">
-            WhatsApp is fastest. Send your area + dates + what you need, and we’ll reply with a clear yes/no and price.
+            Get in touch with your area + dates + what you need, and we'll reply with a clear yes/no and price.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <a
-              href={WHATSAPP_QUOTE}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-[#131415] hover:opacity-95"
               style={{ backgroundColor: "#C89B3C" }}
             >
-              Quote on WhatsApp
-            </a>
+              Get a quote
+            </Link>
             <a
-              href={PHONE_TEL}
+              href={EMAIL_MAILTO}
               className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold hover:bg-slate-50"
             >
-              Call {PHONE_DISPLAY}
+              Email
             </a>
             <Link
               href="/contact"
@@ -473,19 +444,17 @@ export default function PricingPage() {
       {/* Sticky mobile CTA */}
       <div className="md:hidden fixed bottom-3 left-3 right-3 z-50">
         <div className="rounded-2xl border border-black/10 bg-white/95 backdrop-blur shadow-lg p-3 flex gap-2">
-          <a
-            href={PHONE_TEL}
+          <Link
+            href="/contact"
             className="flex-1 rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white"
           >
-            Call
-          </a>
+            Contact
+          </Link>
           <a
-            href={WHATSAPP_QUOTE}
-            target="_blank"
-            rel="noreferrer"
+            href={EMAIL_MAILTO}
             className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-900"
           >
-            WhatsApp
+            Email
           </a>
         </div>
       </div>

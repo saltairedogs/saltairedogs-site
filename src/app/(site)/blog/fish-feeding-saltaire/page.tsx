@@ -16,13 +16,13 @@ export const metadata = {
     "betta fish care Saltaire",
   ],
   alternates: { canonical: "https://saltairedogs.uk/blog/fish-feeding-saltaire" },
-  authors: [{ name: "Giuseppe (Saltaire Dogs + Pets)" }],
+  authors: [{ name: "Saltaire Dogs + Pets" }],
   openGraph: {
     title: "Fish Feeding & Tank Top-Ups in Saltaire",
     description:
       "Home visits for fish: scheduled feeds, water top-ups, equipment checks and quick photo notes—so your tank stays stable while you’re away.",
     type: "article",
-    authors: ["Giuseppe (Saltaire Dogs + Pets)"],
+    authors: ["Saltaire Dogs + Pets"],
     publishedTime: "2025-10-18T09:00:00Z",
     images: [
       { url: "https://saltairedogs.uk/saltaire-fish-feeding-home-visit-hero-2560w.avif", width: 2560, height: 1280 },
@@ -35,10 +35,6 @@ export const metadata = {
 export default function Page() {
   const PUBLISHED_ISO = "2025-10-18T09:00:00Z"
   const PUBLISHED_HUMAN = "18 Oct 2025"
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I’m in Saltaire. I need fish-feeding/tank top-ups on [dates]. Tank is [tropical/goldfish/betta/mixed]. Feeding schedule is [once/twice] daily. Thanks!"
-  )}`
-
   return (
     <main className="bg-[#F7F7F6] text-[#131415]">
       {/* ------------------------------- HERO -------------------------------- */}
@@ -84,19 +80,17 @@ export default function Page() {
               quick photo note after every visit.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              By <em>Saltaire Dogs + Pets</em> •{" "}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                WhatsApp: fish sitter (Saltaire)
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog/exotic-pet-sitting-saltaire"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -263,15 +257,13 @@ export default function Page() {
             photo notes after each visit. Message with your dates, tank type and feeding plan.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
           <p className="mt-2 text-sm text-[#7B828A]">Keywords: <em>fish sitter Saltaire</em>, aquarium top-ups.</p>
         </section>
@@ -303,13 +295,13 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Need a trusted fish sitter in Saltaire?</h2>
           <p className="mt-2 text-white/85">DBS checked, insured, and we send a short photo note after each visit.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              Get a WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -329,7 +321,7 @@ export default function Page() {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: "Fish Feeding & Tank Top-Ups in Saltaire",
-              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              author: { "@type": "Organization", name: "Saltaire Dogs + Pets" },
               datePublished: PUBLISHED_ISO,
               dateModified: PUBLISHED_ISO,
               mainEntityOfPage: "https://saltairedogs.uk/blog/fish-feeding-saltaire",

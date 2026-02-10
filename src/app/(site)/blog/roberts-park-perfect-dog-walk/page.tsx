@@ -24,7 +24,7 @@ export const metadata = {
       "Three easy loops from Roberts Park with toilets & cafés, quiet-time pointers, lead rules and dog-friendly tips.",
     type: "article",
     publishedTime: "2025-10-22T09:00:00Z",
-    authors: ["Giuseppe (Saltaire Dogs + Pets)"],
+    authors: ["Saltaire Dogs + Pets"],
     images: [
       { url: "https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.avif" },
       { url: "https://saltairedogs.uk/saltaire-leeds-liverpool-canal-salts-mill-golden-hour-hero-2560w.webp" },
@@ -40,9 +40,6 @@ export default function Page() {
   const PUBLISHED_ISO = "2025-10-22T09:00:00Z"
   const PUBLISHED_HUMAN = "22 Oct 2025"
 
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm in/visiting Saltaire and would like a local dog walk or drop-in on [dates/times]."
-  )}`
 
   return (
     <main className="bg-[#F7F7F6] text-[#131415]">
@@ -105,19 +102,17 @@ export default function Page() {
               times, toilets & lead rules.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              By <em>Saltaire Dogs + Pets</em> •{" "}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                WhatsApp: local dog walks
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog/best-saltaire-walks"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -288,15 +283,13 @@ export default function Page() {
             visit.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border px-5 py-3 text-base font-semibold"
@@ -339,13 +332,13 @@ export default function Page() {
             Walks, drop-ins and feeding for dogs, cats and small pets—photo notes after every visit.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              60-second WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/dog-walking"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -365,7 +358,7 @@ export default function Page() {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: "Roberts Park: The Perfect Dog Walk (20/35/50-Minute Loops, Cafés & Tips)",
-              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              author: { "@type": "Organization", name: "Saltaire Dogs + Pets" },
               datePublished: PUBLISHED_ISO,
               dateModified: PUBLISHED_ISO,
               mainEntityOfPage: "https://saltairedogs.uk/blog/roberts-park-perfect-dog-walk",

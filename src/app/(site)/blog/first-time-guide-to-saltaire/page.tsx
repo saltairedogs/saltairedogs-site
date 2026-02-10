@@ -7,21 +7,18 @@ export const metadata = {
   description:
     'Planning your first trip to Saltaire? Local, no-nonsense guide to Salts Mill, Roberts Park, the Leeds & Liverpool Canal, parking, cafés, Shipley Glen Tramway and easy itineraries.',
   alternates: { canonical: 'https://saltairedogs.uk/blog/first-time-guide-to-saltaire' },
-  authors: [{ name: 'Giuseppe (Saltaire Dogs + Pets)' }],
+  authors: [{ name: 'Saltaire Dogs + Pets' }],
   openGraph: {
     title: 'First-Timer’s Guide to Saltaire',
     description:
       'Local, no-nonsense guide to Salts Mill, Roberts Park, the canal, parking, cafés and easy itineraries.',
     type: 'article',
-    authors: ['Giuseppe (Saltaire Dogs + Pets)'],
+    authors: ['Saltaire Dogs + Pets'],
     publishedTime: '2025-10-10T09:00:00Z',
   },
 }
 
 export default function Page() {
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I'm in/visiting Saltaire and I’d love a quick quote for [walks/drop-ins/feeding] on [dates]."
-  )}`
 
   const PUBLISHED_ISO = '2025-10-10T09:00:00Z' // 10 Oct 2025
   const PUBLISHED_HUMAN = '10 Oct 2025'
@@ -60,21 +57,19 @@ export default function Page() {
 
             {/* Byline */}
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em>{' '}
+              By <em>Saltaire Dogs + Pets</em>{' '}
               <span aria-hidden="true">•</span>{' '}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: '#C89B3C', color: '#131415' }}
               >
-                60-second WhatsApp quote (pet care)
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -237,19 +232,17 @@ export default function Page() {
           <h2 className="text-2xl font-bold">Bringing a dog—or need care while you visit?</h2>
           <p className="mt-3 text-[#4A4F55]">
             Saltaire is very walkable for dogs (lead recommended in busy areas). If you’re staying nearby and need{' '}
-            <strong>walks, drop-ins or feeding</strong>—for dogs, cats or small pets—send a quick WhatsApp and I’ll
+            <strong>walks, drop-ins or feeding</strong>—for dogs, cats or small pets—get in touch and we'll
             reply with times that fit.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -322,13 +315,13 @@ export default function Page() {
             I’m based in Saltaire—DBS checked, insured, and I send photo notes after every visit.
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: '#C89B3C', color: '#131415' }}
             >
-              Get a quick WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -386,7 +379,7 @@ export default function Page() {
               '@context': 'https://schema.org',
               '@type': 'Article',
               headline: 'The Complete First-Timer’s Guide to Saltaire',
-              author: { '@type': 'Person', name: 'Giuseppe (Saltaire Dogs + Pets)' },
+              author: { '@type': 'Organization', name: 'Saltaire Dogs + Pets' },
               datePublished: '2025-10-10T09:00:00Z',
               dateModified: '2025-10-10T09:00:00Z',
               image: 'https://saltairedogs.uk/saltaire-salts-mill-facade-golden-hour-hero-2560.avif',

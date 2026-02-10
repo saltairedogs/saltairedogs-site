@@ -4,14 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../components/ui/button'
-import { MessageCircle, Phone, Sparkles, Heart, MapPin, Camera } from 'lucide-react'
+import { Sparkles, Heart, MapPin, Camera } from 'lucide-react'
 import { Container } from './container'
-
-const WA_NUMBER = '447424208127'
-const WA_TEXT = encodeURIComponent(
-  "Hi! I'm in Saltaire/Shipley and need pet care. Can we chat?"
-)
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`
 
 export function Hero() {
   return (
@@ -72,28 +66,16 @@ export function Hero() {
 
               {/* CTAs */}
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 text-base font-bold text-white shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/40"
-                  aria-label="Message on WhatsApp for a quick pet care quote"
                 >
-                  <MessageCircle className="h-5 w-5" />
-                  Message me on WhatsApp
-                </a>
-
-                <a
-                  href="tel:+447424208127"
-                  className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-white px-8 text-base font-bold text-gray-900 transition-all hover:scale-105 hover:border-gray-400 hover:shadow-lg"
-                >
-                  <Phone className="h-5 w-5" />
-                  Call 07424 208127
-                </a>
+                  Get in touch
+                </Link>
               </div>
 
               <p className="mt-6 text-sm text-gray-600">
-                💬 <strong>Same-day replies.</strong> I'm Giuseppe, been caring for Saltaire pets since 2009.
+                <strong>Same-day replies.</strong> We've been caring for Saltaire pets since 2009.
               </p>
             </motion.div>
 

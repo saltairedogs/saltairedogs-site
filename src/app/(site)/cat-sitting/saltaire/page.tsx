@@ -2,7 +2,7 @@
 // Cat Sitting — Saltaire (server-rendered, CWV-friendly)
 // Goals:
 // - Rank for “cat sitting saltaire / cat sitter saltaire / BD18” + long-tail home visit intent
-// - Convert with WhatsApp + Call above the fold
+// - Convert with contact form/email above the fold
 // - Clear, routine-led value prop (shy-cat friendly, calm check-ins)
 // - Structured data: WebPage + BreadcrumbList + LocalBusiness + Service + FAQPage
 
@@ -15,8 +15,6 @@ const BUSINESS_NAME = 'Saltaire Dogs + Pets'
 const SITE_URL = 'https://www.saltairedogs.uk'
 const UPDATED = '2025-12-18'
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export const metadata: Metadata = {
@@ -47,7 +45,7 @@ export default function CatSittingSaltairePage() {
     },
     {
       q: 'Can you do morning and evening visits?',
-      a: 'Often, yes — it depends on the week and location. Send your dates and preferred times on WhatsApp and you’ll get a clear yes/no.',
+      a: 'Often, yes — it depends on the week and location. Send your dates and preferred times via our contact form and you’ll get a clear yes/no.',
     },
     {
       q: 'How do keys work?',
@@ -55,7 +53,7 @@ export default function CatSittingSaltairePage() {
     },
     {
       q: 'What’s the fastest way to book?',
-      a: 'WhatsApp is quickest. Send: Saltaire + dates + visit frequency + feeding/litter notes + anything important (meds, indoor-only, hiding spots).',
+      a: 'Use our contact form or email. Send: Saltaire + dates + visit frequency + feeding/litter notes + anything important (meds, indoor-only, hiding spots).',
     },
   ] as const
 
@@ -83,7 +81,7 @@ export default function CatSittingSaltairePage() {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: SITE_URL,
-        telephone: '+44 7424 208127',
+        email: 'saltairedogs@proton.me',
         areaServed: ['Saltaire', 'Shipley', 'BD18', 'Bradford'],
       },
       {
@@ -95,11 +93,11 @@ export default function CatSittingSaltairePage() {
           '@type': 'LocalBusiness',
           name: BUSINESS_NAME,
           url: SITE_URL,
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ServiceChannel',
-          serviceUrl: `${SITE_URL}/whatsapp`,
+          serviceUrl: `${SITE_URL}/contact`,
         },
       },
       {
@@ -154,27 +152,15 @@ export default function CatSittingSaltairePage() {
         {/* Fast contact row */}
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-center font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
 
-          <a
-            href={NUMBER_TEL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Call {NUMBER_DISPLAY}
+          <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            Email
           </a>
-
-          <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-            <Link href="/contact" className="underline underline-offset-2">
-              Contact form
-            </Link>
-            <a href={EMAIL} className="underline underline-offset-2">
-              Email
-            </a>
-          </div>
         </div>
 
         {/* Core value blocks */}
@@ -280,22 +266,10 @@ export default function CatSittingSaltairePage() {
         {/* Final CTA row */}
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
-            Message on WhatsApp
-          </Link>
-          <a
-            href={NUMBER_TEL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Call {NUMBER_DISPLAY}
-          </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Contact form
+            Get in touch
           </Link>
           <a
             href={EMAIL}

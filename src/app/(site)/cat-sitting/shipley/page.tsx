@@ -23,11 +23,6 @@ export const metadata: Metadata = {
 const BUSINESS_NAME = 'Saltaire Dogs + Pets'
 const SITE_URL = 'https://www.saltairedogs.uk'
 
-// ✅ Updated number
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_E164 = '+447424208127'
-const NUMBER_TEL = 'tel:+447424208127'
-
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function CatSittingShipleyPage() {
@@ -46,7 +41,7 @@ export default function CatSittingShipleyPage() {
     },
     {
       q: 'How do I book the fastest?',
-      a: 'WhatsApp is quickest. Send your area (Shipley), dates, visit frequency, feeding/litter notes, and anything important (meds, indoor-only, hiding spots).',
+      a: 'Send us your area (Shipley), dates, visit frequency, feeding/litter notes, and anything important (meds, indoor-only, hiding spots) via our contact form or email.',
     },
   ] as const
 
@@ -73,7 +68,7 @@ export default function CatSittingShipleyPage() {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: SITE_URL,
-        telephone: NUMBER_E164,
+        email: 'saltairedogs@proton.me',
         areaServed: ['Shipley', 'Saltaire', 'BD18', 'Bradford'],
       },
       {
@@ -85,11 +80,11 @@ export default function CatSittingShipleyPage() {
           '@type': 'LocalBusiness',
           name: BUSINESS_NAME,
           url: SITE_URL,
-          telephone: NUMBER_E164,
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ServiceChannel',
-          serviceUrl: `${SITE_URL}/whatsapp`,
+          serviceUrl: `${SITE_URL}/contact`,
         },
       },
       {
@@ -137,27 +132,15 @@ export default function CatSittingShipleyPage() {
         {/* Fast contact row */}
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-center font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Contact form
-          </Link>
-
-          <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-            <a href={NUMBER_TEL} className="underline underline-offset-2">
-              Call {NUMBER_DISPLAY}
-            </a>
-            <a href={EMAIL} className="underline underline-offset-2">
-              Email
-            </a>
-          </div>
+          <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 text-center font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            Email
+          </a>
         </div>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -244,23 +227,11 @@ export default function CatSittingShipleyPage() {
         {/* Final CTA row */}
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/whatsapp"
+            href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 font-medium text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
           >
-            Message on WhatsApp
+            Get in touch
           </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Contact form
-          </Link>
-          <a
-            href={NUMBER_TEL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          >
-            Call {NUMBER_DISPLAY}
-          </a>
           <a
             href={EMAIL}
             className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

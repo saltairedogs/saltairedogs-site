@@ -16,13 +16,13 @@ export const metadata = {
     "chicken feeding schedule layers pellets",
   ],
   alternates: { canonical: "https://saltairedogs.uk/blog/chicken-care-saltaire" },
-  authors: [{ name: "Giuseppe (Saltaire Dogs + Pets)" }],
+  authors: [{ name: "Saltaire Dogs + Pets" }],
   openGraph: {
     title: "Chicken & Backyard Flock Checks in Saltaire",
     description:
       "Feed & water top-ups, egg collection, coop/runs secured at dusk, predator & health checks—plus a simple holiday plan for garden hens in Saltaire.",
     type: "article",
-    authors: ["Giuseppe (Saltaire Dogs + Pets)"],
+    authors: ["Saltaire Dogs + Pets"],
     publishedTime: "2025-10-18T09:00:00Z",
     images: [
       { url: "https://saltairedogs.uk/saltaire-backyard-chicken-flock-home-visit-hero-2560w.avif", width: 2560, height: 1280 },
@@ -35,9 +35,6 @@ export const metadata = {
 export default function Page() {
   const PUBLISHED_ISO = "2025-10-18T09:00:00Z"
   const PUBLISHED_HUMAN = "18 Oct 2025"
-  const WA = `https://wa.me/447424208127?text=${encodeURIComponent(
-    "Hi! I’m in Saltaire/Shipley. I have backyard chickens and need home-visits for [dates]. Please include feed/water, egg collection, and locking/unlocking the coop. Thanks!"
-  )}`
 
   return (
     <main className="bg-[#F7F7F6] text-[#131415]">
@@ -106,20 +103,18 @@ export default function Page() {
               collection and coop security checks with a quick photo note after every visit.
             </p>
             <p className="mt-2 text-sm text-white/80">
-              By <strong>Giuseppe</strong>, owner – <em>Saltaire Dogs + Pets</em> •{" "}
+              By <em>Saltaire Dogs + Pets</em> •{" "}
               <time dateTime={PUBLISHED_ISO}>Published {PUBLISHED_HUMAN}</time>
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={WA}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
                 style={{ backgroundColor: "#C89B3C", color: "#131415" }}
               >
-                WhatsApp: chicken sitter (Saltaire)
-              </a>
+                Get in touch
+              </Link>
               <Link
                 href="/blog/exotic-pet-sitting-saltaire"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -273,15 +268,13 @@ export default function Page() {
             We keep things calm and consistent: feed, water, eggs, doors and a quick welfare check—exactly how you do it.
           </p>
           <div className="mt-4">
-            <a
-              href={WA}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              WhatsApp a quick request
-            </a>
+              Get in touch
+            </Link>
           </div>
         </section>
 
@@ -312,13 +305,13 @@ export default function Page() {
           <h2 className="text-2xl font-extrabold">Need flock checks while you’re away?</h2>
           <p className="mt-2 text-white/85">Local, insured and DBS checked. Photo note after every visit.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={WA}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold"
               style={{ backgroundColor: "#C89B3C", color: "#131415" }}
             >
-              Get a WhatsApp quote
-            </a>
+              Get a quote
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-base font-semibold text-white hover:bg-white/15"
@@ -338,7 +331,7 @@ export default function Page() {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: "Chicken & Backyard Flock Checks in Saltaire",
-              author: { "@type": "Person", name: "Giuseppe (Saltaire Dogs + Pets)" },
+              author: { "@type": "Organization", name: "Saltaire Dogs + Pets" },
               datePublished: PUBLISHED_ISO,
               dateModified: PUBLISHED_ISO,
               mainEntityOfPage: "https://saltairedogs.uk/blog/chicken-care-saltaire",

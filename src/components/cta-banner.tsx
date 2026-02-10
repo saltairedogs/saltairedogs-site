@@ -28,7 +28,7 @@ export function CTABanner() {
             asChild
             className="rounded-lg border-[#E6E3DA] text-[#131415] bg-white hover:bg-[#EFEEE9]/60 shadow-none"
           >
-            <a href="tel:+447424208127">Call 07424 208127</a>
+            <a href="mailto:saltairedogs@proton.me">Email us</a>
           </Button>
         </div>
 

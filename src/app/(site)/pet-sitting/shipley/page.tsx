@@ -5,7 +5,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Pet Sitting in Shipley — Home Visits, Feeding, Cats & Small Pets (BD18)',
   description:
-    'Pet sitting in Shipley (BD18): calm home visits for cats, dogs, rabbits, birds/parrots and fish feeding. Clear updates, routine-first care, and simple WhatsApp booking.',
+    'Pet sitting in Shipley (BD18): calm home visits for cats, dogs, rabbits, birds/parrots and fish feeding. Clear updates, routine-first care, and simple booking.',
   alternates: { canonical: 'https://www.saltairedogs.uk/pet-sitting/shipley' },
   openGraph: {
     title: 'Pet Sitting in Shipley — Home Visits & Feeding (BD18)',
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function PetSittingShipleyPage() {
@@ -55,12 +53,12 @@ export default function PetSittingShipleyPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: [
           {
             '@type': 'ServiceChannel',
-            serviceUrl: 'https://www.saltairedogs.uk/whatsapp',
+            serviceUrl: 'https://www.saltairedogs.uk/contact',
             availableLanguage: ['en'],
           },
           {
@@ -110,7 +108,7 @@ export default function PetSittingShipleyPage() {
             name: 'How do I book quickly?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'WhatsApp is the fastest. Send your area, dates, visit frequency, and your pet details (species/breed, temperament, meds). We’ll confirm availability and next steps.',
+              text: 'Get in touch via our contact form or email with your area, dates, visit frequency, and your pet details (species/breed, temperament, meds). We’ll confirm availability and next steps.',
             },
           },
         ],
@@ -132,25 +130,14 @@ export default function PetSittingShipleyPage() {
           {/* Fast contact row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
-              href="/whatsapp"
-              className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium text-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              Message on WhatsApp
-            </Link>
-            <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
+              className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-white font-medium text-center hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
             >
-              Contact form
+              Get in touch
             </Link>
-            <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-              <a href={NUMBER_TEL} className="underline underline-offset-2">
-                Call {NUMBER_DISPLAY}
-              </a>
-              <a href={EMAIL} className="underline underline-offset-2">
-                Email
-              </a>
-            </div>
+            <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">
+              Email
+            </a>
           </div>
 
           {/* What a visit includes */}
@@ -238,7 +225,7 @@ export default function PetSittingShipleyPage() {
               frequency, and any special requirements (e.g., medication support).
             </p>
             <p className="mt-2 text-sm text-slate-600">
-              For a quick quote, WhatsApp your area + dates + how many visits you need per day.
+              For a quick quote, send us your area + dates + how many visits you need per day via our contact form.
             </p>
           </div>
 
@@ -269,23 +256,11 @@ export default function PetSittingShipleyPage() {
           {/* Final contact row */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link
-              href="/whatsapp"
-              className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              Message on WhatsApp
-            </Link>
-            <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
+              className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-white font-medium hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
             >
-              Contact form
+              Get in touch
             </Link>
-            <a
-              href={NUMBER_TEL}
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            >
-              Call {NUMBER_DISPLAY}
-            </a>
             <a
               href={EMAIL}
               className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"

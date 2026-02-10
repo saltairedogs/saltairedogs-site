@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Check, Heart, MapPin, Smile, Camera, MessageCircle, Phone } from 'lucide-react'
+import { Check, Heart, MapPin, Smile, Camera, Mail } from 'lucide-react'
 
 export default function HowItWorksClient() {
   // Soft reveal on scroll
@@ -55,7 +55,7 @@ export default function HowItWorksClient() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         priceRange: '£10-£15',
       },
@@ -67,7 +67,7 @@ export default function HowItWorksClient() {
             name: 'How do we start?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "Message on WhatsApp or give us a call. We'll chat about what you need, arrange a friendly meet & greet, and set up your routine.",
+              text: "Get in touch via our contact form or email. We'll chat about what you need, arrange a friendly meet & greet, and set up your routine.",
             },
           },
           {
@@ -122,28 +122,26 @@ export default function HowItWorksClient() {
             </h1>
 
             <p className="mt-4 text-lg leading-relaxed text-white/90">
-              I'm <strong>Giuseppe</strong>, your local pet carer in Saltaire. Been here <strong>15+ years</strong>,
-              love what I do, and keep things simple: message me, we meet, you relax.
+              We're your local pet carers in Saltaire. Been here <strong>15+ years</strong>,
+              love what we do, and keep things simple: get in touch, we meet, you relax.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href={`https://wa.me/447424208127?text=${encodeURIComponent(
-                  "Hi Giuseppe! I'm in Saltaire and need help with [dog/cat/small pet]. Can you help?"
-                )}`}
+              <Link
+                href="/contact"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-base font-semibold"
                 style={{ backgroundColor: '#C89B3C', color: '#131415' }}
               >
-                <MessageCircle className="h-5 w-5" />
-                Message on WhatsApp
-              </a>
+                <Mail className="h-5 w-5" />
+                Get in touch
+              </Link>
 
               <a
-                href="tel:+447424208127"
+                href="mailto:saltairedogs@proton.me"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 text-base font-semibold text-white hover:bg-white/15"
               >
-                <Phone className="h-5 w-5" />
-                Call 07424 208127
+                <Mail className="h-5 w-5" />
+                Email us
               </a>
             </div>
 
@@ -175,8 +173,8 @@ export default function HowItWorksClient() {
               Why locals choose Saltaire Dogs + Pets
             </h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              I keep prices fair, know every towpath and quiet route, and care for{' '}
-              <strong>everything from dogs to bearded dragons</strong>. No big company overheads — just me doing what I love.
+              We keep prices fair, know every towpath and quiet route, and care for{' '}
+              <strong>everything from dogs to bearded dragons</strong>. No big company overheads — just a small team doing what we love.
             </p>
           </div>
 
@@ -189,9 +187,9 @@ export default function HowItWorksClient() {
               <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 ring-1 ring-emerald-100">
                 <Heart className="h-5 w-5 text-emerald-700" />
               </div>
-              <h3 className="text-lg font-semibold">I actually enjoy this</h3>
+              <h3 className="text-lg font-semibold">We actually enjoy this</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Not a side hustle. This is what I love doing. You'll feel the difference.
+                Not a side hustle. This is what we love doing. You'll feel the difference.
               </p>
             </article>
 
@@ -205,7 +203,7 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-lg font-semibold">15+ years local knowledge</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                I know the towpaths, Roberts Park, Shipley Glen — calmer routes, safer crossings.
+                We know the towpaths, Roberts Park, Shipley Glen — calmer routes, safer crossings.
               </p>
             </article>
 
@@ -222,7 +220,7 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-lg font-semibold">Cheapest around</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                From £10 per visit. No fancy office, no shareholders — just fair local rates.
+                From £10 per visit. No fancy office, no shareholders — just fair local rates from a small team.
               </p>
             </article>
 
@@ -250,7 +248,7 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-lg font-semibold">All animals welcome</h3>
               <p className="mt-2 text-sm text-[#7B828A]">
-                Dogs, cats, rabbits, reptiles, birds, fish, chickens — I've got you covered.
+                Dogs, cats, rabbits, reptiles, birds, fish, chickens — we've got you covered.
               </p>
             </article>
 
@@ -291,11 +289,11 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-xl font-semibold">Say hello</h3>
               <p className="mt-2 text-[#7B828A]">
-                WhatsApp or call. Tell me what you need: "Giuseppe, I've got a nervous spaniel, need weekday morning
+                Use the contact form or email us. Tell us what you need: "I've got a nervous spaniel, need weekday morning
                 walks." Done.
               </p>
               <p className="mt-3 text-sm text-[#7B828A]">
-                I'll reply same day with a yes/no and rough pricing. No waffle.
+                We'll reply same day with a yes/no and rough pricing. No waffle.
               </p>
             </div>
 
@@ -308,7 +306,7 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-xl font-semibold">Meet & greet</h3>
               <p className="mt-2 text-[#7B828A]">
-                I pop round. Meet your pet, see your setup, note any quirks. Takes 15 minutes.
+                We pop round. Meet your pet, see your setup, note any quirks. Takes 15 minutes.
               </p>
               <p className="mt-3 text-sm text-[#7B828A]">
                 If it feels right for both of us, we agree a start date. No pressure.
@@ -324,25 +322,25 @@ export default function HowItWorksClient() {
               </div>
               <h3 className="text-xl font-semibold">You relax</h3>
               <p className="mt-2 text-[#7B828A]">
-                I follow your routine exactly. After every visit: photo + quick note. Simple.
+                We follow your routine exactly. After every visit: photo + quick note. Simple.
               </p>
               <p className="mt-3 text-sm text-[#7B828A]">
-                Need to tweak something? Just message. I keep things flexible.
+                Need to tweak something? Just message. We keep things flexible.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* WHAT I DO */}
+      {/* WHAT WE DO */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              What I do (pretty much everything)
+              What we do (pretty much everything)
             </h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              Most pet services just do dogs and cats. I cover the lot — and I actually know what I'm doing.
+              Most pet services just do dogs and cats. We cover the lot — and we actually know what we're doing.
             </p>
           </div>
 
@@ -435,7 +433,7 @@ export default function HowItWorksClient() {
 
             <p className="mt-4 text-center text-sm text-[#7B828A]" data-reveal>
               Got something else? Guinea pigs? Ferrets? Hamsters? <strong>Just ask.</strong> If it's safe and makes
-              sense, I'll help.
+              sense, we'll help.
             </p>
           </div>
         </div>
@@ -447,7 +445,7 @@ export default function HowItWorksClient() {
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Fair local rates</h2>
             <p className="mt-4 text-lg text-[#7B828A]">
-              I keep prices low because I have no big overheads and I love what I do. You get quality care without the
+              We keep prices low because we have no big overheads and we love what we do. You get quality care without the
               fancy price tag.
             </p>
           </div>
@@ -519,28 +517,26 @@ export default function HowItWorksClient() {
             <div className="relative mx-auto max-w-3xl" data-reveal>
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Ready to get started?</h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">
-                Message me now with what you need. I'll reply today with a yes/no and clear pricing. No forms, no
+                Get in touch now with what you need. We'll reply today with a yes/no and clear pricing. No fuss, no
                 waiting around.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href={`https://wa.me/447424208127?text=${encodeURIComponent(
-                    "Hi Giuseppe! I'm in Saltaire and need help with [dog/cat/small pet]. Can you help?"
-                  )}`}
+                <Link
+                  href="/contact"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-7 text-base font-semibold"
                   style={{ backgroundColor: '#C89B3C', color: '#131415' }}
                 >
-                  <MessageCircle className="h-5 w-5" />
-                  WhatsApp me now
-                </a>
+                  <Mail className="h-5 w-5" />
+                  Contact us
+                </Link>
 
                 <a
-                  href="tel:+447424208127"
+                  href="mailto:saltairedogs@proton.me"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-7 text-base font-semibold text-white hover:bg-white/15"
                 >
-                  <Phone className="h-5 w-5" />
-                  Call 07424 208127
+                  <Mail className="h-5 w-5" />
+                  Email us
                 </a>
               </div>
 

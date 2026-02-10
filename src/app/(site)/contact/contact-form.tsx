@@ -4,12 +4,9 @@ import * as React from "react";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
-import { MessageCircle, Phone, Mail, Sparkles } from "lucide-react";
+import { Mail, Sparkles } from "lucide-react";
 
-const PHONE_DISPLAY = "07424 208127";
-const PHONE_TEL = "07424208127";
 const EMAIL = "saltairedogs@proton.me";
-const WHATSAPP = "https://wa.me/447424208127";
 
 type Status =
   | { state: "idle" }
@@ -54,7 +51,7 @@ export default function ContactForm() {
         const payload = await res.json().catch(() => null);
         setStatus({
           state: "error",
-          message: payload?.message || "Hmm, that didn’t send. Please try again or WhatsApp us.",
+          message: payload?.message || "Hmm, that didn't send. Please try again or email us.",
         });
         return;
       }
@@ -64,7 +61,7 @@ export default function ContactForm() {
       form.reset();
       setMessage("");
     } catch {
-      setStatus({ state: "error", message: "Network error—please try again or WhatsApp us." });
+      setStatus({ state: "error", message: "Network error—please try again or email us." });
     }
   }
 
@@ -148,20 +145,7 @@ export default function ContactForm() {
         >
           <Mail className="h-4 w-4" /> Email us
         </a>
-        <a
-          href={`tel:${PHONE_TEL}`}
-          className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm hover:bg-[#EFEEE9]"
-        >
-          <Phone className="h-4 w-4" /> Call {PHONE_DISPLAY}
-        </a>
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm hover:bg-[#EFEEE9]"
-        >
-          <MessageCircle className="h-4 w-4" /> WhatsApp (fastest)
-        </a>
+{/* Additional contact options removed */}
       </div>
 
       {/* Status messages */}
@@ -179,7 +163,7 @@ export default function ContactForm() {
 
       {/* Tiny reassurance */}
       <p className="mt-4 text-xs text-[#7B828A]">
-        Rather talk first? Call {PHONE_DISPLAY} or WhatsApp any time during hours.
+        Rather talk first? Email us any time during hours.
       </p>
     </form>
   );

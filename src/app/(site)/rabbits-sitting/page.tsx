@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-const NUMBER_DISPLAY = '07424 208127'
-const NUMBER_TEL = 'tel:+447424208127'
 const EMAIL = 'mailto:saltairedogs@proton.me'
 
 export default function RabbitsSittingPage() {
@@ -35,13 +33,12 @@ export default function RabbitsSittingPage() {
           '@type': 'LocalBusiness',
           name: 'Saltaire Dogs + Pets',
           url: 'https://www.saltairedogs.uk',
-          telephone: '+44 7424 208127',
+          email: 'saltairedogs@proton.me',
         },
         availableChannel: {
           '@type': 'ContactPoint',
           contactType: 'customer service',
-          url: 'https://www.saltairedogs.uk/whatsapp',
-          telephone: '+44 7424 208127',
+          url: 'https://www.saltairedogs.uk/contact',
           email: 'saltairedogs@proton.me',
         },
       },
@@ -99,21 +96,12 @@ export default function RabbitsSittingPage() {
           {/* Fast contact row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <Link
-              href="/whatsapp"
-              className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium text-center hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-            >
-              Message on WhatsApp
-            </Link>
-            <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400"
+              className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-white font-medium text-center hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20"
             >
-              Contact form
+              Get in touch
             </Link>
-            <div className="flex items-center justify-center gap-4 text-sm text-slate-700">
-              <a href={NUMBER_TEL} className="underline underline-offset-2">Call {NUMBER_DISPLAY}</a>
-              <a href={EMAIL} className="underline underline-offset-2">Email</a>
-            </div>
+            <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium text-center hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Email</a>
           </div>
 
           {/* What we do */}
@@ -187,9 +175,7 @@ export default function RabbitsSittingPage() {
 
           {/* Final contact row */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link href="/whatsapp" className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">Message on WhatsApp</Link>
-            <Link href="/contact" className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Contact form</Link>
-            <a href={NUMBER_TEL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Call {NUMBER_DISPLAY}</a>
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-[#131415] px-4 py-2 text-white font-medium hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-black/20">Get in touch</Link>
             <a href={EMAIL} className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400">Email</a>
           </div>
         </div>
